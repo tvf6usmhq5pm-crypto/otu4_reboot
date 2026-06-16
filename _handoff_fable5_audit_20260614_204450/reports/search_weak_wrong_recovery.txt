@@ -1,0 +1,495 @@
+﻿
+  lib\analytics.ts:4:  loadResults,
+> lib\analytics.ts:5:  loadWeaknessRecords,
+> lib\analytics.ts:6:  loadWrongQuestionIds,
+  lib\analytics.ts:7:  type StoredSessionResult,
+  lib\analytics.ts:8:} from './storage';
+  lib\analytics.ts:16:  Subject,
+> lib\analytics.ts:17:  WeaknessRecord,
+  lib\analytics.ts:18:} from './types';
+  lib\analytics.ts:19:
+  lib\analytics.ts:46:  hasSession: boolean;
+> lib\analytics.ts:47:  wrongCount: number;
+  lib\analytics.ts:48:  examDays: number | null;
+  lib\analytics.ts:49:  statuses: HomeSubjectStatus[];
+  lib\analytics.ts:57:  totalGapTo60: number;
+> lib\analytics.ts:58:  weakestSubject: Subject;
+  lib\analytics.ts:59:};
+  lib\analytics.ts:60:
+  lib\analytics.ts:67:  correct: number;
+> lib\analytics.ts:68:  wrong: number;
+  lib\analytics.ts:69:  percent: number;
+> lib\analytics.ts:70:  wrongQuestionIds: string[];
+  lib\analytics.ts:71:  bySubject: SubjectSummaryMap;
+  lib\analytics.ts:72:};
+  lib\analytics.ts:73:
+> lib\analytics.ts:74:export type WeakPointItem = {
+  lib\analytics.ts:75:  questionId: string;
+  lib\analytics.ts:76:  subject: Subject | null;
+  lib\analytics.ts:80:  lastErrorAt: string;
+> lib\analytics.ts:81:  weaknessScore: number;
+  lib\analytics.ts:82:};
+  lib\analytics.ts:83:
+> lib\analytics.ts:84:export type WeakPointSummary = {
+  lib\analytics.ts:85:  total: number;
+> lib\analytics.ts:86:  items: WeakPointItem[];
+  lib\analytics.ts:87:};
+  lib\analytics.ts:88:
+  lib\analytics.ts:198:
+> lib\analytics.ts:199:export function getWeakestSubject(summaries: SubjectSummaryMap): Subject {
+  lib\analytics.ts:200:  const measured = SUBJECT_KEYS.filter((subject) => summaries[subject].total > 0);
+  lib\analytics.ts:201:
+  lib\analytics.ts:231:    totalGapTo60,
+> lib\analytics.ts:232:    weakestSubject: getWeakestSubject(summaries),
+  lib\analytics.ts:233:  };
+  lib\analytics.ts:234:}
+  lib\analytics.ts:235:
+> lib\analytics.ts:236:export function getWrongQuestionIdsFromResult(result: StoredSessionResult): string[] {
+  lib\analytics.ts:237:  const answers = result.answers as Record<string, unknown> | undefined;
+  lib\analytics.ts:238:
+  lib\analytics.ts:289:      correct: 0,
+> lib\analytics.ts:290:      wrong: 0,
+  lib\analytics.ts:291:      percent: 0,
+> lib\analytics.ts:292:      wrongQuestionIds: [],
+  lib\analytics.ts:293:      bySubject: normalizeSubjectSummaries(undefined),
+  lib\analytics.ts:294:    };
+  lib\analytics.ts:299:  const correct = toCount(result.correct);
+> lib\analytics.ts:300:  const wrong = toCount(result.wrong ?? Math.max(0, answered - correct));
+  lib\analytics.ts:301:
+  lib\analytics.ts:302:  return {
+  lib\analytics.ts:308:    correct,
+> lib\analytics.ts:309:    wrong,
+  lib\analytics.ts:310:    percent: calcPercent(correct, total),
+> lib\analytics.ts:311:    wrongQuestionIds: getWrongQuestionIdsFromResult(result),
+  lib\analytics.ts:312:    bySubject: normalizeSubjectSummaries(result.bySubject),
+  lib\analytics.ts:313:  };
+  lib\analytics.ts:315:
+> lib\analytics.ts:316:export function getWeakPointSummary(
+  lib\analytics.ts:317:  maxItems = 5,
+> lib\analytics.ts:318:  records: Record<string, WeaknessRecord> = loadWeaknessRecords(),
+> lib\analytics.ts:319:): WeakPointSummary {
+  lib\analytics.ts:320:  const items = Object.values(records)
+  lib\analytics.ts:321:    .slice()
+  lib\analytics.ts:322:    .sort((a, b) => {
+> lib\analytics.ts:323:      if (b.weaknessScore !== a.weaknessScore) {
+> lib\analytics.ts:324:        return b.weaknessScore - a.weaknessScore;
+  lib\analytics.ts:325:      }
+  lib\analytics.ts:326:
+  lib\analytics.ts:343:        lastErrorAt: record.lastErrorAt,
+> lib\analytics.ts:344:        weaknessScore: record.weaknessScore,
+  lib\analytics.ts:345:      };
+  lib\analytics.ts:346:    });
+  lib\analytics.ts:356:  const latest = getLatestResult();
+> lib\analytics.ts:357:  const wrongIds = loadWrongQuestionIds();
+  lib\analytics.ts:358:  const examDate = loadExamDate();
+  lib\analytics.ts:359:
+  lib\analytics.ts:364:      hasSession: Boolean(session && session.questionIds.length > 0),
+> lib\analytics.ts:365:      wrongCount: wrongIds.length,
+  lib\analytics.ts:366:      examDays: calcExamDaysWithFallback(examDate),
+  lib\analytics.ts:367:      statuses: SUBJECT_KEYS.map((subject) => ({
+  lib\analytics.ts:401:
+> lib\analytics.ts:402:  const focusSubject = getWeakestSubject(summaries);
+  lib\analytics.ts:403:  const remainingQuestions = calcTotalGapTo60(summaries);
+  lib\analytics.ts:404:
+  lib\analytics.ts:406:    hasSession: Boolean(session && session.questionIds.length > 0),
+> lib\analytics.ts:407:    wrongCount: wrongIds.length,
+  lib\analytics.ts:408:    examDays: calcExamDaysWithFallback(examDate),
+  lib\analytics.ts:409:    statuses,
+  lib\diagnostics.ts:3:export type DiagnosticMode =
+> lib\diagnostics.ts:4:  | 'weak-points'
+  lib\diagnostics.ts:5:  | 'daily-10'
+  lib\diagnostics.ts:6:  | 'mock-exam'
+  lib\diagnostics.ts:19:export type DiagnosticInput = {
+> lib\diagnostics.ts:20:  wrongCount: number;
+  lib\diagnostics.ts:21:  summaries: Record<DiagnosticSubject, SubjectDiagnosticInput>;
+  lib\diagnostics.ts:22:  examDays?: number | null;
+  lib\diagnostics.ts:64:
+> lib\diagnostics.ts:65:export function getWeakestDiagnosticSubject(
+  lib\diagnostics.ts:66:  summaries: Record<DiagnosticSubject, SubjectDiagnosticInput>,
+  lib\diagnostics.ts:67:): DiagnosticSubject | null {
+  lib\diagnostics.ts:73:
+> lib\diagnostics.ts:74:  return answeredSubjects.reduce((weakest, subject) => {
+  lib\diagnostics.ts:75:    const currentPercent = calcDiagnosticPercent(
+  lib\diagnostics.ts:76:      summaries[subject].correct,
+  lib\diagnostics.ts:79:
+> lib\diagnostics.ts:80:    const weakestPercent = calcDiagnosticPercent(
+> lib\diagnostics.ts:81:      summaries[weakest].correct,
+> lib\diagnostics.ts:82:      summaries[weakest].total,
+  lib\diagnostics.ts:83:    );
+  lib\diagnostics.ts:84:
+> lib\diagnostics.ts:85:    if (currentPercent < weakestPercent) {
+  lib\diagnostics.ts:86:      return subject;
+  lib\diagnostics.ts:87:    }
+  lib\diagnostics.ts:88:
+> lib\diagnostics.ts:89:    if (currentPercent === weakestPercent) {
+  lib\diagnostics.ts:90:      const currentGap = calcDiagnosticGapTo60(
+  lib\diagnostics.ts:91:        summaries[subject].correct,
+  lib\diagnostics.ts:94:
+> lib\diagnostics.ts:95:      const weakestGap = calcDiagnosticGapTo60(
+> lib\diagnostics.ts:96:        summaries[weakest].correct,
+> lib\diagnostics.ts:97:        summaries[weakest].total,
+  lib\diagnostics.ts:98:      );
+  lib\diagnostics.ts:99:
+> lib\diagnostics.ts:100:      if (currentGap > weakestGap) {
+  lib\diagnostics.ts:101:        return subject;
+  lib\diagnostics.ts:102:      }
+  lib\diagnostics.ts:104:
+> lib\diagnostics.ts:105:    return weakest;
+  lib\diagnostics.ts:106:  }, answeredSubjects[0]);
+  lib\diagnostics.ts:107:}
+  lib\diagnostics.ts:115:export function diagnoseNextAction(input: DiagnosticInput): DiagnosticRecommendation {
+> lib\diagnostics.ts:116:  if (input.wrongCount > 0) {
+  lib\diagnostics.ts:117:    return {
+> lib\diagnostics.ts:118:      mode: 'weak-points',
+  lib\diagnostics.ts:119:      subject: null,
+  lib\diagnostics.ts:120:      priority: 'urgent',
+> lib\diagnostics.ts:121:      count: input.wrongCount,
+> lib\diagnostics.ts:122:      reason: `未復習のミスが ${input.wrongCount} 問あります。先に回収すると得点に直結します。`,
+  lib\diagnostics.ts:123:      ctaLabel: '未復習ミスを復習する',
+  lib\diagnostics.ts:124:      percent: null,
+  lib\diagnostics.ts:143:
+> lib\diagnostics.ts:144:  const weakestSubject = getWeakestDiagnosticSubject(input.summaries);
+  lib\diagnostics.ts:145:
+> lib\diagnostics.ts:146:  if (weakestSubject) {
+> lib\diagnostics.ts:147:    const summary = input.summaries[weakestSubject];
+  lib\diagnostics.ts:148:    const percent = calcDiagnosticPercent(summary.correct, summary.total);
+  lib\diagnostics.ts:149:    const gapTo60 = calcDiagnosticGapTo60(summary.correct, summary.total);
+  lib\diagnostics.ts:151:    if (percent < 60) {
+> lib\diagnostics.ts:152:      const label = getDiagnosticSubjectLabel(weakestSubject);
+  lib\diagnostics.ts:153:
+  lib\diagnostics.ts:154:      return {
+  lib\diagnostics.ts:155:        mode: 'daily-10',
+> lib\diagnostics.ts:156:        subject: weakestSubject,
+  lib\diagnostics.ts:157:        priority: 'urgent',
+  lib\diagnostics.ts:158:        count: 10,
+  lib\session.ts:104:/**
+> lib\session.ts:105: * daily-10 / card-study / saved / weak-points などの通常セッションを作る。
+  lib\session.ts:106: */
+  lib\session.ts:107:function buildPracticeQuizSet(options: BuildSessionOptions): QuizSet {
+  lib\session.ts:174:
+> lib\session.ts:175:    case 'weak-points':
+  lib\session.ts:176:      return '弱点復習';
+  lib\session.ts:177:
+  lib\session.ts:393:    correct: correctCount,
+> lib\session.ts:394:    wrong: answeredQuestionIds.length - correctCount,
+  lib\session.ts:395:    accuracy:
+  lib\session.ts:396:      answeredQuestionIds.length === 0
+  lib\storage.ts:7:  type SessionType,
+> lib\storage.ts:8:  type WeaknessRecord,
+  lib\storage.ts:9:} from './types';
+  lib\storage.ts:10:
+  lib\storage.ts:17:const RESULT_STORAGE_KEY = 'otu4.results';
+> lib\storage.ts:18:const WRONG_QUESTION_IDS_KEY = 'otu4.wrongQuestionIds';
+  lib\storage.ts:19:
+  lib\storage.ts:20:export type StoredSessionResult = {
+  lib\storage.ts:26:  totalCount?: number;
+> lib\storage.ts:27:  wrongQuestionIds?: string[];
+  lib\storage.ts:28:  startedAt?: string;
+  lib\storage.ts:29:  finishedAt?: string;
+  lib\storage.ts:114:    case 'saved-questions':
+> lib\storage.ts:115:    case 'weak-points':
+  lib\storage.ts:116:      return STORAGE_KEYS.SESSION_DRILL;
+  lib\storage.ts:117:  }
+  lib\storage.ts:158:    correctStreak: 0,
+> lib\storage.ts:159:    wrongStreak: 0,
+  lib\storage.ts:160:    totalAnswered: 0,
+  lib\storage.ts:161:    totalCorrect: 0,
+  lib\storage.ts:197:    lastAnsweredAt: answeredAt,
+> lib\storage.ts:198:    lastResult: isCorrect ? 'correct' : 'wrong',
+  lib\storage.ts:199:    correctStreak: isCorrect ? current.correctStreak + 1 : 0,
+> lib\storage.ts:200:    wrongStreak: isCorrect ? 0 : current.wrongStreak + 1,
+  lib\storage.ts:201:    totalAnswered,
+  lib\storage.ts:202:    totalCorrect,
+  lib\storage.ts:216:  if (!isCorrect) {
+> lib\storage.ts:217:    addWrongQuestionId(questionId, answeredAt);
+  lib\storage.ts:218:  }
+  lib\storage.ts:219:
+  lib\storage.ts:268:
+> lib\storage.ts:269:export function loadWeaknessRecords(): Record<string, WeaknessRecord> {
+> lib\storage.ts:270:  return readJson<Record<string, WeaknessRecord>>(STORAGE_KEYS.WEAKNESS) ?? {};
+  lib\storage.ts:271:}
+  lib\storage.ts:272:
+> lib\storage.ts:273:export function saveWeaknessRecords(
+> lib\storage.ts:274:  records: Record<string, WeaknessRecord>,
+  lib\storage.ts:275:): void {
+> lib\storage.ts:276:  writeJson(STORAGE_KEYS.WEAKNESS, records);
+  lib\storage.ts:277:}
+  lib\storage.ts:278:
+> lib\storage.ts:279:export function addWeaknessFromWrongAnswer(
+  lib\storage.ts:280:  questionId: string,
+> lib\storage.ts:281:  wrongAt = new Date().toISOString(),
+> lib\storage.ts:282:): WeaknessRecord {
+> lib\storage.ts:283:  const records = loadWeaknessRecords();
+  lib\storage.ts:284:  const current = records[questionId];
+  lib\storage.ts:285:  const errorCount = (current?.errorCount ?? 0) + 1;
+  lib\storage.ts:286:
+> lib\storage.ts:287:  const next: WeaknessRecord = {
+  lib\storage.ts:288:    questionId,
+  lib\storage.ts:289:    errorCount,
+> lib\storage.ts:290:    lastErrorAt: wrongAt,
+> lib\storage.ts:291:    weaknessScore: errorCount,
+  lib\storage.ts:292:  };
+  lib\storage.ts:293:
+> lib\storage.ts:294:  saveWeaknessRecords({
+  lib\storage.ts:295:    ...records,
+  lib\storage.ts:296:    [questionId]: next,
+  lib\storage.ts:301:
+> lib\storage.ts:302:export function markWeaknessRecovered(questionId: string): void {
+> lib\storage.ts:303:  const records = loadWeaknessRecords();
+  lib\storage.ts:304:
+  lib\storage.ts:305:  if (!records[questionId]) {
+  lib\storage.ts:310:  delete next[questionId];
+> lib\storage.ts:311:  saveWeaknessRecords(next);
+  lib\storage.ts:312:
+> lib\storage.ts:313:  const wrongIds = loadWrongQuestionIds().filter((id) => id !== questionId);
+> lib\storage.ts:314:  writeJson(WRONG_QUESTION_IDS_KEY, wrongIds);
+  lib\storage.ts:315:}
+  lib\storage.ts:316:
+> lib\storage.ts:317:export function clearWeaknessRecords(): void {
+> lib\storage.ts:318:  removeStorageValue(STORAGE_KEYS.WEAKNESS);
+> lib\storage.ts:319:  removeStorageValue(WRONG_QUESTION_IDS_KEY);
+  lib\storage.ts:320:}
+  lib\storage.ts:321:
+> lib\storage.ts:322:export function loadWrongQuestionIds(): string[] {
+> lib\storage.ts:323:  const legacy = readJson<string[]>(WRONG_QUESTION_IDS_KEY) ?? [];
+> lib\storage.ts:324:  const weaknessIds = Object.keys(loadWeaknessRecords());
+  lib\storage.ts:325:
+> lib\storage.ts:326:  return uniqueStrings([...legacy, ...weaknessIds]);
+  lib\storage.ts:327:}
+  lib\storage.ts:328:
+> lib\storage.ts:329:export function saveWrongQuestionIds(questionIds: string[]): void {
+> lib\storage.ts:330:  writeJson(WRONG_QUESTION_IDS_KEY, uniqueStrings(questionIds));
+  lib\storage.ts:331:}
+  lib\storage.ts:332:
+> lib\storage.ts:333:export function addWrongQuestionId(
+  lib\storage.ts:334:  questionId: string,
+> lib\storage.ts:335:  wrongAt = new Date().toISOString(),
+  lib\storage.ts:336:): string[] {
+> lib\storage.ts:337:  addWeaknessFromWrongAnswer(questionId, wrongAt);
+  lib\storage.ts:338:
+> lib\storage.ts:339:  const next = uniqueStrings([...loadWrongQuestionIds(), questionId]);
+> lib\storage.ts:340:  saveWrongQuestionIds(next);
+  lib\storage.ts:341:  return next;
+  lib\storage.ts:342:}
+  lib\storage.ts:343:
+> lib\storage.ts:344:export function removeWrongQuestionId(questionId: string): string[] {
+> lib\storage.ts:345:  const next = loadWrongQuestionIds().filter((id) => id !== questionId);
+> lib\storage.ts:346:  saveWrongQuestionIds(next);
+> lib\storage.ts:347:  markWeaknessRecovered(questionId);
+  lib\storage.ts:348:  return next;
+  lib\storage.ts:349:}
+  lib\storage.ts:350:
+> lib\storage.ts:351:export function clearWrongQuestionIds(): void {
+> lib\storage.ts:352:  removeStorageValue(WRONG_QUESTION_IDS_KEY);
+  lib\storage.ts:353:}
+  lib\storage.ts:354:
+  lib\types.ts:168:  | 'daily-10'
+> lib\types.ts:169:  | 'weak-points'
+  lib\types.ts:170:  | 'saved-questions'
+  lib\types.ts:171:  | 'mock-exam'
+  lib\types.ts:249:  lastAnsweredAt?: string;
+> lib\types.ts:250:  lastResult?: 'correct' | 'wrong';
+  lib\types.ts:251:
+  lib\types.ts:252:  correctStreak: number;
+> lib\types.ts:253:  wrongStreak: number;
+  lib\types.ts:254:
+  lib\types.ts:255:  totalAnswered: number;
+  lib\types.ts:295:/** 弱点記録。personal_error を主因にする。 */
+> lib\types.ts:296:export interface WeaknessRecord {
+  lib\types.ts:297:  questionId: string;
+  lib\types.ts:298:
+  lib\types.ts:301:
+> lib\types.ts:302:  weaknessScore: number;
+  lib\types.ts:303:}
+  lib\types.ts:304:
+  lib\types.ts:330:export interface NextActionSuggestion {
+> lib\types.ts:331:  type: 'star-priority' | 'weak-subject' | 'continue' | 'mock';
+  lib\types.ts:332:
+  lib\types.ts:333:  label: string;
+  lib\types.ts:349:  PROGRESS: 'otu4.progress',
+> lib\types.ts:350:  WEAKNESS: 'otu4.weakness',
+  lib\types.ts:351:  SAVED: 'otu4.saved',
+  lib\types.ts:352:  STATS: 'otu4.stats',
+  components\home\HomeClient.tsx:27:  hasSession: boolean;
+> components\home\HomeClient.tsx:28:  wrongCount: number;
+  components\home\HomeClient.tsx:29:  examDays: number | null;
+  components\home\HomeClient.tsx:30:  statuses: SubjectStatus[];
+  components\home\HomeClient.tsx:93:  return diagnoseNextAction({
+> components\home\HomeClient.tsx:94:    wrongCount: state.wrongCount,
+  components\home\HomeClient.tsx:95:    examDays: state.examDays,
+  components\home\HomeClient.tsx:96:    summaries: state.summaries,
+  components\home\HomeClient.tsx:108:function buildFocusLabel(recommendation: DiagnosticRecommendation): string {
+> components\home\HomeClient.tsx:109:  if (recommendation.mode === 'weak-points') {
+  components\home\HomeClient.tsx:110:    return '未復習ミスを優先';
+  components\home\HomeClient.tsx:111:  }
+  components\home\HomeClient.tsx:128:function buildHeroTitle(recommendation: DiagnosticRecommendation): string {
+> components\home\HomeClient.tsx:129:  if (recommendation.mode === 'weak-points') {
+  components\home\HomeClient.tsx:130:    return '未復習ミスを';
+  components\home\HomeClient.tsx:131:  }
+  components\home\HomeClient.tsx:147:): string {
+> components\home\HomeClient.tsx:148:  if (recommendation.mode === 'weak-points') {
+  components\home\HomeClient.tsx:149:    return '今日あと';
+  components\home\HomeClient.tsx:150:  }
+  components\home\HomeClient.tsx:166:): string {
+> components\home\HomeClient.tsx:167:  if (recommendation.mode === 'weak-points') {
+  components\home\HomeClient.tsx:168:    return `${recommendation.count}問`;
+  components\home\HomeClient.tsx:169:  }
+  components\home\HomeClient.tsx:194:      text:
+> components\home\HomeClient.tsx:195:        state.wrongCount > 0
+> components\home\HomeClient.tsx:196:          ? `未復習のミスが ${state.wrongCount} 問あります`
+  components\home\HomeClient.tsx:197:          : '未復習のミスはありません',
+  components\home\HomeClient.tsx:198:    },
+  components\home\HomeClient.tsx:211:    hasSession: false,
+> components\home\HomeClient.tsx:212:    wrongCount: 0,
+  components\home\HomeClient.tsx:213:    examDays: 67,
+  components\home\HomeClient.tsx:214:    statuses: DEFAULT_STATUSES,
+  components\home\HomeClient.tsx:235:
+> components\home\HomeClient.tsx:236:    if (recommendation.mode === 'weak-points') {
+  components\home\HomeClient.tsx:237:      return recommendation.count;
+  components\home\HomeClient.tsx:238:    }
+  components\home\HomeClient.tsx:263:        <div style={quickGridStyle}>
+> components\home\HomeClient.tsx:264:          <Link href="/quiz?mode=weak-points" style={quickCardStyle}>
+  components\home\HomeClient.tsx:265:            <div style={quickTopStyle}>
+  components\home\HomeClient.tsx:266:              <div style={quickTitleRowStyle}>
+  components\home\HomeClient.tsx:270:
+> components\home\HomeClient.tsx:271:              {state.wrongCount > 0 && (
+> components\home\HomeClient.tsx:272:                <span style={badgeStyle}>{state.wrongCount}問</span>
+  components\home\HomeClient.tsx:273:              )}
+  components\home\HomeClient.tsx:274:            </div>
+  components\quiz\QuizClient.tsx:19:import {
+> components\quiz\QuizClient.tsx:20:  markWeaknessRecovered,
+  components\quiz\QuizClient.tsx:21:
+  components\quiz\QuizClient.tsx:22:  recordQuestionAnswer,
+  components\quiz\QuizClient.tsx:25:
+> components\quiz\QuizClient.tsx:26:  loadWrongQuestionIds,
+  components\quiz\QuizClient.tsx:27:  saveLastSession,
+  components\quiz\QuizClient.tsx:28:  saveResult,
+  components\quiz\QuizClient.tsx:40:
+> components\quiz\QuizClient.tsx:41:  weakPointsLabel: '\u5f31\u70b9\u5fa9\u7fd2',
+  components\quiz\QuizClient.tsx:42:  daily10Label: '\u4eca\u65e5\u306e10\u554f',
+  components\quiz\QuizClient.tsx:43:  smartLabel: '\u30b9\u30de\u30fc\u30c810\u554f',
+  components\quiz\QuizClient.tsx:47:  correct: '\u6b63\u89e3',
+> components\quiz\QuizClient.tsx:48:  wrong: '\u4e0d\u6b63\u89e3',
+  components\quiz\QuizClient.tsx:49:  explanation: '\u89e3\u8aac',
+  components\quiz\QuizClient.tsx:50:  optionDetails: '\u9078\u629e\u80a2\u3054\u3068\u306e\u89e3\u8aac',
+  components\quiz\QuizClient.tsx:84:
+> components\quiz\QuizClient.tsx:85:  if (mode === 'weak-points') {
+> components\quiz\QuizClient.tsx:86:    const wrongQuestionIds = loadWrongQuestionIds();
+  components\quiz\QuizClient.tsx:87:
+> components\quiz\QuizClient.tsx:88:    if (wrongQuestionIds.length === 0) {
+  components\quiz\QuizClient.tsx:89:      return buildLastSession({
+  components\quiz\QuizClient.tsx:90:        sessionType: 'daily-10',
+  components\quiz\QuizClient.tsx:96:    return buildLastSession({
+> components\quiz\QuizClient.tsx:97:      sessionType: 'weak-points',
+> components\quiz\QuizClient.tsx:98:      label: TEXT.weakPointsLabel,
+> components\quiz\QuizClient.tsx:99:      count: wrongQuestionIds.length,
+> components\quiz\QuizClient.tsx:100:      questionIds: wrongQuestionIds,
+  components\quiz\QuizClient.tsx:101:    });
+  components\quiz\QuizClient.tsx:102:  }
+  components\quiz\QuizClient.tsx:144:
+> components\quiz\QuizClient.tsx:145:  if (mode === 'weak-points') {
+> components\quiz\QuizClient.tsx:146:    return session.sessionType === 'weak-points';
+  components\quiz\QuizClient.tsx:147:  }
+  components\quiz\QuizClient.tsx:148:
+  components\quiz\QuizClient.tsx:179:    correct: summary.correct,
+> components\quiz\QuizClient.tsx:180:    wrong: summary.wrong,
+  components\quiz\QuizClient.tsx:181:    accuracy: summary.accuracy,
+  components\quiz\QuizClient.tsx:182:
+  components\quiz\QuizClient.tsx:359:    
+> components\quiz\QuizClient.tsx:360:      if (targetSession.sessionType === 'weak-points' && correct === true) {
+> components\quiz\QuizClient.tsx:361:        markWeaknessRecovered(targetQuestionId);
+  components\quiz\QuizClient.tsx:362:      }
+  components\quiz\QuizClient.tsx:363:    }
+  components\quiz\QuizClient.tsx:543:        >
+> components\quiz\QuizClient.tsx:544:          <strong>{result ? TEXT.correct : TEXT.wrong}</strong>
+  components\quiz\QuizClient.tsx:545:          {!result && (
+  components\quiz\QuizClient.tsx:546:            <span>
+  components\result\ResultClient.tsx:18:  getSubjectAccuracySummary,
+> components\result\ResultClient.tsx:19:  getWeakestSubject,
+> components\result\ResultClient.tsx:20:  getWrongQuestionIdsFromResult,
+  components\result\ResultClient.tsx:21:} from '../../lib/analytics';
+  components\result\ResultClient.tsx:22:import { requireQuestionById } from '../../lib/questions';
+  components\result\ResultClient.tsx:91:
+> components\result\ResultClient.tsx:92:function weakestSubject(
+  components\result\ResultClient.tsx:93:  summaries: Record<SubjectKey, SubjectSummary>,
+  components\result\ResultClient.tsx:94:): SubjectKey {
+  components\result\ResultClient.tsx:173:
+> components\result\ResultClient.tsx:174:function mockMessage(gap: number, weakSubject: SubjectKey): {
+  components\result\ResultClient.tsx:175:  title: string;
+  components\result\ResultClient.tsx:176:  body: string;
+  components\result\ResultClient.tsx:187:      title: '合格圏まであと一歩です',
+> components\result\ResultClient.tsx:188:      body: `${subjectLabel(weakSubject)}を補強すると、合格圏に近づきます。`,
+  components\result\ResultClient.tsx:189:    };
+  components\result\ResultClient.tsx:190:  }
+  components\result\ResultClient.tsx:194:      title: 'もう少しで合格圏です',
+> components\result\ResultClient.tsx:195:      body: `${subjectLabel(weakSubject)}を中心に、足りない科目を戻しましょう。`,
+  components\result\ResultClient.tsx:196:    };
+  components\result\ResultClient.tsx:197:  }
+  components\result\ResultClient.tsx:200:    title: '対策を集中させましょう',
+> components\result\ResultClient.tsx:201:    body: `まずは${subjectLabel(weakSubject)}から、60%ラインを目指します。`,
+  components\result\ResultClient.tsx:202:  };
+  components\result\ResultClient.tsx:203:}
+  components\result\ResultClient.tsx:204:
+> components\result\ResultClient.tsx:205:function getWrongQuestionIds(result: StoredResult): string[] {
+  components\result\ResultClient.tsx:206:  return result.questionIds.filter((questionId) => {
+  components\result\ResultClient.tsx:207:    const question = requireQuestionById(questionId);
+  components\result\ResultClient.tsx:260:  const summaries = getSubjectAccuracySummary(result);
+> components\result\ResultClient.tsx:261:  const weakSubject = getWeakestSubject(summaries);
+  components\result\ResultClient.tsx:262:  const message = resultMessage(result.correct, result.total);
+> components\result\ResultClient.tsx:263:  const wrongQuestionIds = getWrongQuestionIdsFromResult(result);
+> components\result\ResultClient.tsx:264:  const wrongCount = wrongQuestionIds.length;
+  components\result\ResultClient.tsx:265:
+  components\result\ResultClient.tsx:266:  const mainCtaHref =
+> components\result\ResultClient.tsx:267:    wrongCount > 0
+> components\result\ResultClient.tsx:268:      ? `/quiz?mode=daily-10&subject=${weakSubject}`
+  components\result\ResultClient.tsx:269:      : '/quiz?mode=daily-10';
+  components\result\ResultClient.tsx:270:
+  components\result\ResultClient.tsx:304:            <span style={pointLabelStyle}>間違い</span>
+> components\result\ResultClient.tsx:305:            <strong style={pointNumberStyle}>{wrongCount}問</strong>
+  components\result\ResultClient.tsx:306:          </div>
+  components\result\ResultClient.tsx:307:
+  components\result\ResultClient.tsx:309:            <span style={pointLabelStyle}>優先科目</span>
+> components\result\ResultClient.tsx:310:            <strong style={pointSubjectStyle}>{subjectLabel(weakSubject)}</str
+ong>
+  components\result\ResultClient.tsx:311:          </div>
+  components\result\ResultClient.tsx:312:
+  components\result\ResultClient.tsx:315:            <strong style={pointActionStyle}>
+> components\result\ResultClient.tsx:316:              {wrongCount > 0 ? '復習' : '次の10問'}
+  components\result\ResultClient.tsx:317:            </strong>
+  components\result\ResultClient.tsx:318:          </div>
+  components\result\ResultClient.tsx:325:            <strong style={redCtaTitleStyle}>
+> components\result\ResultClient.tsx:326:              {wrongCount > 0
+> components\result\ResultClient.tsx:327:                ? `間違えた${wrongCount}問を復習する`
+  components\result\ResultClient.tsx:328:                : '次の10問へ進む'}
+  components\result\ResultClient.tsx:329:            </strong>
+  components\result\ResultClient.tsx:330:            <p style={redCtaSubStyle}>
+> components\result\ResultClient.tsx:331:              {wrongCount > 0
+> components\result\ResultClient.tsx:332:                ? `${subjectLabel(weakSubject)}を中心に、つまずきを戻しましょう。`
+  components\result\ResultClient.tsx:333:                : 'このまま次の10問に進みましょう。'}
+  components\result\ResultClient.tsx:334:            </p>
+  components\result\ResultClient.tsx:364:  const summaries = getSubjectAccuracySummary(result);
+> components\result\ResultClient.tsx:365:  const weakSubject = getWeakestSubject(summaries);
+  components\result\ResultClient.tsx:366:  const gap = calcTotalGapTo60(summaries);
+> components\result\ResultClient.tsx:367:  const message = mockMessage(gap, weakSubject);
+> components\result\ResultClient.tsx:368:  const wrongCount = getWrongQuestionIdsFromResult(result).length;
+> components\result\ResultClient.tsx:369:  const weakHref = `/quiz?mode=daily-10&subject=${weakSubject}`;
+  components\result\ResultClient.tsx:370:  const reached = gap === 0;
+  components\result\ResultClient.tsx:371:
+  components\result\ResultClient.tsx:418:          <li style={challengeItemStyle}>
+> components\result\ResultClient.tsx:419:            間違い{wrongCount}問のうち、まずは{subjectLabel(weakSubject)}を優先します。
+  components\result\ResultClient.tsx:420:          </li>
+  components\result\ResultClient.tsx:421:          <li style={challengeItemStyle}>
+  components\result\ResultClient.tsx:430:      <section style={actionWrapStyle}>
+> components\result\ResultClient.tsx:431:        <Link href={weakHref} style={redCtaStyle}>
+  components\result\ResultClient.tsx:432:          <div>
+  components\result\ResultClient.tsx:433:            <strong style={redCtaTitleStyle}>弱点対策を開始する</strong>
+  components\result\ResultClient.tsx:434:            <p style={redCtaSubStyle}>
+> components\result\ResultClient.tsx:435:              {subjectLabel(weakSubject)}を10問。60%ラインまで戻します。
+  components\result\ResultClient.tsx:436:            </p>
+  components\result\ResultClient.tsx:437:          </div>
+  components\result\ResultClient.tsx:480:            <strong style={updateSubjectStyle}>
+> components\result\ResultClient.tsx:481:              {shortSubjectLabel(weakSubject)}
+  components\result\ResultClient.tsx:482:            </strong>
+  components\result\ResultClient.tsx:483:          </div>
+
+

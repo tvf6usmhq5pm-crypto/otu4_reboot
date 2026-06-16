@@ -1,0 +1,636 @@
+﻿
+  lib\analytics.ts:1:import {
+> lib\analytics.ts:2:  loadExamDate,
+> lib\analytics.ts:3:  loadLastSession,
+> lib\analytics.ts:4:  loadResults,
+> lib\analytics.ts:5:  loadWeaknessRecords,
+> lib\analytics.ts:6:  loadWrongQuestionIds,
+  lib\analytics.ts:7:  type StoredSessionResult,
+  lib\analytics.ts:8:} from './storage';
+  lib\analytics.ts:63:  resultId: string | null;
+> lib\analytics.ts:64:  sessionType: string | null;
+  lib\analytics.ts:65:  total: number;
+  lib\analytics.ts:66:  answered: number;
+  lib\analytics.ts:256:export function getLatestResult(
+> lib\analytics.ts:257:  results: StoredSessionResult[] = loadResults(),
+  lib\analytics.ts:258:): StoredSessionResult | null {
+  lib\analytics.ts:259:  return results[0] ?? null;
+  lib\analytics.ts:261:
+> lib\analytics.ts:262:export function getResultById(
+  lib\analytics.ts:263:  resultId: string | null,
+> lib\analytics.ts:264:  results: StoredSessionResult[] = loadResults(),
+  lib\analytics.ts:265:): StoredSessionResult | null {
+  lib\analytics.ts:266:  if (!resultId) {
+  lib\analytics.ts:285:      resultId: null,
+> lib\analytics.ts:286:      sessionType: null,
+  lib\analytics.ts:287:      total: 0,
+  lib\analytics.ts:288:      answered: 0,
+  lib\analytics.ts:304:    resultId: typeof result.id === 'string' ? result.id : null,
+> lib\analytics.ts:305:    sessionType: typeof result.sessionType === 'string' ? result.sessionType : null,
+  lib\analytics.ts:306:    total,
+  lib\analytics.ts:307:    answered,
+  lib\analytics.ts:317:  maxItems = 5,
+> lib\analytics.ts:318:  records: Record<string, WeaknessRecord> = loadWeaknessRecords(),
+  lib\analytics.ts:319:): WeakPointSummary {
+  lib\analytics.ts:320:  const items = Object.values(records)
+  lib\analytics.ts:354:export function buildHomeDashboardSummary(): HomeDashboardSummary {
+> lib\analytics.ts:355:  const session = loadLastSession();
+  lib\analytics.ts:356:  const latest = getLatestResult();
+> lib\analytics.ts:357:  const wrongIds = loadWrongQuestionIds();
+> lib\analytics.ts:358:  const examDate = loadExamDate();
+  lib\analytics.ts:359:
+  lib\analytics.ts:360:  if (!latest?.bySubject) {
+  lib\session.ts:6:  type SessionFilters,
+> lib\session.ts:7:  type SessionType,
+  lib\session.ts:8:  type Subject,
+  lib\session.ts:9:} from './types';
+  lib\session.ts:19:export interface BuildSessionOptions {
+> lib\session.ts:20:  sessionType: SessionType;
+  lib\session.ts:21:  label?: string;
+  lib\session.ts:22:  count?: number;
+  lib\session.ts:32:export interface QuizSet {
+> lib\session.ts:33:  sessionType: SessionType;
+  lib\session.ts:34:  label: string;
+  lib\session.ts:35:  questions: Question[];
+  lib\session.ts:104:/**
+> lib\session.ts:105: * daily-10 / card-study / saved / weak-points などの通常セッションを作る。
+  lib\session.ts:106: */
+  lib\session.ts:107:function buildPracticeQuizSet(options: BuildSessionOptions): QuizSet {
+  lib\session.ts:113:    return {
+> lib\session.ts:114:      sessionType: options.sessionType,
+> lib\session.ts:115:      label: options.label ?? defaultSessionLabel(options.sessionType),
+  lib\session.ts:116:      questions: selected,
+  lib\session.ts:117:      filters: options.filters,
+  lib\session.ts:124:  return {
+> lib\session.ts:125:    sessionType: options.sessionType,
+> lib\session.ts:126:    label: options.label ?? defaultSessionLabel(options.sessionType),
+  lib\session.ts:127:    questions: selected,
+  lib\session.ts:128:    filters: options.filters,
+  lib\session.ts:159:  return {
+> lib\session.ts:160:    sessionType: options.sessionType,
+> lib\session.ts:161:    label: options.label ?? defaultSessionLabel(options.sessionType),
+  lib\session.ts:162:    questions: selected,
+  lib\session.ts:163:    filters: options.filters,
+  lib\session.ts:167:/**
+> lib\session.ts:168: * SessionTypeごとのデフォルト表示名。
+  lib\session.ts:169: */
+> lib\session.ts:170:export function defaultSessionLabel(sessionType: SessionType): string {
+> lib\session.ts:171:  switch (sessionType) {
+  lib\session.ts:172:    case 'daily-10':
+  lib\session.ts:173:      return '今日の10問';
+  lib\session.ts:177:
+> lib\session.ts:178:    case 'saved-questions':
+  lib\session.ts:179:      return '保存問題';
+  lib\session.ts:180:
+  lib\session.ts:198:  if (
+> lib\session.ts:199:    options.sessionType === 'mock-exam' ||
+> lib\session.ts:200:    options.sessionType === 'mock-practice'
+  lib\session.ts:201:  ) {
+  lib\session.ts:202:    return buildMockQuizSet(options);
+  lib\session.ts:216:  return {
+> lib\session.ts:217:    sessionType: quizSet.sessionType,
+  lib\session.ts:218:    label: quizSet.label,
+  lib\session.ts:219:    questionIds,
+  lib\storage.ts:5:  type QuestionProgress,
+> lib\storage.ts:6:  type SavedQuestion,
+> lib\storage.ts:7:  type SessionType,
+  lib\storage.ts:8:  type WeaknessRecord,
+  lib\storage.ts:9:} from './types';
+  lib\storage.ts:22:  questionIds: string[];
+> lib\storage.ts:23:  sessionType?: SessionType | string;
+  lib\storage.ts:24:  label?: string;
+  lib\storage.ts:25:  correctCount?: number;
+  lib\storage.ts:103:
+> lib\storage.ts:104:export function getSessionStorageKey(sessionType: SessionType): string {
+> lib\storage.ts:105:  switch (sessionType) {
+  lib\storage.ts:106:    case 'daily-10':
+  lib\storage.ts:107:      return STORAGE_KEYS.SESSION_DAILY;
+  lib\storage.ts:113:    case 'card-study':
+> lib\storage.ts:114:    case 'saved-questions':
+  lib\storage.ts:115:    case 'weak-points':
+  lib\storage.ts:116:      return STORAGE_KEYS.SESSION_DRILL;
+  lib\storage.ts:119:
+> lib\storage.ts:120:export function saveLastSession(session: LastSession): void {
+> lib\storage.ts:121:  writeJson(getSessionStorageKey(session.sessionType), session);
+  lib\storage.ts:122:}
+  lib\storage.ts:123:
+> lib\storage.ts:124:export function loadLastSession(): LastSession | undefined;
+> lib\storage.ts:125:export function loadLastSession(sessionType: SessionType): LastSession | undefined;
+> lib\storage.ts:126:export function loadLastSession(
+> lib\storage.ts:127:  sessionType?: SessionType,
+  lib\storage.ts:128:): LastSession | undefined {
+> lib\storage.ts:129:  if (sessionType) {
+> lib\storage.ts:130:    return readJson<LastSession>(getSessionStorageKey(sessionType));
+  lib\storage.ts:131:  }
+  lib\storage.ts:132:
+  lib\storage.ts:140:export function clearLastSession(): void;
+> lib\storage.ts:141:export function clearLastSession(sessionType: SessionType): void;
+> lib\storage.ts:142:export function clearLastSession(sessionType?: SessionType): void {
+> lib\storage.ts:143:  if (sessionType) {
+> lib\storage.ts:144:    removeStorageValue(getSessionStorageKey(sessionType));
+  lib\storage.ts:145:    return;
+  lib\storage.ts:146:  }
+  lib\storage.ts:164:
+> lib\storage.ts:165:export function loadQuestionProgress(questionId: string): QuestionProgress {
+> lib\storage.ts:166:  const saved = readJson<QuestionProgress>(STORAGE_KEYS.questionProgress(questionId));
+  lib\storage.ts:167:
+> lib\storage.ts:168:  if (!saved) {
+  lib\storage.ts:169:    return buildInitialQuestionProgress(questionId);
+  lib\storage.ts:170:  }
+  lib\storage.ts:173:    ...buildInitialQuestionProgress(questionId),
+> lib\storage.ts:174:    ...saved,
+  lib\storage.ts:175:    questionId,
+  lib\storage.ts:176:  };
+  lib\storage.ts:178:
+> lib\storage.ts:179:export function saveQuestionProgress(progress: QuestionProgress): void {
+  lib\storage.ts:180:  writeJson(STORAGE_KEYS.questionProgress(progress.questionId), progress);
+  lib\storage.ts:181:}
+  lib\storage.ts:211:): QuestionProgress {
+> lib\storage.ts:212:  const current = loadQuestionProgress(questionId);
+  lib\storage.ts:213:  const next = nextQuestionProgressAfterAnswer(current, isCorrect, answeredAt);
+> lib\storage.ts:214:  saveQuestionProgress(next);
+  lib\storage.ts:215:
+  lib\storage.ts:216:  if (!isCorrect) {
+  lib\storage.ts:222:
+> lib\storage.ts:223:export function loadSavedQuestions(): SavedQuestion[] {
+> lib\storage.ts:224:  return readJson<SavedQuestion[]>(STORAGE_KEYS.SAVED) ?? [];
+  lib\storage.ts:225:}
+  lib\storage.ts:226:
+> lib\storage.ts:227:export function saveSavedQuestions(savedQuestions: SavedQuestion[]): void {
+> lib\storage.ts:228:  writeJson(STORAGE_KEYS.SAVED, savedQuestions);
+  lib\storage.ts:229:}
+  lib\storage.ts:230:
+> lib\storage.ts:231:export function isQuestionSaved(questionId: string): boolean {
+> lib\storage.ts:232:  return loadSavedQuestions().some((saved) => saved.questionId === questionId);
+  lib\storage.ts:233:}
+  lib\storage.ts:234:
+> lib\storage.ts:235:export function addSavedQuestion(
+  lib\storage.ts:236:  questionId: string,
+> lib\storage.ts:237:  savedAt = new Date().toISOString(),
+  lib\storage.ts:238:  note?: string,
+> lib\storage.ts:239:): SavedQuestion[] {
+> lib\storage.ts:240:  const current = loadSavedQuestions();
+> lib\storage.ts:241:  const existingIndex = current.findIndex((saved) => saved.questionId === questionId);
+> lib\storage.ts:242:  const nextItem: SavedQuestion = note
+> lib\storage.ts:243:    ? { questionId, savedAt, note }
+> lib\storage.ts:244:    : { questionId, savedAt };
+  lib\storage.ts:245:
+  lib\storage.ts:246:  if (existingIndex >= 0) {
+  lib\storage.ts:251:    };
+> lib\storage.ts:252:    saveSavedQuestions(next);
+  lib\storage.ts:253:    return next;
+  lib\storage.ts:254:  }
+  lib\storage.ts:256:  const next = [...current, nextItem];
+> lib\storage.ts:257:  saveSavedQuestions(next);
+  lib\storage.ts:258:  return next;
+  lib\storage.ts:259:}
+  lib\storage.ts:260:
+> lib\storage.ts:261:export function removeSavedQuestion(questionId: string): SavedQuestion[] {
+> lib\storage.ts:262:  const next = loadSavedQuestions().filter(
+> lib\storage.ts:263:    (saved) => saved.questionId !== questionId,
+  lib\storage.ts:264:  );
+> lib\storage.ts:265:  saveSavedQuestions(next);
+  lib\storage.ts:266:  return next;
+  lib\storage.ts:267:}
+  lib\storage.ts:268:
+> lib\storage.ts:269:export function loadWeaknessRecords(): Record<string, WeaknessRecord> {
+  lib\storage.ts:270:  return readJson<Record<string, WeaknessRecord>>(STORAGE_KEYS.WEAKNESS) ?? {};
+  lib\storage.ts:271:}
+  lib\storage.ts:272:
+> lib\storage.ts:273:export function saveWeaknessRecords(
+  lib\storage.ts:274:  records: Record<string, WeaknessRecord>,
+  lib\storage.ts:275:): void {
+  lib\storage.ts:282:): WeaknessRecord {
+> lib\storage.ts:283:  const records = loadWeaknessRecords();
+  lib\storage.ts:284:  const current = records[questionId];
+  lib\storage.ts:285:  const errorCount = (current?.errorCount ?? 0) + 1;
+  lib\storage.ts:293:
+> lib\storage.ts:294:  saveWeaknessRecords({
+  lib\storage.ts:295:    ...records,
+  lib\storage.ts:296:    [questionId]: next,
+  lib\storage.ts:302:export function markWeaknessRecovered(questionId: string): void {
+> lib\storage.ts:303:  const records = loadWeaknessRecords();
+  lib\storage.ts:304:
+  lib\storage.ts:305:  if (!records[questionId]) {
+  lib\storage.ts:310:  delete next[questionId];
+> lib\storage.ts:311:  saveWeaknessRecords(next);
+  lib\storage.ts:312:
+> lib\storage.ts:313:  const wrongIds = loadWrongQuestionIds().filter((id) => id !== questionId);
+  lib\storage.ts:314:  writeJson(WRONG_QUESTION_IDS_KEY, wrongIds);
+  lib\storage.ts:315:}
+  lib\storage.ts:321:
+> lib\storage.ts:322:export function loadWrongQuestionIds(): string[] {
+  lib\storage.ts:323:  const legacy = readJson<string[]>(WRONG_QUESTION_IDS_KEY) ?? [];
+> lib\storage.ts:324:  const weaknessIds = Object.keys(loadWeaknessRecords());
+  lib\storage.ts:325:
+  lib\storage.ts:326:  return uniqueStrings([...legacy, ...weaknessIds]);
+  lib\storage.ts:328:
+> lib\storage.ts:329:export function saveWrongQuestionIds(questionIds: string[]): void {
+  lib\storage.ts:330:  writeJson(WRONG_QUESTION_IDS_KEY, uniqueStrings(questionIds));
+  lib\storage.ts:331:}
+  lib\storage.ts:338:
+> lib\storage.ts:339:  const next = uniqueStrings([...loadWrongQuestionIds(), questionId]);
+> lib\storage.ts:340:  saveWrongQuestionIds(next);
+  lib\storage.ts:341:  return next;
+  lib\storage.ts:342:}
+  lib\storage.ts:344:export function removeWrongQuestionId(questionId: string): string[] {
+> lib\storage.ts:345:  const next = loadWrongQuestionIds().filter((id) => id !== questionId);
+> lib\storage.ts:346:  saveWrongQuestionIds(next);
+  lib\storage.ts:347:  markWeaknessRecovered(questionId);
+  lib\storage.ts:348:  return next;
+  lib\storage.ts:354:
+> lib\storage.ts:355:export function loadResults(): StoredSessionResult[] {
+  lib\storage.ts:356:  const results = readJson<StoredSessionResult[]>(RESULT_STORAGE_KEY);
+  lib\storage.ts:357:
+  lib\storage.ts:364:
+> lib\storage.ts:365:export function saveResults(results: StoredSessionResult[]): void {
+  lib\storage.ts:366:  writeJson(RESULT_STORAGE_KEY, results);
+  lib\storage.ts:367:}
+  lib\storage.ts:368:
+> lib\storage.ts:369:export function saveResult(result: Record<string, any>): StoredSessionResult[] {
+  lib\storage.ts:370:  const now = new Date().toISOString();
+  lib\storage.ts:371:  const normalized: StoredSessionResult = {
+  lib\storage.ts:379:
+> lib\storage.ts:380:  const current = loadResults();
+  lib\storage.ts:381:  const next = [
+  lib\storage.ts:382:    normalized,
+  lib\storage.ts:385:
+> lib\storage.ts:386:  saveResults(next);
+  lib\storage.ts:387:  return next;
+  lib\storage.ts:388:}
+  lib\storage.ts:393:
+> lib\storage.ts:394:export function loadOverallProgress(): OverallProgress | undefined {
+  lib\storage.ts:395:  return readJson<OverallProgress>(STORAGE_KEYS.PROGRESS);
+  lib\storage.ts:396:}
+  lib\storage.ts:397:
+> lib\storage.ts:398:export function saveOverallProgress(progress: OverallProgress): void {
+  lib\storage.ts:399:  writeJson(STORAGE_KEYS.PROGRESS, progress);
+  lib\storage.ts:400:}
+  lib\storage.ts:405:
+> lib\storage.ts:406:export function loadExamDate(): string | null {
+  lib\storage.ts:407:  return readStorageValue(STORAGE_KEYS.EXAM_DATE) ?? null;
+  lib\storage.ts:408:}
+  lib\storage.ts:409:
+> lib\storage.ts:410:export function saveExamDate(examDate: string): void {
+  lib\storage.ts:411:  writeStorageValue(STORAGE_KEYS.EXAM_DATE, examDate);
+  lib\storage.ts:412:}
+  lib\types.ts:166:/** 出題セッションの種類。 */
+> lib\types.ts:167:export type SessionType =
+  lib\types.ts:168:  | 'daily-10'
+  lib\types.ts:169:  | 'weak-points'
+> lib\types.ts:170:  | 'saved-questions'
+  lib\types.ts:171:  | 'mock-exam'
+  lib\types.ts:172:  | 'mock-practice'
+  lib\types.ts:213:export interface LastSession {
+> lib\types.ts:214:  sessionType: SessionType;
+  lib\types.ts:215:  label: string;
+  lib\types.ts:216:
+  lib\types.ts:288:/** 保存問題。 */
+> lib\types.ts:289:export interface SavedQuestion {
+  lib\types.ts:290:  questionId: string;
+> lib\types.ts:291:  savedAt: string;
+  lib\types.ts:292:  note?: string;
+  lib\types.ts:293:}
+  lib\types.ts:335:
+> lib\types.ts:336:  sessionType: SessionType;
+  lib\types.ts:337:  filters?: SessionFilters;
+  lib\types.ts:338:}
+  lib\types.ts:350:  WEAKNESS: 'otu4.weakness',
+> lib\types.ts:351:  SAVED: 'otu4.saved',
+  lib\types.ts:352:  STATS: 'otu4.stats',
+  lib\types.ts:353:  STREAK: 'otu4.streak',
+  lib\types.ts:364:
+> lib\types.ts:365:export const isMockSession = (sessionType: SessionType): boolean =>
+> lib\types.ts:366:  sessionType === 'mock-exam' || sessionType === 'mock-practice';
+  lib\types.ts:367:
+> lib\types.ts:368:export const isPracticeMode = (sessionType: SessionType): boolean =>
+> lib\types.ts:369:  sessionType !== 'mock-exam';
+  lib\types.ts:370:
+  lib\types.ts:371:export const isOptionIndex = (value: number): value is OptionIndex =>
+  components\home\HomeClient.tsx:208:
+> components\home\HomeClient.tsx:209:export default function HomeClient() {
+  components\home\HomeClient.tsx:210:  const [state, setState] = useState<HomeState>({
+  components\home\HomeClient.tsx:211:    hasSession: false,
+  components\quiz\QuizClient.tsx:23:  clearLastSession,
+> components\quiz\QuizClient.tsx:24:  loadLastSession,
+  components\quiz\QuizClient.tsx:25:
+> components\quiz\QuizClient.tsx:26:  loadWrongQuestionIds,
+> components\quiz\QuizClient.tsx:27:  saveLastSession,
+> components\quiz\QuizClient.tsx:28:  saveResult,
+  components\quiz\QuizClient.tsx:29:  type StoredSessionResult,
+  components\quiz\QuizClient.tsx:30:} from '../../lib/storage';
+  components\quiz\QuizClient.tsx:36:const TEXT = {
+> components\quiz\QuizClient.tsx:37:  loading: '\u8aad\u307f\u8fbc\u307f\u4e2d...',
+  components\quiz\QuizClient.tsx:38:  mockLabel: '35\u554f \u6a21\u8a66',
+  components\quiz\QuizClient.tsx:39:  star3Label: '\u2605\u2605\u2605 \u91cd\u8981\u554f\u984c',
+  components\quiz\QuizClient.tsx:67:    return buildLastSession({
+> components\quiz\QuizClient.tsx:68:      sessionType: 'mock-exam',
+  components\quiz\QuizClient.tsx:69:      label: TEXT.mockLabel,
+  components\quiz\QuizClient.tsx:70:    });
+  components\quiz\QuizClient.tsx:74:    return buildLastSession({
+> components\quiz\QuizClient.tsx:75:      sessionType: 'card-study',
+  components\quiz\QuizClient.tsx:76:      label: TEXT.star3Label,
+  components\quiz\QuizClient.tsx:77:      count: 10,
+  components\quiz\QuizClient.tsx:85:  if (mode === 'weak-points') {
+> components\quiz\QuizClient.tsx:86:    const wrongQuestionIds = loadWrongQuestionIds();
+  components\quiz\QuizClient.tsx:87:
+  components\quiz\QuizClient.tsx:88:    if (wrongQuestionIds.length === 0) {
+  components\quiz\QuizClient.tsx:89:      return buildLastSession({
+> components\quiz\QuizClient.tsx:90:        sessionType: 'daily-10',
+  components\quiz\QuizClient.tsx:91:        label: TEXT.daily10Label,
+  components\quiz\QuizClient.tsx:92:        count: 10,
+  components\quiz\QuizClient.tsx:96:    return buildLastSession({
+> components\quiz\QuizClient.tsx:97:      sessionType: 'weak-points',
+  components\quiz\QuizClient.tsx:98:      label: TEXT.weakPointsLabel,
+  components\quiz\QuizClient.tsx:99:      count: wrongQuestionIds.length,
+  components\quiz\QuizClient.tsx:107:    return buildLastSession({
+> components\quiz\QuizClient.tsx:108:      sessionType: 'daily-10',
+  components\quiz\QuizClient.tsx:109:      label: TEXT.smartLabel,
+  components\quiz\QuizClient.tsx:110:      count: 10,
+  components\quiz\QuizClient.tsx:116:    return buildLastSession({
+> components\quiz\QuizClient.tsx:117:      sessionType: 'daily-10',
+  components\quiz\QuizClient.tsx:118:      label: TEXT.randomLabel,
+  components\quiz\QuizClient.tsx:119:      count: 10,
+  components\quiz\QuizClient.tsx:123:  return buildLastSession({
+> components\quiz\QuizClient.tsx:124:    sessionType: 'daily-10',
+  components\quiz\QuizClient.tsx:125:    label: TEXT.daily10Label,
+  components\quiz\QuizClient.tsx:126:    count: 10,
+  components\quiz\QuizClient.tsx:136:  if (mode === 'mock-exam') {
+> components\quiz\QuizClient.tsx:137:    return session.sessionType === 'mock-exam';
+  components\quiz\QuizClient.tsx:138:  }
+  components\quiz\QuizClient.tsx:139:
+  components\quiz\QuizClient.tsx:140:  if (mode === 'star3') {
+> components\quiz\QuizClient.tsx:141:    return session.sessionType === 'card-study' && session.filters?.starMin === 3;
+  components\quiz\QuizClient.tsx:142:  }
+  components\quiz\QuizClient.tsx:143:
+  components\quiz\QuizClient.tsx:145:  if (mode === 'weak-points') {
+> components\quiz\QuizClient.tsx:146:    return session.sessionType === 'weak-points';
+  components\quiz\QuizClient.tsx:147:  }
+  components\quiz\QuizClient.tsx:148:
+  components\quiz\QuizClient.tsx:149:  if (mode === 'smart') {
+> components\quiz\QuizClient.tsx:150:    return session.sessionType === 'daily-10' && session.label === TEXT.smartLabel
+;
+  components\quiz\QuizClient.tsx:151:  }
+  components\quiz\QuizClient.tsx:152:
+  components\quiz\QuizClient.tsx:153:  if (mode === 'random') {
+> components\quiz\QuizClient.tsx:154:    return session.sessionType === 'daily-10' && session.label === TEXT.randomLabe
+l;
+  components\quiz\QuizClient.tsx:155:  }
+  components\quiz\QuizClient.tsx:156:
+  components\quiz\QuizClient.tsx:157:  if (isSubjectParam(subject)) {
+> components\quiz\QuizClient.tsx:158:    return session.sessionType === 'daily-10' && session.filters?.subject === subj
+ect;
+  components\quiz\QuizClient.tsx:159:  }
+  components\quiz\QuizClient.tsx:160:
+> components\quiz\QuizClient.tsx:161:  return session.sessionType === 'daily-10';
+  components\quiz\QuizClient.tsx:162:}
+  components\quiz\QuizClient.tsx:163:
+  components\quiz\QuizClient.tsx:170:    id: `result-${Date.now()}`,
+> components\quiz\QuizClient.tsx:171:    sessionType: session.sessionType,
+  components\quiz\QuizClient.tsx:172:    label: session.label,
+  components\quiz\QuizClient.tsx:173:
+  components\quiz\QuizClient.tsx:186:    passed:
+> components\quiz\QuizClient.tsx:187:      session.sessionType === 'mock-exam' ||
+> components\quiz\QuizClient.tsx:188:      session.sessionType === 'mock-practice'
+  components\quiz\QuizClient.tsx:189:        ? mockPass.passed
+  components\quiz\QuizClient.tsx:190:        : undefined,
+  components\quiz\QuizClient.tsx:299:}
+> components\quiz\QuizClient.tsx:300:export default function QuizClient() {
+  components\quiz\QuizClient.tsx:301:  const router = useRouter();
+  components\quiz\QuizClient.tsx:302:  const searchParams = useSearchParams();
+  components\quiz\QuizClient.tsx:308:  useEffect(() => {
+> components\quiz\QuizClient.tsx:309:    const existing = loadLastSession();
+  components\quiz\QuizClient.tsx:310:
+  components\quiz\QuizClient.tsx:311:    if (existing && existing.questionIds.length > 0 && sessionMatchesMode(existing
+, mode, subject)) {
+  components\quiz\QuizClient.tsx:316:    const next = buildSessionFromMode(mode, subject);
+> components\quiz\QuizClient.tsx:317:    saveLastSession(next);
+  components\quiz\QuizClient.tsx:318:    setSession(next);
+  components\quiz\QuizClient.tsx:319:  }, [mode, subject]);
+  components\quiz\QuizClient.tsx:331:      <main style={pageStyle}>
+> components\quiz\QuizClient.tsx:332:        <p>{TEXT.loading}</p>
+  components\quiz\QuizClient.tsx:333:      </main>
+  components\quiz\QuizClient.tsx:334:    );
+  components\quiz\QuizClient.tsx:342:  const isFirst = session.currentIndex === 0;
+> components\quiz\QuizClient.tsx:343:  const isExamMode = session.sessionType === 'mock-exam';
+  components\quiz\QuizClient.tsx:344:  const hasAnswered = session.answers[questionId] !== undefined;
+  components\quiz\QuizClient.tsx:345:  const canProceed = true;
+  components\quiz\QuizClient.tsx:349:  function updateSession(next: LastSession) {
+> components\quiz\QuizClient.tsx:350:    saveLastSession(next);
+  components\quiz\QuizClient.tsx:351:    setSession(next);
+  components\quiz\QuizClient.tsx:352:  }
+  components\quiz\QuizClient.tsx:359:    
+> components\quiz\QuizClient.tsx:360:      if (targetSession.sessionType === 'weak-points' && correct === true) {
+  components\quiz\QuizClient.tsx:361:        markWeaknessRecovered(targetQuestionId);
+  components\quiz\QuizClient.tsx:362:      }
+  components\quiz\QuizClient.tsx:417:
+> components\quiz\QuizClient.tsx:418:      saveResult(finalResult);
+  components\quiz\QuizClient.tsx:419:      clearLastSession();
+  components\quiz\QuizClient.tsx:420:
+  components\quiz\QuizClient.tsx:461:
+> components\quiz\QuizClient.tsx:462:          <span style={saveMockStyle}>{'\u25c7'}</span>
+  components\quiz\QuizClient.tsx:463:        </div>
+  components\quiz\QuizClient.tsx:464:
+  components\quiz\QuizClient.tsx:797:
+> components\quiz\QuizClient.tsx:798:const saveMockStyle: CSSProperties = {
+  components\quiz\QuizClient.tsx:799:  color: '#b8860b',
+  components\quiz\QuizClient.tsx:800:  fontSize: 22,
+  components\quiz\explanation\ExplanationCard.tsx:12:
+> components\quiz\explanation\ExplanationCard.tsx:13:type ExplanationCardProps = {
+  components\quiz\explanation\ExplanationCard.tsx:14:  meta: ExplanationMeta;
+  components\quiz\explanation\ExplanationCard.tsx:15:  onNext?: () => void;
+  components\quiz\explanation\ExplanationCard.tsx:45:
+> components\quiz\explanation\ExplanationCard.tsx:46:export function ExplanationCard({ meta, onNext }: ExplanationCardP
+rops) {
+  components\quiz\explanation\ExplanationCard.tsx:47:  const visualBlock = renderVisualBlock(meta);
+  components\quiz\explanation\ExplanationCard.tsx:48:
+  components\quiz\explanation\ExplanationCard.tsx:70:
+> components\quiz\explanation\ExplanationCard.tsx:71:      <OptionMemoList optionMemos={meta.optionMemos} />
+  components\quiz\explanation\ExplanationCard.tsx:72:
+  components\quiz\explanation\ExplanationCard.tsx:73:      <div style={ctaRowStyle}>
+  components\quiz\explanation\OptionMemoList.tsx:3:type OptionMemoListProps = {
+> components\quiz\explanation\OptionMemoList.tsx:4:  optionMemos?: ExplanationMeta['optionMemos'];
+  components\quiz\explanation\OptionMemoList.tsx:5:};
+  components\quiz\explanation\OptionMemoList.tsx:6:
+  components\quiz\explanation\OptionMemoList.tsx:8:
+> components\quiz\explanation\OptionMemoList.tsx:9:export function OptionMemoList({ optionMemos }: OptionMemoListProps)
+ {
+> components\quiz\explanation\OptionMemoList.tsx:10:  const entries = Object.entries(optionMemos ?? {})
+  components\quiz\explanation\OptionMemoList.tsx:11:    .map(([key, value]) => ({
+  components\quiz\explanation\OptionMemoList.tsx:12:      index: Number(key),
+  components\result\ResultClient.tsx:9:import {
+> components\result\ResultClient.tsx:10:  loadExamDate,
+> components\result\ResultClient.tsx:11:  loadResults,
+  components\result\ResultClient.tsx:12:} from '../../lib/storage';
+  components\result\ResultClient.tsx:13:
+  components\result\ResultClient.tsx:16:  calcTotalGapTo60,
+> components\result\ResultClient.tsx:17:  getResultById,
+  components\result\ResultClient.tsx:18:  getSubjectAccuracySummary,
+  components\result\ResultClient.tsx:19:  getWeakestSubject,
+  components\result\ResultClient.tsx:23:
+> components\result\ResultClient.tsx:24:type StoredResult = ReturnType<typeof loadResults>[number];
+  components\result\ResultClient.tsx:25:type SubjectKey = 'law' | 'phys' | 'prop';
+  components\result\ResultClient.tsx:26:
+  components\result\ResultClient.tsx:213:
+> components\result\ResultClient.tsx:214:export default function ResultClient() {
+  components\result\ResultClient.tsx:215:  const searchParams = useSearchParams();
+  components\result\ResultClient.tsx:216:  const resultId = searchParams?.get('resultId') ?? null;
+  components\result\ResultClient.tsx:217:
+> components\result\ResultClient.tsx:218:  const result = useMemo(() => getResultById(resultId) as StoredResult | null,
+ [resultId]);
+  components\result\ResultClient.tsx:219:
+> components\result\ResultClient.tsx:220:  const examDays = useMemo(() => calcExamDaysFromAnalytics(loadExamDate()), []
+);
+  components\result\ResultClient.tsx:221:
+  components\result\ResultClient.tsx:222:  if (!result) {
+  components\result\ResultClient.tsx:241:  const isMock =
+> components\result\ResultClient.tsx:242:    result.sessionType === 'mock-exam' ||
+> components\result\ResultClient.tsx:243:    result.sessionType === 'mock-practice' ||
+  components\result\ResultClient.tsx:244:    result.total === 35;
+  components\result\ResultClient.tsx:245:
+  components\result\ResultClient.tsx:454:          <h2 style={sectionTitleStyle}>今回の結果で更新</h2>
+> components\result\ResultClient.tsx:455:          <span style={savedStyle}>保存済み</span>
+  components\result\ResultClient.tsx:456:        </div>
+  components\result\ResultClient.tsx:457:
+  components\result\ResultClient.tsx:1078:
+> components\result\ResultClient.tsx:1079:const savedStyle: CSSProperties = {
+  components\result\ResultClient.tsx:1080:  color: '#4F765E',
+  components\result\ResultClient.tsx:1081:  fontSize: 12,
+  components\settings\SettingsClient.tsx:12:import {
+> components\settings\SettingsClient.tsx:13:  loadExamDate,
+> components\settings\SettingsClient.tsx:14:  saveExamDate,
+  components\settings\SettingsClient.tsx:15:} from '../../lib/storage';
+  components\settings\SettingsClient.tsx:16:
+  components\settings\SettingsClient.tsx:19:  const [showResetConfirm, setShowResetConfirm] = useState(false);
+> components\settings\SettingsClient.tsx:20:  const [savedMessage, setSavedMessage] = useState('');
+  components\settings\SettingsClient.tsx:21:
+  components\settings\SettingsClient.tsx:22:  useEffect(() => {
+> components\settings\SettingsClient.tsx:23:    setExamDate(loadExamDate() ?? '');
+  components\settings\SettingsClient.tsx:24:  }, []);
+  components\settings\SettingsClient.tsx:25:
+  components\settings\SettingsClient.tsx:27:    setExamDate(value);
+> components\settings\SettingsClient.tsx:28:    saveExamDate(value);
+> components\settings\SettingsClient.tsx:29:    setSavedMessage('試験日を保存しました');
+> components\settings\SettingsClient.tsx:30:    window.setTimeout(() => setSavedMessage(''), 1800);
+  components\settings\SettingsClient.tsx:31:  };
+  components\settings\SettingsClient.tsx:32:
+  components\settings\SettingsClient.tsx:42:    setExamDate('');
+> components\settings\SettingsClient.tsx:43:    setSavedMessage('学習データをリセットしました');
+  components\settings\SettingsClient.tsx:44:    setShowResetConfirm(false);
+  components\settings\SettingsClient.tsx:45:  };
+  components\settings\SettingsClient.tsx:61:
+> components\settings\SettingsClient.tsx:62:      {savedMessage && <p style={toastStyle}>{savedMessage}</p>}
+  components\settings\SettingsClient.tsx:63:
+  components\settings\SettingsClient.tsx:64:      <SettingsSection title="試験日">
+> app\page.tsx:1:import HomeClient from '../components/home/HomeClient';
+  app\page.tsx:2:
+  app\page.tsx:3:export default function HomePage() {
+> app\page.tsx:4:  return <HomeClient />;
+  app\page.tsx:5:}
+  app\dev\explanation-preview\page.tsx:1:import { notFound } from 'next/navigation';
+> app\dev\explanation-preview\page.tsx:2:import { ExplanationCard } from '../../../components/quiz/explanation/Explanat
+ionCard';
+  app\dev\explanation-preview\page.tsx:3:import { explanationMetaPilotLawV1 } from '../../../data/explanation_meta_pilo
+t_law_v1';
+  app\dev\explanation-preview\page.tsx:4:import { explanationMetaPilotPhysV1 } from '../../../data/explanation_meta_pil
+ot_phys_v1';
+  app\dev\explanation-preview\page.tsx:135:        <div style={eyebrowStyle}>DEV PREVIEW</div>
+> app\dev\explanation-preview\page.tsx:136:        <h1 style={titleStyle}>ExplanationCard 法令・物化・性消pilot確認</h1>
+  app\dev\explanation-preview\page.tsx:137:        <p style={leadStyle}>
+> app\dev\explanation-preview\page.tsx:138:          QuizClientに接続する前に、問題文・選択肢・ExplanationCardの対応を確認するページです。
+  app\dev\explanation-preview\page.tsx:139:        </p>
+  app\dev\explanation-preview\page.tsx:140:      </section>
+  app\dev\explanation-preview\page.tsx:176:
+> app\dev\explanation-preview\page.tsx:177:            <ExplanationCard meta={meta} />
+  app\dev\explanation-preview\page.tsx:178:          </div>
+  app\dev\explanation-preview\page.tsx:179:        ))}
+  app\quiz\page.tsx:2:
+> app\quiz\page.tsx:3:import QuizClient from '../../components/quiz/QuizClient';
+  app\quiz\page.tsx:4:
+  app\quiz\page.tsx:5:export default function QuizPage() {
+  app\quiz\page.tsx:13:    >
+> app\quiz\page.tsx:14:      <QuizClient />
+  app\quiz\page.tsx:15:    </Suspense>
+  app\quiz\page.tsx:16:  );
+  app\result\page.tsx:2:
+> app\result\page.tsx:3:import ResultClient from '../../components/result/ResultClient';
+  app\result\page.tsx:4:
+  app\result\page.tsx:5:export default function ResultPage() {
+  app\result\page.tsx:9:        <main style={{ maxWidth: 430, margin: '0 auto', padding: 24 }}>
+> app\result\page.tsx:10:          Loading...
+  app\result\page.tsx:11:        </main>
+  app\result\page.tsx:12:      }
+  app\result\page.tsx:13:    >
+> app\result\page.tsx:14:      <ResultClient />
+  app\result\page.tsx:15:    </Suspense>
+  app\result\page.tsx:16:  );
+  data\explanation_meta_index.ts:23:
+> data\explanation_meta_index.ts:24:export function getExplanationMeta(questionId: string): ExplanationMeta | null {
+  data\explanation_meta_index.ts:25:  return explanationMetaMap[questionId] ?? null;
+  data\explanation_meta_index.ts:26:}
+  data\explanation_meta_pilot_law_v1.ts:11: * - star / difficulty はmetaに入れない
+> data\explanation_meta_pilot_law_v1.ts:12: * - optionMemosのkeyは options 配列の元index 0〜4
+  data\explanation_meta_pilot_law_v1.ts:13: *
+  data\explanation_meta_pilot_law_v1.ts:14: * 型カバレッジ:
+  data\explanation_meta_pilot_law_v1.ts:47:    ],
+> data\explanation_meta_pilot_law_v1.ts:48:    optionMemos: {
+  data\explanation_meta_pilot_law_v1.ts:49:      1: '仮貯蔵・仮取扱いは、市町村長等の許可ではなく、消防長又は消防署長の承認。',
+  data\explanation_meta_pilot_law_v1.ts:50:      2: '完成検査は、所轄消防長又は消防署長ではなく、市町村長等が行う。',
+  data\explanation_meta_pilot_law_v1.ts:69:    },
+> data\explanation_meta_pilot_law_v1.ts:70:    optionMemos: {
+  data\explanation_meta_pilot_law_v1.ts:71:      2: '5年に1回ではなく、3年以内ごと。頻出のひっかけです。',
+  data\explanation_meta_pilot_law_v1.ts:72:    },
+  data\explanation_meta_pilot_law_v1.ts:100:    ],
+> data\explanation_meta_pilot_law_v1.ts:101:    optionMemos: {
+  data\explanation_meta_pilot_law_v1.ts:102:      0: 'ベンゼンを水溶性として扱うと、指定数量を誤ります。',
+  data\explanation_meta_pilot_law_v1.ts:103:      1: '灯油の1.5倍を切り捨てると、合計がズレます。',
+  data\explanation_meta_pilot_law_v1.ts:196:    ],
+> data\explanation_meta_pilot_law_v1.ts:197:    optionMemos: {
+  data\explanation_meta_pilot_law_v1.ts:198:      2: '第3類は自然発火性・禁水性。可燃性固体は第2類です。マグネシウムも第2類です。',
+  data\explanation_meta_pilot_law_v1.ts:199:    },
+  data\explanation_meta_pilot_phys_v1.ts:25:    ],
+> data\explanation_meta_pilot_phys_v1.ts:26:    optionMemos: {
+  data\explanation_meta_pilot_phys_v1.ts:27:      0: '液面が燃えているように見えても、液体表面が直接赤熱する表面燃焼ではありません。',
+  data\explanation_meta_pilot_phys_v1.ts:28:      2: '分解燃焼は、木材や紙などが熱分解して可燃性ガスを出す場合の考え方です。',
+  data\explanation_meta_pilot_phys_v1.ts:55:    ],
+> data\explanation_meta_pilot_phys_v1.ts:56:    optionMemos: {
+  data\explanation_meta_pilot_phys_v1.ts:57:      0: 'ガソリンは表面燃焼ではありません。液面から発生した蒸気が燃える蒸発燃焼です。',
+  data\explanation_meta_pilot_phys_v1.ts:58:      1: '灯油は分解燃焼ではありません。引火性液体なので蒸発燃焼です。',
+  data\explanation_meta_pilot_phys_v1.ts:81:    ],
+> data\explanation_meta_pilot_phys_v1.ts:82:    optionMemos: {
+  data\explanation_meta_pilot_phys_v1.ts:83:      0: '木材・紙は蒸発燃焼ではありません。液体のように蒸発して燃えるのではなく、熱分解で可燃性ガスが発生します。',
+  data\explanation_meta_pilot_phys_v1.ts:84:      1: 'AとBが逆です。木材・紙は分解燃焼、木炭・コークスは表面燃焼です。',
+  data\explanation_meta_pilot_phys_v1.ts:107:    ],
+> data\explanation_meta_pilot_phys_v1.ts:108:    optionMemos: {
+  data\explanation_meta_pilot_phys_v1.ts:109:      0: '木炭は分解燃焼ではありません。固体表面が直接酸素と反応する表面燃焼です。',
+  data\explanation_meta_pilot_phys_v1.ts:110:      1: '木材は表面燃焼ではありません。熱分解で発生した可燃性ガスが燃える分解燃焼です。',
+  data\explanation_meta_pilot_phys_v1.ts:141:    ],
+> data\explanation_meta_pilot_phys_v1.ts:142:    optionMemos: {
+  data\explanation_meta_pilot_phys_v1.ts:143:      0: '引火点は高いほど安全側です。低いほど低温で引火しやすく危険です。',
+  data\explanation_meta_pilot_phys_v1.ts:144:      1: '最小着火エネルギーは小さいほど危険です。少ないエネルギーで着火します。',
+  data\explanation_meta_pilot_prop_v1.ts:32:    ],
+> data\explanation_meta_pilot_prop_v1.ts:33:    optionMemos: {
+  data\explanation_meta_pilot_prop_v1.ts:34:      0: '泡消火剤は油面を覆い、空気を遮断するため適切です。',
+  data\explanation_meta_pilot_prop_v1.ts:35:      1: '粉末消火剤は燃焼の連鎖反応を抑えるため適切です。',
+  data\explanation_meta_pilot_prop_v1.ts:61:    ],
+> data\explanation_meta_pilot_prop_v1.ts:62:    optionMemos: {
+  data\explanation_meta_pilot_prop_v1.ts:63:      1: '第4類危険物が水と接触して必ず酸素を大量発生するわけではありません。',
+  data\explanation_meta_pilot_prop_v1.ts:64:      2: '第4類危険物には水より軽いものが多く、水に浮くものがあります。',
+  data\explanation_meta_pilot_prop_v1.ts:85:    ],
+> data\explanation_meta_pilot_prop_v1.ts:86:    optionMemos: {
+  data\explanation_meta_pilot_prop_v1.ts:87:      0: '主な原因は燃焼温度ではなく、水溶性液体による泡の消滅です。',
+  data\explanation_meta_pilot_prop_v1.ts:88:      2: '一般泡が有毒ガスを発生するからではありません。',
+  data\explanation_meta_pilot_prop_v1.ts:122:    ],
+> data\explanation_meta_pilot_prop_v1.ts:123:    optionMemos: {
+  data\explanation_meta_pilot_prop_v1.ts:124:      0: '泡消火剤は油面を覆るため、窒息作用で正しい組合せです。',
+  data\explanation_meta_pilot_prop_v1.ts:125:      1: '二酸化炭素消火剤は酸素濃度を下げるため、窒息作用で正しい組合せです。',
+  data\explanation_meta_pilot_prop_v1.ts:151:    ],
+> data\explanation_meta_pilot_prop_v1.ts:152:    optionMemos: {
+  data\explanation_meta_pilot_prop_v1.ts:153:      1: '第4類危険物は必ず電気をよく通すわけではありません。むしろ不良導体が多い点が重要です。',
+  data\explanation_meta_pilot_prop_v1.ts:154:      2: '蒸気比重と静電気の発生しやすさは別の論点です。',
+  data\explanation_meta_types.ts:91:
+> data\explanation_meta_types.ts:92:  optionMemos?: Partial<Record<OptionIndex, string>>;
+  data\explanation_meta_types.ts:93:
+  data\explanation_meta_types.ts:94:  reviewCtaLabel?: string;
+
+

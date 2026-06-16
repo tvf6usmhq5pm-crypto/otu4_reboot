@@ -1,0 +1,384 @@
+﻿
+> lib\analytics.ts:20:export const SUBJECT_KEYS: Subject[] = ['law', 'phys', 'prop'];
+  lib\analytics.ts:21:
+> lib\analytics.ts:22:export type SubjectSummary = {
+  lib\analytics.ts:23:  subject: Subject;
+> lib\analytics.ts:33:export type SubjectSummaryMap = Record<Subject, SubjectSummary>;
+  lib\analytics.ts:34:
+> lib\analytics.ts:35:export type HomeSubjectStatus = {
+  lib\analytics.ts:36:  key: Subject;
+> lib\analytics.ts:45:export type HomeDashboardSummary = {
+  lib\analytics.ts:46:  hasSession: boolean;
+> lib\analytics.ts:55:export type PassReadiness = {
+  lib\analytics.ts:56:  passed: boolean;
+> lib\analytics.ts:61:export type RecentResultSummary = {
+  lib\analytics.ts:62:  hasResult: boolean;
+> lib\analytics.ts:74:export type WeakPointItem = {
+  lib\analytics.ts:75:  questionId: string;
+> lib\analytics.ts:84:export type WeakPointSummary = {
+  lib\analytics.ts:85:  total: number;
+> lib\analytics.ts:131:export function calcPercent(correct: number, total: number): number {
+  lib\analytics.ts:132:  if (total <= 0) {
+> lib\analytics.ts:139:export function calcGapTo60(correct: number, total: number): number {
+  lib\analytics.ts:140:  if (total <= 0) {
+> lib\analytics.ts:147:export function calcExamDays(
+  lib\analytics.ts:148:  examDate: string | null,
+> lib\analytics.ts:164:export function calcExamDaysWithFallback(
+  lib\analytics.ts:165:  examDate: string | null,
+> lib\analytics.ts:172:export function normalizeSubjectSummaries(bySubject: unknown): SubjectSummaryMap {
+  lib\analytics.ts:173:  const entries = SUBJECT_KEYS.map((subject) => {
+> lib\analytics.ts:199:export function getWeakestSubject(summaries: SubjectSummaryMap): Subject {
+  lib\analytics.ts:200:  const measured = SUBJECT_KEYS.filter((subject) => summaries[subject].total > 0);
+> lib\analytics.ts:219:export function calcTotalGapTo60(summaries: SubjectSummaryMap): number {
+  lib\analytics.ts:220:  return SUBJECT_KEYS.reduce(
+> lib\analytics.ts:226:export function calcPassReadiness(summaries: SubjectSummaryMap): PassReadiness {
+  lib\analytics.ts:227:  const totalGapTo60 = calcTotalGapTo60(summaries);
+> lib\analytics.ts:236:export function getWrongQuestionIdsFromResult(result: StoredSessionResult): string[] {
+  lib\analytics.ts:237:  const answers = result.answers as Record<string, unknown> | undefined;
+> lib\analytics.ts:256:export function getLatestResult(
+  lib\analytics.ts:257:  results: StoredSessionResult[] = loadResults(),
+> lib\analytics.ts:262:export function getResultById(
+  lib\analytics.ts:263:  resultId: string | null,
+> lib\analytics.ts:273:export function getSubjectAccuracySummary(
+  lib\analytics.ts:274:  result: StoredSessionResult | null,
+> lib\analytics.ts:279:export function getRecentResultSummary(
+  lib\analytics.ts:280:  result: StoredSessionResult | null = getLatestResult(),
+> lib\analytics.ts:316:export function getWeakPointSummary(
+  lib\analytics.ts:317:  maxItems = 5,
+> lib\analytics.ts:354:export function buildHomeDashboardSummary(): HomeDashboardSummary {
+  lib\analytics.ts:355:  const session = loadLastSession();
+> lib\diagnostics.ts:1:export type DiagnosticSubject = 'law' | 'phys' | 'prop';
+  lib\diagnostics.ts:2:
+> lib\diagnostics.ts:3:export type DiagnosticMode =
+  lib\diagnostics.ts:4:  | 'weak-points'
+> lib\diagnostics.ts:9:export type DiagnosticPriority =
+  lib\diagnostics.ts:10:  | 'urgent'
+> lib\diagnostics.ts:14:export type SubjectDiagnosticInput = {
+  lib\diagnostics.ts:15:  total: number;
+> lib\diagnostics.ts:19:export type DiagnosticInput = {
+  lib\diagnostics.ts:20:  wrongCount: number;
+> lib\diagnostics.ts:25:export type DiagnosticRecommendation = {
+  lib\diagnostics.ts:26:  mode: DiagnosticMode;
+> lib\diagnostics.ts:44:export function calcDiagnosticPercent(correct: number, total: number): number {
+  lib\diagnostics.ts:45:  if (total <= 0) {
+> lib\diagnostics.ts:52:export function calcDiagnosticGapTo60(correct: number, total: number): number {
+  lib\diagnostics.ts:53:  if (total <= 0) {
+> lib\diagnostics.ts:61:export function getDiagnosticSubjectLabel(subject: DiagnosticSubject): string {
+  lib\diagnostics.ts:62:  return SUBJECT_LABELS[subject];
+> lib\diagnostics.ts:65:export function getWeakestDiagnosticSubject(
+  lib\diagnostics.ts:66:  summaries: Record<DiagnosticSubject, SubjectDiagnosticInput>,
+> lib\diagnostics.ts:109:export function hasAnyDiagnosticHistory(
+  lib\diagnostics.ts:110:  summaries: Record<DiagnosticSubject, SubjectDiagnosticInput>,
+> lib\diagnostics.ts:115:export function diagnoseNextAction(input: DiagnosticInput): DiagnosticRecommendation {
+  lib\diagnostics.ts:116:  if (input.wrongCount > 0) {
+> lib\questions.ts:67:export function getAllQuestions(): Question[] {
+  lib\questions.ts:68:  return QUESTIONS;
+> lib\questions.ts:71:export function getQuestionCount(): number {
+  lib\questions.ts:72:  return QUESTIONS.length;
+> lib\questions.ts:75:export function getQuestionById(id: string): Question | undefined {
+  lib\questions.ts:76:  return QUESTION_BY_ID.get(id);
+> lib\questions.ts:79:export function requireQuestionById(id: string): Question {
+  lib\questions.ts:80:  const question = getQuestionById(id);
+> lib\questions.ts:89:export function getQuestionsBySubject(subject: Subject): Question[] {
+  lib\questions.ts:90:  return QUESTIONS.filter((question) => question.subject === subject);
+> lib\questions.ts:93:export function getQuestionsByStar(star: Star): Question[] {
+  lib\questions.ts:94:  return QUESTIONS.filter((question) => question.star === star);
+> lib\questions.ts:97:export function getQuestionsByStarMin(starMin: Star): Question[] {
+  lib\questions.ts:98:  return QUESTIONS.filter((question) => question.star >= starMin);
+> lib\questions.ts:101:export function getQuestionsByDifficulty(difficulty: Difficulty): Question[] {
+  lib\questions.ts:102:  return QUESTIONS.filter((question) => question.difficulty === difficulty);
+> lib\questions.ts:105:export function getQuestionsByDifficultyRange(
+  lib\questions.ts:106:  min: Difficulty,
+> lib\questions.ts:114:export function getQuestionsByCardId(cardId: string): Question[] {
+  lib\questions.ts:115:  return QUESTIONS.filter((question) => question.card_id === cardId);
+> lib\questions.ts:118:export function getQuestionsBySectionKey(sectionKey: string): Question[] {
+  lib\questions.ts:119:  return QUESTIONS.filter((question) => question.sectionKey === sectionKey);
+> lib\questions.ts:122:export function getVariantsOf(parentId: string): Question[] {
+  lib\questions.ts:123:  return QUESTIONS.filter((question) => question.parentId === parentId);
+> lib\questions.ts:126:export function getOriginalQuestions(): Question[] {
+  lib\questions.ts:127:  return QUESTIONS.filter((question) => !question.parentId);
+> lib\questions.ts:130:export function getVariantQuestions(): Question[] {
+  lib\questions.ts:131:  return QUESTIONS.filter((question) => Boolean(question.parentId));
+> lib\questions.ts:134:export function filterQuestions(filters: SessionFilters): Question[] {
+  lib\questions.ts:135:  return QUESTIONS.filter((question) => {
+> lib\questions.ts:193:export function getQuestionSummary() {
+  lib\questions.ts:194:  return {
+> lib\session.ts:19:export interface BuildSessionOptions {
+  lib\session.ts:20:  sessionType: SessionType;
+> lib\session.ts:32:export interface QuizSet {
+  lib\session.ts:33:  sessionType: SessionType;
+> lib\session.ts:66:export function buildOptionOrder(): OptionIndex[] {
+  lib\session.ts:67:  return [...OPTION_INDICES];
+> lib\session.ts:73:export function buildOptionOrders(
+  lib\session.ts:74:  questionIds: string[],
+> lib\session.ts:170:export function defaultSessionLabel(sessionType: SessionType): string {
+  lib\session.ts:171:  switch (sessionType) {
+> lib\session.ts:197:export function buildQuizSet(options: BuildSessionOptions): QuizSet {
+  lib\session.ts:198:  if (
+> lib\session.ts:212:export function buildLastSession(options: BuildSessionOptions): LastSession {
+  lib\session.ts:213:  const quizSet = buildQuizSet(options);
+> lib\session.ts:237:export function toOriginalOptionIndex(
+  lib\session.ts:238:  session: LastSession,
+> lib\session.ts:255:export function toDisplayedOptionIndex(
+  lib\session.ts:256:  session: LastSession,
+> lib\session.ts:274:export function answerQuestion(
+  lib\session.ts:275:  session: LastSession,
+> lib\session.ts:297:export function revealQuestion(
+  lib\session.ts:298:  session: LastSession,
+> lib\session.ts:313:export function moveToNextQuestion(session: LastSession): LastSession {
+  lib\session.ts:314:  return {
+> lib\session.ts:326:export function moveToPreviousQuestion(session: LastSession): LastSession {
+  lib\session.ts:327:  return {
+> lib\session.ts:336:export function getCurrentQuestionId(session: LastSession): string | undefined {
+  lib\session.ts:337:  return session.questionIds[session.currentIndex];
+> lib\session.ts:343:export function getCurrentQuestion(session: LastSession): Question | undefined {
+  lib\session.ts:344:  const questionId = getCurrentQuestionId(session);
+> lib\session.ts:356:export function isCorrectAnswer(
+  lib\session.ts:357:  question: Question,
+> lib\session.ts:366:export function isQuestionCorrect(
+  lib\session.ts:367:  session: LastSession,
+> lib\session.ts:383:export function summarizeSession(session: LastSession) {
+  lib\session.ts:384:  const answeredQuestionIds = Object.keys(session.answers);
+> lib\session.ts:405:export function summarizeSessionBySubject(session: LastSession): Record<
+  lib\session.ts:406:  Subject,
+> lib\session.ts:454:export function isSubjectPassed(correct: number, total: number): boolean {
+  lib\session.ts:455:  if (total === 0) {
+> lib\session.ts:466:export function summarizeMockPass(session: LastSession) {
+  lib\session.ts:467:  const bySubject = summarizeSessionBySubject(session);
+> lib\storage.ts:20:export type StoredSessionResult = {
+  lib\storage.ts:21:  id?: string;
+> lib\storage.ts:50:export function isStorageAvailable(): boolean {
+  lib\storage.ts:51:  return getBrowserStorage() !== undefined;
+> lib\storage.ts:54:export function readStorageValue(key: string): string | undefined {
+  lib\storage.ts:55:  const storage = getBrowserStorage();
+> lib\storage.ts:65:export function writeStorageValue(key: string, value: string): void {
+  lib\storage.ts:66:  const storage = getBrowserStorage();
+> lib\storage.ts:75:export function removeStorageValue(key: string): void {
+  lib\storage.ts:76:  const storage = getBrowserStorage();
+> lib\storage.ts:85:export function readJson<T>(key: string): T | undefined {
+  lib\storage.ts:86:  const raw = readStorageValue(key);
+> lib\storage.ts:100:export function writeJson<T>(key: string, value: T): void {
+  lib\storage.ts:101:  writeStorageValue(key, JSON.stringify(value));
+> lib\storage.ts:104:export function getSessionStorageKey(sessionType: SessionType): string {
+  lib\storage.ts:105:  switch (sessionType) {
+> lib\storage.ts:120:export function saveLastSession(session: LastSession): void {
+  lib\storage.ts:121:  writeJson(getSessionStorageKey(session.sessionType), session);
+> lib\storage.ts:124:export function loadLastSession(): LastSession | undefined;
+> lib\storage.ts:125:export function loadLastSession(sessionType: SessionType): LastSession | undefined;
+> lib\storage.ts:126:export function loadLastSession(
+  lib\storage.ts:127:  sessionType?: SessionType,
+> lib\storage.ts:140:export function clearLastSession(): void;
+> lib\storage.ts:141:export function clearLastSession(sessionType: SessionType): void;
+> lib\storage.ts:142:export function clearLastSession(sessionType?: SessionType): void {
+  lib\storage.ts:143:  if (sessionType) {
+> lib\storage.ts:153:export function buildInitialQuestionProgress(
+  lib\storage.ts:154:  questionId: string,
+> lib\storage.ts:165:export function loadQuestionProgress(questionId: string): QuestionProgress {
+  lib\storage.ts:166:  const saved = readJson<QuestionProgress>(STORAGE_KEYS.questionProgress(questionId));
+> lib\storage.ts:179:export function saveQuestionProgress(progress: QuestionProgress): void {
+  lib\storage.ts:180:  writeJson(STORAGE_KEYS.questionProgress(progress.questionId), progress);
+> lib\storage.ts:183:export function clearQuestionProgress(questionId: string): void {
+  lib\storage.ts:184:  removeStorageValue(STORAGE_KEYS.questionProgress(questionId));
+> lib\storage.ts:187:export function nextQuestionProgressAfterAnswer(
+  lib\storage.ts:188:  current: QuestionProgress,
+> lib\storage.ts:207:export function recordQuestionAnswer(
+  lib\storage.ts:208:  questionId: string,
+> lib\storage.ts:223:export function loadSavedQuestions(): SavedQuestion[] {
+  lib\storage.ts:224:  return readJson<SavedQuestion[]>(STORAGE_KEYS.SAVED) ?? [];
+> lib\storage.ts:227:export function saveSavedQuestions(savedQuestions: SavedQuestion[]): void {
+  lib\storage.ts:228:  writeJson(STORAGE_KEYS.SAVED, savedQuestions);
+> lib\storage.ts:231:export function isQuestionSaved(questionId: string): boolean {
+  lib\storage.ts:232:  return loadSavedQuestions().some((saved) => saved.questionId === questionId);
+> lib\storage.ts:235:export function addSavedQuestion(
+  lib\storage.ts:236:  questionId: string,
+> lib\storage.ts:261:export function removeSavedQuestion(questionId: string): SavedQuestion[] {
+  lib\storage.ts:262:  const next = loadSavedQuestions().filter(
+> lib\storage.ts:269:export function loadWeaknessRecords(): Record<string, WeaknessRecord> {
+  lib\storage.ts:270:  return readJson<Record<string, WeaknessRecord>>(STORAGE_KEYS.WEAKNESS) ?? {};
+> lib\storage.ts:273:export function saveWeaknessRecords(
+  lib\storage.ts:274:  records: Record<string, WeaknessRecord>,
+> lib\storage.ts:279:export function addWeaknessFromWrongAnswer(
+  lib\storage.ts:280:  questionId: string,
+> lib\storage.ts:302:export function markWeaknessRecovered(questionId: string): void {
+  lib\storage.ts:303:  const records = loadWeaknessRecords();
+> lib\storage.ts:317:export function clearWeaknessRecords(): void {
+  lib\storage.ts:318:  removeStorageValue(STORAGE_KEYS.WEAKNESS);
+> lib\storage.ts:322:export function loadWrongQuestionIds(): string[] {
+  lib\storage.ts:323:  const legacy = readJson<string[]>(WRONG_QUESTION_IDS_KEY) ?? [];
+> lib\storage.ts:329:export function saveWrongQuestionIds(questionIds: string[]): void {
+  lib\storage.ts:330:  writeJson(WRONG_QUESTION_IDS_KEY, uniqueStrings(questionIds));
+> lib\storage.ts:333:export function addWrongQuestionId(
+  lib\storage.ts:334:  questionId: string,
+> lib\storage.ts:344:export function removeWrongQuestionId(questionId: string): string[] {
+  lib\storage.ts:345:  const next = loadWrongQuestionIds().filter((id) => id !== questionId);
+> lib\storage.ts:351:export function clearWrongQuestionIds(): void {
+  lib\storage.ts:352:  removeStorageValue(WRONG_QUESTION_IDS_KEY);
+> lib\storage.ts:355:export function loadResults(): StoredSessionResult[] {
+  lib\storage.ts:356:  const results = readJson<StoredSessionResult[]>(RESULT_STORAGE_KEY);
+> lib\storage.ts:365:export function saveResults(results: StoredSessionResult[]): void {
+  lib\storage.ts:366:  writeJson(RESULT_STORAGE_KEY, results);
+> lib\storage.ts:369:export function saveResult(result: Record<string, any>): StoredSessionResult[] {
+  lib\storage.ts:370:  const now = new Date().toISOString();
+> lib\storage.ts:390:export function clearResults(): void {
+  lib\storage.ts:391:  removeStorageValue(RESULT_STORAGE_KEY);
+> lib\storage.ts:394:export function loadOverallProgress(): OverallProgress | undefined {
+  lib\storage.ts:395:  return readJson<OverallProgress>(STORAGE_KEYS.PROGRESS);
+> lib\storage.ts:398:export function saveOverallProgress(progress: OverallProgress): void {
+  lib\storage.ts:399:  writeJson(STORAGE_KEYS.PROGRESS, progress);
+> lib\storage.ts:402:export function clearOverallProgress(): void {
+  lib\storage.ts:403:  removeStorageValue(STORAGE_KEYS.PROGRESS);
+> lib\storage.ts:406:export function loadExamDate(): string | null {
+  lib\storage.ts:407:  return readStorageValue(STORAGE_KEYS.EXAM_DATE) ?? null;
+> lib\storage.ts:410:export function saveExamDate(examDate: string): void {
+  lib\storage.ts:411:  writeStorageValue(STORAGE_KEYS.EXAM_DATE, examDate);
+> lib\storage.ts:414:export function clearExamDate(): void {
+  lib\storage.ts:415:  removeStorageValue(STORAGE_KEYS.EXAM_DATE);
+> lib\types.ts:12:export type Star = 0 | 1 | 2 | 3;
+  lib\types.ts:13:
+> lib\types.ts:15:export type Difficulty = 1 | 2 | 3;
+  lib\types.ts:16:
+> lib\types.ts:18:export type DifficultySource = 'manual' | 'heuristic' | 'empirical';
+  lib\types.ts:19:
+> lib\types.ts:21:export type Subject = 'law' | 'phys' | 'prop';
+  lib\types.ts:22:
+> lib\types.ts:24:export type OptionIndex = 0 | 1 | 2 | 3 | 4;
+  lib\types.ts:25:
+> lib\types.ts:27:export type FiveChoices = [string, string, string, string, string];
+  lib\types.ts:28:
+> lib\types.ts:30:export type VariantType =
+  lib\types.ts:31:  | 'numeric'
+> lib\types.ts:39:export type AuditPriority = 'high' | 'medium' | 'none';
+  lib\types.ts:40:
+> lib\types.ts:42:export interface Question {
+  lib\types.ts:43:  id: string;
+> lib\types.ts:81:export interface RawQuestion {
+  lib\types.ts:82:  id: string;
+> lib\types.ts:120:export interface DatasetManifest {
+  lib\types.ts:121:  dataset: string;
+> lib\types.ts:167:export type SessionType =
+  lib\types.ts:168:  | 'daily-10'
+> lib\types.ts:176:export interface SessionFilters {
+  lib\types.ts:177:  subject?: Subject;
+> lib\types.ts:195:export interface MockBlueprint {
+  lib\types.ts:196:  law: number;
+> lib\types.ts:204:export const STANDARD_MOCK: MockBlueprint = {
+  lib\types.ts:205:  law: 15,
+> lib\types.ts:213:export interface LastSession {
+  lib\types.ts:214:  sessionType: SessionType;
+> lib\types.ts:246:export interface QuestionProgress {
+  lib\types.ts:247:  questionId: string;
+> lib\types.ts:264:export interface SubjectStats {
+  lib\types.ts:265:  subject: Subject;
+> lib\types.ts:277:export interface OverallProgress {
+  lib\types.ts:278:  totalAttempted: number;
+> lib\types.ts:289:export interface SavedQuestion {
+  lib\types.ts:290:  questionId: string;
+> lib\types.ts:296:export interface WeaknessRecord {
+  lib\types.ts:297:  questionId: string;
+> lib\types.ts:309:export type MeterLabel = '優先' | 'もう少し' | '安定';
+  lib\types.ts:310:
+> lib\types.ts:311:export interface SubjectMeter {
+  lib\types.ts:312:  subject: Subject;
+> lib\types.ts:321:export interface StarLayerProgress {
+  lib\types.ts:322:  star: Star;
+> lib\types.ts:330:export interface NextActionSuggestion {
+  lib\types.ts:331:  type: 'star-priority' | 'weak-subject' | 'continue' | 'mock';
+> lib\types.ts:344:export const STORAGE_KEYS = {
+  lib\types.ts:345:  SESSION_DAILY: 'otu4.session.daily',
+> lib\types.ts:365:export const isMockSession = (sessionType: SessionType): boolean =>
+  lib\types.ts:366:  sessionType === 'mock-exam' || sessionType === 'mock-practice';
+> lib\types.ts:368:export const isPracticeMode = (sessionType: SessionType): boolean =>
+  lib\types.ts:369:  sessionType !== 'mock-exam';
+> lib\types.ts:371:export const isOptionIndex = (value: number): value is OptionIndex =>
+  lib\types.ts:372:  value === 0 || value === 1 || value === 2 || value === 3 || value === 4;
+> lib\types.ts:374:export const isValidSubject = (value: string): value is Subject =>
+  lib\types.ts:375:  value === 'law' || value === 'phys' || value === 'prop';
+> lib\types.ts:377:export const isValidDifficulty = (value: number): value is Difficulty =>
+  lib\types.ts:378:  value === 1 || value === 2 || value === 3;
+> lib\types.ts:380:export const isValidStar = (value: number): value is Star =>
+  lib\types.ts:381:  value === 0 || value === 1 || value === 2 || value === 3;
+> lib\types.ts:383:export const isValidDifficultySource = (
+  lib\types.ts:384:  value: string,
+> lib\types.ts:388:export const isFiveChoices = (value: string[]): value is FiveChoices =>
+  lib\types.ts:389:  value.length === 5;
+> lib\types.ts:391:export const isValidQuestion = (question: Question): boolean =>
+  lib\types.ts:392:  question.id.length > 0 &&
+> components\brand\Z4Emblem.tsx:3:export type Z4EmbossMode = 'emboss' | 'ink';
+  components\brand\Z4Emblem.tsx:4:
+> components\brand\Z4Emblem.tsx:12:export function EmbossGroup({
+  components\brand\Z4Emblem.tsx:13:  children,
+> components\brand\Z4Emblem.tsx:211:export function Z4Emblem({
+  components\brand\Z4Emblem.tsx:212:  size = 215,
+> components\brand\Z4Emblem.tsx:240:export function ClipboardMark({
+  components\brand\Z4Emblem.tsx:241:  size = 92,
+> components\brand\Z4Emblem.tsx:325:export function DocumentMark({
+  components\brand\Z4Emblem.tsx:326:  size = 88,
+> components\home\HomeHeroCard.tsx:18:export function HomeHeroCard({
+  components\home\HomeHeroCard.tsx:19:  href,
+> components\home\SubjectStatusCard.tsx:3:export type SubjectStatus = {
+  components\home\SubjectStatusCard.tsx:4:  key: 'law' | 'phys' | 'prop';
+> components\quiz\explanation\CalculationStep.tsx:10:export function CalculationStep({ tableHeader, rows, calcLines }: 
+CalculationStepProps) {
+  components\quiz\explanation\CalculationStep.tsx:11:  const hasRows = rows && rows.length > 0;
+> components\quiz\explanation\ComparisonTable.tsx:105:export function ComparisonTable({ tableHeader = [], rows = [] }: 
+ComparisonTableProps) {
+  components\quiz\explanation\ComparisonTable.tsx:106:  if (rows.length === 0) {
+> components\quiz\explanation\ExplanationCard.tsx:46:export function ExplanationCard({ meta, onNext }: ExplanationCardP
+rops) {
+  components\quiz\explanation\ExplanationCard.tsx:47:  const visualBlock = renderVisualBlock(meta);
+> components\quiz\explanation\FacilityMap.tsx:8:export function FacilityMap({ facilityItems }: FacilityMapProps) {
+  components\quiz\explanation\FacilityMap.tsx:9:  if (!facilityItems || facilityItems.length === 0) {
+> components\quiz\explanation\NumberCard.tsx:8:export function NumberCard({ numberHighlight }: NumberCardProps) {
+  components\quiz\explanation\NumberCard.tsx:9:  if (!numberHighlight) {
+> components\quiz\explanation\OptionMemoList.tsx:9:export function OptionMemoList({ optionMemos }: OptionMemoListProps)
+ {
+  components\quiz\explanation\OptionMemoList.tsx:10:  const entries = Object.entries(optionMemos ?? {})
+> components\quiz\explanation\ProcedureTable.tsx:9:export function ProcedureTable({ tableHeader, rows }: ProcedureTable
+Props) {
+  components\quiz\explanation\ProcedureTable.tsx:10:  const headers = tableHeader && tableHeader.length > 0 ? tableHead
+er : ['区分', '相手', '手続き'];
+> components\quiz\explanation\ProcessDiagram.tsx:7:export function ProcessDiagram({ steps = [] }: ProcessDiagramProps) 
+{
+  components\quiz\explanation\ProcessDiagram.tsx:8:  if (steps.length === 0) {
+> app\layout.tsx:32:export const metadata = {
+  app\layout.tsx:33:  title: 'Z4',
+> data\explanation_meta_index.ts:18:export const explanationMetaMap: ExplanationMetaMap = {
+  data\explanation_meta_index.ts:19:  ...explanationMetaPilotLawV1,
+> data\explanation_meta_index.ts:24:export function getExplanationMeta(questionId: string): ExplanationMeta | null {
+  data\explanation_meta_index.ts:25:  return explanationMetaMap[questionId] ?? null;
+> data\explanation_meta_pilot_law_v1.ts:22:export const explanationMetaPilotLawV1: ExplanationMetaMap = {
+  data\explanation_meta_pilot_law_v1.ts:23:    'LAW-006-002-V01': {
+> data\explanation_meta_pilot_phys_v1.ts:3:export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
+  data\explanation_meta_pilot_phys_v1.ts:4:  'PHYS-002-001': {
+> data\explanation_meta_pilot_prop_v1.ts:3:export const explanationMetaPilotPropV1: ExplanationMetaMap = {
+  data\explanation_meta_pilot_prop_v1.ts:4:  'PROP-003-001': {
+> data\explanation_meta_types.ts:1:export type ExplanationStyle =
+  data\explanation_meta_types.ts:2:  | 'short'
+> data\explanation_meta_types.ts:13:export type RowVariant = 'correct' | 'danger' | 'neutral';
+  data\explanation_meta_types.ts:14:
+> data\explanation_meta_types.ts:15:export type OptionIndex = 0 | 1 | 2 | 3 | 4;
+  data\explanation_meta_types.ts:16:
+> data\explanation_meta_types.ts:17:export type ExplanationRow = {
+  data\explanation_meta_types.ts:18:  cells: string[];
+> data\explanation_meta_types.ts:23:export type ProcessStep = {
+  data\explanation_meta_types.ts:24:  label: string;
+> data\explanation_meta_types.ts:30:export type AdaptationVerdict = 'ok' | 'ng' | 'partial';
+  data\explanation_meta_types.ts:31:
+> data\explanation_meta_types.ts:32:export type AdaptationMatrixItem = {
+  data\explanation_meta_types.ts:33:  label: string;
+> data\explanation_meta_types.ts:38:export type CalculationLine = {
+  data\explanation_meta_types.ts:39:  step: string;
+> data\explanation_meta_types.ts:45:export type NumberHighlight = {
+  data\explanation_meta_types.ts:46:  value: string;
+> data\explanation_meta_types.ts:52:export type FacilityMapStatus = 'target' | 'excluded' | 'conditional';
+  data\explanation_meta_types.ts:53:
+> data\explanation_meta_types.ts:54:export type FacilityMapItem = {
+  data\explanation_meta_types.ts:55:  label: string;
+> data\explanation_meta_types.ts:62:export type DiagramNode = {
+  data\explanation_meta_types.ts:63:  label: string;
+> data\explanation_meta_types.ts:68:export type ExplanationMeta = {
+  data\explanation_meta_types.ts:69:  questionId: string;
+> data\explanation_meta_types.ts:97:export type ExplanationMetaMap = Record<string, ExplanationMeta>;
+  data\explanation_meta_types.ts:98:
+
+

@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@500;600;700&display=swap');
+:root {
+  /* ===== Font hierarchy ===== */
+  --font-serif-jp:
+    var(--font-noto-serif-jp),
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    "YuMincho",
+    "MS PMincho",
+    serif;
+
+  --font-sans-jp:
+    var(--font-noto-sans-jp),
+    "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN",
+    "Noto Sans JP",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  --font-serif-en:
+    var(--font-cormorant),
+    "Cormorant Garamond",
+    "Georgia",
+    "Times New Roman",
+    serif;
+
+  --font-num-display:
+    var(--font-cormorant),
+    "Cormorant Garamond",
+    "Georgia",
+    "Times New Roman",
+    serif;
+
+  /* ===== Core colors ===== */
+  --color-navy: #101827;
+  --color-navy-soft: #1D2635;
+  --color-gold: #B8944D;
+  --color-deep-red: #8F1B25;
+  --color-deep-red-soft: #A92732;
+  --color-sage: #4F765E;
+  --color-ivory: #F6F1E8;
+
+  --color-text: #151A24;
+  --color-text-sub: #6E665B;
+  --color-text-mute: #A99F91;
+  --color-border: rgba(21, 26, 36, 0.06);
+  --color-card-bg: rgba(255, 253, 248, 0.92);
+
+  --shadow-card: 0 1px 2px rgba(14, 26, 43, 0.025);
+  --shadow-soft: 0 2px 6px rgba(14, 26, 43, 0.03);
+
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: var(--font-sans-jp);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(184, 148, 77, 0.13), transparent 32%),
+    radial-gradient(circle at 90% 12%, rgba(143, 27, 37, 0.07), transparent 28%),
+    linear-gradient(180deg, #F8F3EA 0%, #F1E8DB 100%);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+.font-serif-jp {
+  font-family: var(--font-serif-jp);
+  font-feature-settings: "palt";
+  letter-spacing: 0.02em;
+}
+
+.font-serif-en {
+  font-family: var(--font-serif-en);
+  font-feature-settings: "lnum", "tnum";
+}
+
+.font-num-display {
+  font-family: var(--font-num-display);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "lnum", "tnum";
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}

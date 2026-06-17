@@ -54,7 +54,7 @@ export function ExplanationCard({ meta, onNext }: ExplanationCardProps) {
       <div style={lossHeaderStyle}>
         <div style={redBarStyle} />
         <div>
-          <div style={lossCaptionStyle}>今回の失点</div>
+          <div style={lossCaptionStyle}>この問題の急所</div>
           <div style={lossTitleStyle}>{meta.lossTitle}</div>
         </div>
       </div>

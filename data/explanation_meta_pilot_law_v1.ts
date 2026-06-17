@@ -57,22 +57,25 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
     reviewCtaLabel: '手続き区分をもう1問',
   },
 
-  'LAW-011-001': {
-    questionId: 'LAW-011-001',
-    schemaVersion: 1,
-    misconceptionId: 'law.safety_course.interval_5y',
-    lossCategory: 'number_confusion',
-    lossTitle: '保安講習の期間を5年と混同',
-    style: 'number_card',
-    shortExplanation: '危険物の取扱作業に従事する危険物取扱者の保安講習は、5年に1回ではありません。継続して従事する場合は、免状交付日または前回講習日以後の最初の4月1日から3年以内ごとに受講します。',
-    highlightTerms: ['3年以内', '5年'],
-    numberHighlight: {
-      value: '3',
-      unit: '年以内',
-      label: '保安講習の基本周期',
-      danger: '5年ではない',
-    },
-    reviewCtaLabel: '保安講習をもう1問',
+"LAW-011-001": {
+    id: "LAW-011-001",
+    lossCategory: "procedure_confusion",
+    lossTitle: "この問題の急所",
+    style: "standard",
+    content: `危険物施設の変更手続きにおける、**「事前」と「事後」の境界線**を整理しましょう。
+
+▶ **施設の中身や構造を変える**（指定数量・品名の変更）
+ ＝ **【事前（変更前）】** に市町村長等へ届出
+
+▶ **人を変える**（危険物保安監督者の選任・解任）
+ ＝ **【事後（遅滞なく）】** に市町村長等へ届出`,
+    optionMemos: {
+      "1": "【正しい】品名の変更は施設に関係するため、変更する「事前」に届出が必要です。",
+      "2": "【正しい】指定数量の倍数の変更も同様に「事前」に届出が必要です。",
+      "3": "【誤り/引っかけ】保安監督者の選任は「人」の変更なので、事前ではなく「遅滞なく（事後）」届け出ればOKです。",
+      "4": "【正しい】保安監督者を解任したときも、選任時と同じく「遅滞なく」届け出ます。",
+      "5": "【正しい】施設の譲渡や引渡（所有者の変更）があった場合も「遅滞なく」届け出ます。"
+    }
   },
 
   'LAW-004-008': {

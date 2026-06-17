@@ -61,7 +61,7 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
     id: "LAW-011-001",
     lossCategory: "procedure_confusion",
     lossTitle: "この問題の急所",
-    style: "short",
+    style: "standard",
     content: `危険物施設の変更手続きにおける、**「事前」と「事後」の境界線**を整理しましょう。
 
 ▶ **施設の中身や構造を変える**（指定数量・品名の変更）

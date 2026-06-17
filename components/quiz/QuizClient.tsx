@@ -837,6 +837,7 @@ const questionStyle: CSSProperties = {
   fontSize: 17,
   fontWeight: 600,
   lineHeight: 1.6,
+  whiteSpace: 'pre-line',
   letterSpacing: '0.02em',
   fontFamily:
     '"Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif',

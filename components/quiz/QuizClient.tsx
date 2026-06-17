@@ -713,7 +713,7 @@ const pageStyle: CSSProperties = {
   maxWidth: 430,
   margin: '0 auto',
   minHeight: '100vh',
-  padding: '86px 18px 178px',
+  padding: '82px 18px 150px',
   background:
     'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.95) 0%, rgba(250,247,242,0.96) 45%, #F7F1EA 100%)',
   color: '#0E1A2B',
@@ -834,9 +834,9 @@ const questionStyle: CSSProperties = {
   margin: 0,
   flex: 1,
   color: '#0E1A2B',
-  fontSize: 21,
+  fontSize: 19,
   fontWeight: 700,
-  lineHeight: 1.65,
+  lineHeight: 1.55,
   letterSpacing: '0.02em',
   fontFamily:
     '"Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif',
@@ -844,14 +844,14 @@ const questionStyle: CSSProperties = {
 
 const choicesStyle: CSSProperties = {
   display: 'grid',
-  gap: 13,
-  marginTop: 14,
+  gap: 10,
+  marginTop: 12,
 };
 
 const choiceButtonStyle: CSSProperties = {
-  minHeight: 58,
+  minHeight: 52,
   width: '100%',
-  padding: '13px 16px',
+  padding: '10px 14px',
   borderRadius: 10,
   border: '1.3px solid #E4DDD3',
   background: 'rgba(255, 252, 248, 0.96)',
@@ -973,7 +973,7 @@ const footerStyle: CSSProperties = {
   right: 0,
   bottom: 0,
   zIndex: 30,
-  padding: '14px 18px 22px',
+  padding: '10px 18px 16px',
   background:
     'linear-gradient(180deg, rgba(250,247,242,0.74) 0%, rgba(250,247,242,0.98) 30%, #FAF7F2 100%)',
   borderTop: '1px solid rgba(218, 210, 198, 0.76)',
@@ -985,7 +985,7 @@ const footerInnerStyle: CSSProperties = {
   margin: '0 auto',
   display: 'grid',
   gridTemplateColumns: '1fr',
-  gap: 10,
+  gap: 8,
 };
 
 const footerHintStyle: CSSProperties = {
@@ -995,8 +995,8 @@ const footerHintStyle: CSSProperties = {
 const primaryButtonStyle: CSSProperties = {
   order: 1,
   width: '100%',
-  minHeight: 56,
-  padding: '12px 18px',
+  minHeight: 50,
+  padding: '10px 18px',
   borderRadius: 8,
   border: 'none',
   background: 'linear-gradient(180deg, #C92932 0%, #A71722 100%)',
@@ -1011,8 +1011,8 @@ const primaryButtonStyle: CSSProperties = {
 const secondaryFooterButtonStyle: CSSProperties = {
   order: 2,
   width: '100%',
-  minHeight: 46,
-  padding: '10px 16px',
+  minHeight: 44,
+  padding: '9px 16px',
   borderRadius: 8,
   border: '1.3px solid #B72A32',
   background: 'rgba(255, 252, 248, 0.92)',

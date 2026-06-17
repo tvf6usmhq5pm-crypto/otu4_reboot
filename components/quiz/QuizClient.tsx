@@ -672,12 +672,12 @@ const headerCountStyle: CSSProperties = {
 const questionLineStyle: CSSProperties = {
   display: 'flex',
   alignItems: 'flex-start',
-  gap: 12,
+  gap: 8,
 };
 
 const questionMarkStyle: CSSProperties = {
   color: '#0E2745',
-  fontSize: 36,
+  fontSize: 26,
   fontWeight: 600,
   lineHeight: 1.15,
   fontFamily: 'Cormorant Garamond, Georgia, serif',
@@ -834,9 +834,9 @@ const questionStyle: CSSProperties = {
   margin: 0,
   flex: 1,
   color: '#0E1A2B',
-  fontSize: 19,
-  fontWeight: 700,
-  lineHeight: 1.55,
+  fontSize: 17,
+  fontWeight: 600,
+  lineHeight: 1.6,
   letterSpacing: '0.02em',
   fontFamily:
     '"Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif',

@@ -48,6 +48,54 @@ const CHOICE_FOCUS_CSS = `
 }
 `;
 
+type TextSizeMode = 'small' | 'standard' | 'large';
+
+const TEXT_SIZE_STORAGE_KEY = 'z4-text-size-mode';
+
+const TEXT_SIZE_ORDER: TextSizeMode[] = ['small', 'standard', 'large'];
+
+const TEXT_SIZE_PROFILES: Record<
+  TextSizeMode,
+  {
+    label: string;
+    questionFontSize: number;
+    questionLineHeight: number;
+    choiceFontSize: number;
+    choiceLineHeight: number;
+  }
+> = {
+  small: {
+    label: '\u5c0f',
+    questionFontSize: 16,
+    questionLineHeight: 1.55,
+    choiceFontSize: 14.5,
+    choiceLineHeight: 1.58,
+  },
+  standard: {
+    label: '\u6a19\u6e96',
+    questionFontSize: 17,
+    questionLineHeight: 1.6,
+    choiceFontSize: 15,
+    choiceLineHeight: 1.65,
+  },
+  large: {
+    label: '\u5927',
+    questionFontSize: 18.5,
+    questionLineHeight: 1.68,
+    choiceFontSize: 16,
+    choiceLineHeight: 1.72,
+  },
+};
+
+function readInitialTextSizeMode(): TextSizeMode {
+  if (typeof window === 'undefined') {
+    return 'standard';
+  }
+
+  const saved = window.localStorage.getItem(TEXT_SIZE_STORAGE_KEY);
+  return saved === 'small' || saved === 'standard' || saved === 'large' ? saved : 'standard';
+}
+
 const TEXT = {
   loading: '\u8aad\u307f\u8fbc\u307f\u4e2d...',
   mockLabel: '35\u554f \u6a21\u8a66',
@@ -340,6 +388,14 @@ export default function QuizClient() {
 
   const [session, setSession] = useState<LastSession | null>(null);
   const [showQuestionList, setShowQuestionList] = useState(false);
+  const [textSizeMode, setTextSizeMode] = useState<TextSizeMode>(() => readInitialTextSizeMode());
+  const [showTextSizeMenu, setShowTextSizeMenu] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(TEXT_SIZE_STORAGE_KEY, textSizeMode);
+    }
+  }, [textSizeMode]);
 
   useEffect(() => {
     const existing = loadLastSession();
@@ -472,20 +528,46 @@ export default function QuizClient() {
           <div style={topActionGroupStyle}>
             <button
               type="button"
+              onClick={() => setShowTextSizeMenu((value) => !value)}
               style={topTextSizeButtonStyle}
-              aria-label="文字サイズ"
-              title="文字サイズ"
+              aria-label={'\u6587\u5b57\u30b5\u30a4\u30ba'}
+              title={'\u6587\u5b57\u30b5\u30a4\u30ba'}
             >
               Aa
             </button>
+
+            {showTextSizeMenu && (
+              <div style={topTextSizeMenuStyle}>
+                <div style={topTextSizeMenuTitleStyle}>{'\u6587\u5b57\u30b5\u30a4\u30ba'}</div>
+                <div style={topTextSizeOptionRowStyle}>
+                  {TEXT_SIZE_ORDER.map((size) => (
+                    <button
+                      key={size}
+                      type="button"
+                      onClick={() => {
+                        setTextSizeMode(size);
+                        setShowTextSizeMenu(false);
+                      }}
+                      style={{
+                        ...topTextSizeOptionStyle,
+                        ...(textSizeMode === size ? topTextSizeOptionActiveStyle : {}),
+                      }}
+                    >
+                      {TEXT_SIZE_PROFILES[size].label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <button
               type="button"
               onClick={() => router.back()}
               style={topExitButtonStyle}
-              aria-label="終了"
-              title="終了"
+              aria-label={'\u7d42\u4e86'}
+              title={'\u7d42\u4e86'}
             >
-              ×
+              {'\u7d42\u4e86'}
             </button>
           </div>
         </div>
@@ -511,7 +593,15 @@ export default function QuizClient() {
 
         <div style={questionLineStyle}>
           <span style={questionMarkStyle}>Q.</span>
-          <h1 style={questionStyle}>{currentQuestion.question}</h1>
+          <h1
+            style={{
+              ...questionStyle,
+              fontSize: TEXT_SIZE_PROFILES[textSizeMode].questionFontSize,
+              lineHeight: TEXT_SIZE_PROFILES[textSizeMode].questionLineHeight,
+            }}
+          >
+            {currentQuestion.question}
+          </h1>
         </div>
       </section>
 
@@ -575,7 +665,15 @@ export default function QuizClient() {
               style={buttonStyle}
             >
               <span style={numberStyle}>{displayedIndex + 1}</span>
-              <span style={choiceTextStyle}>{optionText}</span>
+              <span
+                style={{
+                  ...choiceTextStyle,
+                  fontSize: TEXT_SIZE_PROFILES[textSizeMode].choiceFontSize,
+                  lineHeight: TEXT_SIZE_PROFILES[textSizeMode].choiceLineHeight,
+                }}
+              >
+                {optionText}
+              </span>
 
             </button>
           );
@@ -717,21 +815,24 @@ const topSubjectPillStyle: CSSProperties = {
 
 const topCountPillStyle: CSSProperties = {
   minHeight: 30,
-  padding: '5px 9px',
+  padding: '5px 10px',
   borderRadius: 999,
   border: '1px solid #D8D2C6',
-  background: 'rgba(255, 252, 248, 0.96)',
-  color: '#4F4A42',
+  background: 'rgba(255, 252, 248, 0.98)',
+  color: '#0E1A2B',
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
   whiteSpace: 'nowrap',
-  fontSize: 13,
-  fontWeight: 800,
-  fontFamily: 'Cormorant Garamond, Georgia, serif',
+  fontSize: 15,
+  fontWeight: 900,
+  letterSpacing: '0.01em',
+  fontFamily:
+    '-apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif',
 };
 
 const topActionGroupStyle: CSSProperties = {
+  position: 'relative',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
@@ -758,22 +859,69 @@ const topTextSizeButtonStyle: CSSProperties = {
 };
 
 const topExitButtonStyle: CSSProperties = {
-  width: 34,
+  minWidth: 44,
   height: 34,
+  padding: '0 10px',
   borderRadius: 10,
   border: '1px solid #D8D2C6',
-  background: 'rgba(255, 252, 248, 0.96)',
-  color: '#A36E38',
+  background: 'rgba(255, 252, 248, 0.98)',
+  color: '#8B6226',
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: 0,
-  fontSize: 24,
-  fontWeight: 500,
+  fontSize: 13,
+  fontWeight: 800,
   lineHeight: 1,
   cursor: 'pointer',
   fontFamily:
     '"Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif',
+};
+
+const topTextSizeMenuStyle: CSSProperties = {
+  position: 'absolute',
+  top: 40,
+  right: 0,
+  zIndex: 45,
+  width: 158,
+  padding: 10,
+  borderRadius: 12,
+  border: '1px solid #D8D2C6',
+  background: 'rgba(255, 252, 248, 0.98)',
+  boxShadow: '0 14px 34px rgba(14, 26, 43, 0.18)',
+};
+
+const topTextSizeMenuTitleStyle: CSSProperties = {
+  marginBottom: 8,
+  color: '#6B5B43',
+  fontSize: 12,
+  fontWeight: 800,
+  fontFamily:
+    '"Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif',
+};
+
+const topTextSizeOptionRowStyle: CSSProperties = {
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr 1fr',
+  gap: 6,
+};
+
+const topTextSizeOptionStyle: CSSProperties = {
+  minHeight: 34,
+  borderRadius: 9,
+  border: '1px solid #D8D2C6',
+  background: '#FFFFFF',
+  color: '#4F4A42',
+  fontSize: 12.5,
+  fontWeight: 800,
+  cursor: 'pointer',
+  fontFamily:
+    '"Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif',
+};
+
+const topTextSizeOptionActiveStyle: CSSProperties = {
+  borderColor: '#C9A55A',
+  background: '#FFF8E8',
+  color: '#8B6226',
 };
 
 const questionLineStyle: CSSProperties = {

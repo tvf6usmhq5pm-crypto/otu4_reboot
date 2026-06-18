@@ -37,6 +37,17 @@ import { QuestionListModal } from './QuestionListModal';
 
 const OPTION_INDICES: OptionIndex[] = [0, 1, 2, 3, 4];
 
+const CHOICE_FOCUS_CSS = `
+.z4-choice-button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.z4-choice-button:focus-visible {
+  outline: 2px solid rgba(14, 26, 43, 0.58);
+  outline-offset: 2px;
+}
+`;
+
 const TEXT = {
   loading: '\u8aad\u307f\u8fbc\u307f\u4e2d...',
   mockLabel: '35\u554f \u6a21\u8a66',
@@ -458,6 +469,8 @@ export default function QuizClient() {
 
   return (
     <main style={pageStyle}>
+      <style>{CHOICE_FOCUS_CSS}</style>
+
       <header style={headerStyle}>
         <div style={headerInnerStyle}>
           <button type="button" onClick={() => router.back()} style={backButtonStyle} aria-label="戻る">
@@ -546,8 +559,9 @@ export default function QuizClient() {
 
           return (
             <button
-              key={originalIndex}
+              key={`${questionId}-${originalIndex}`}
               type="button"
+              className="z4-choice-button"
               onClick={() => handleAnswer(displayedIndex as OptionIndex)}
               disabled={!isExamMode && revealed}
               style={buttonStyle}

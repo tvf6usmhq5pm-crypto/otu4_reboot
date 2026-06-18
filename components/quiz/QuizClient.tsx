@@ -506,44 +506,47 @@ export default function QuizClient() {
 
           let buttonStyle = choiceButtonStyle;
           let numberStyle = choiceNumberStyle;
-          let badge = '';
 
           if (selected) {
             buttonStyle = {
               ...choiceButtonStyle,
-              borderColor: '#b8860b',
-              background: '#fff8e8',
+              borderColor: '#C9A55A',
+              background: '#FFF8E8',
             };
             numberStyle = {
               ...choiceNumberStyle,
-              color: '#b8860b',
+              borderColor: '#C9A55A',
+              background: '#F4E4B8',
+              color: '#7A551E',
             };
           }
 
           if (!isExamMode && revealed && correct) {
             buttonStyle = {
               ...choiceButtonStyle,
-              borderColor: '#2D765A',
+              borderColor: '#CADBCE',
               background: '#F2FAF5',
             };
             numberStyle = {
               ...choiceNumberStyle,
-              color: '#2D765A',
+              borderColor: '#4C7A5D',
+              background: '#4C7A5D',
+              color: '#FFFFFF',
             };
-            badge = '\u2713';
           }
 
           if (!isExamMode && revealed && selected && !correct) {
             buttonStyle = {
               ...choiceButtonStyle,
-              borderColor: '#B72A32',
+              borderColor: '#E6CBCD',
               background: '#FFF4F3',
             };
             numberStyle = {
               ...choiceNumberStyle,
-              color: '#B72A32',
+              borderColor: '#B01F2E',
+              background: '#B01F2E',
+              color: '#FFFFFF',
             };
-            badge = '\u2715';
           }
 
           return (
@@ -556,7 +559,7 @@ export default function QuizClient() {
             >
               <span style={numberStyle}>{displayedIndex + 1}</span>
               <span style={choiceTextStyle}>{optionText}</span>
-              {badge && <span style={choiceBadgeStyle}>{badge}</span>}
+
             </button>
           );
         })}
@@ -884,7 +887,7 @@ const choiceButtonStyle: CSSProperties = {
   background: 'rgba(255, 252, 248, 0.96)',
   color: '#0E1A2B',
   display: 'grid',
-  gridTemplateColumns: '28px 1fr auto',
+  gridTemplateColumns: '28px minmax(0, 1fr)',
   alignItems: 'center',
   gap: 12,
   textAlign: 'left',
@@ -895,27 +898,30 @@ const choiceButtonStyle: CSSProperties = {
 };
 
 const choiceNumberStyle: CSSProperties = {
-  width: 24,
-  minWidth: 24,
+  width: 28,
+  height: 28,
+  minWidth: 28,
+  borderRadius: 999,
+  border: '1px solid #D8D2C6',
+  background: 'rgba(255, 252, 248, 0.92)',
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  color: '#0E1A2B',
-  fontWeight: 700,
-  fontSize: 18,
-  fontFamily: 'Cormorant Garamond, Georgia, serif',
+  color: '#5A5347',
+  fontWeight: 800,
+  fontSize: 14,
+  lineHeight: 1,
+  fontFamily:
+    '"Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif',
 };
 
 const choiceTextStyle: CSSProperties = {
+  minWidth: 0,
   fontSize: 15,
   fontWeight: 600,
   lineHeight: 1.65,
 };
 
-const choiceBadgeStyle: CSSProperties = {
-  fontSize: 18,
-  fontWeight: 900,
-};
 
 const verdictStyle: CSSProperties = {
   marginTop: 20,

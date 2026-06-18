@@ -33,6 +33,7 @@ import type { LastSession, OptionIndex } from '../../lib/types';
 import { InlineMarkdownText } from './explanation/MarkdownText';
 import { getExplanationMeta } from '../../data/explanation_meta_index';
 import { ExplanationCard } from './explanation/ExplanationCard';
+import { QuestionListModal } from './QuestionListModal';
 
 const OPTION_INDICES: OptionIndex[] = [0, 1, 2, 3, 4];
 
@@ -54,6 +55,7 @@ const TEXT = {
   result: '\u7d50\u679c\u3092\u898b\u308b',
   submit: '\u63d0\u51fa\u3059\u308b',
   next: '\u6b21\u306e\u554f\u984c\u3078',
+  questionList: '問題一覧',
   previous: '\u524d\u306e\u554f\u984c\u3078',
   answerFirst: '\u9078\u629e\u80a2\u3092\u9078\u3093\u3067\u304f\u3060\u3055\u3044',
   examAnswered: '\u56de\u7b54\u6e08\u307f\u3067\u3059\u3002\u6b21\u3078\u9032\u3081\u307e\u3059',
@@ -326,6 +328,7 @@ export default function QuizClient() {
   const id = searchParams?.get('id') ?? null;
 
   const [session, setSession] = useState<LastSession | null>(null);
+  const [showQuestionList, setShowQuestionList] = useState(false);
 
   useEffect(() => {
     const existing = loadLastSession();
@@ -616,13 +619,13 @@ export default function QuizClient() {
             {TEXT.previous}
           </button>
 
-          <p style={footerHintStyle}>
-            {isExamMode && hasAnswered
-              ? TEXT.examAnswered
-              : hasAnswered || revealed
-                ? session.label
-                : TEXT.answerFirst}
-          </p>
+          <button
+            type="button"
+            onClick={() => setShowQuestionList(true)}
+            style={questionListButtonStyle}
+          >
+            {TEXT.questionList}
+          </button>
 
           <button
             type="button"
@@ -638,6 +641,27 @@ export default function QuizClient() {
           </button>
         </div>
       </footer>
+
+      {showQuestionList && session && (
+        <QuestionListModal
+          questionIds={session.questionIds}
+          currentIndex={session.currentIndex}
+          isExamMode={isExamMode}
+          getKind={(qid) => {
+            if (isExamMode) {
+              return session.answers[qid] !== undefined ? 'answered' : 'untouched';
+            }
+            const c = isQuestionCorrect(session, qid);
+            return c === true ? 'correct' : c === false ? 'wrong' : 'untouched';
+          }}
+          onJump={(i) => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            updateSession({ ...session, currentIndex: i });
+            setShowQuestionList(false);
+          }}
+          onClose={() => setShowQuestionList(false)}
+        />
+      )}
     </main>
   );
 }
@@ -985,16 +1009,25 @@ const footerInnerStyle: CSSProperties = {
   maxWidth: 430,
   margin: '0 auto',
   display: 'grid',
-  gridTemplateColumns: '1fr',
+  gridTemplateColumns: 'auto 1fr auto',
+  alignItems: 'center',
   gap: 8,
 };
 
-const footerHintStyle: CSSProperties = {
-  display: 'none',
+const questionListButtonStyle: CSSProperties = {
+  justifySelf: 'center',
+  border: 'none',
+  background: 'transparent',
+  color: '#6B5B43',
+  fontSize: 14,
+  fontWeight: 700,
+  padding: '8px 10px',
+  cursor: 'pointer',
+  fontFamily:
+    '"Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif',
 };
 
 const primaryButtonStyle: CSSProperties = {
-  order: 1,
   width: '100%',
   minHeight: 50,
   padding: '10px 18px',
@@ -1010,7 +1043,6 @@ const primaryButtonStyle: CSSProperties = {
 };
 
 const secondaryFooterButtonStyle: CSSProperties = {
-  order: 2,
   width: '100%',
   minHeight: 44,
   padding: '9px 16px',

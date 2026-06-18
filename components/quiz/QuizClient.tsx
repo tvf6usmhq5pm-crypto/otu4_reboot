@@ -405,10 +405,6 @@ export default function QuizClient() {
       return;
     }
 
-    if (!isExamMode && revealed) {
-      return;
-    }
-
     const answered = answerQuestion(session, questionId, displayedIndex);
 
     if (isExamMode) {
@@ -417,7 +413,6 @@ export default function QuizClient() {
     }
 
     const revealedSession = revealQuestion(answered, questionId);
-    recordAnsweredQuestion(answered, questionId);
     updateSession(revealedSession);
   }
 
@@ -442,15 +437,9 @@ export default function QuizClient() {
     if (isLast) {
       const finalResult = createResult(session);
 
-      if (isExamMode) {
-        session.questionIds.forEach((id) => {
-          const correct = isQuestionCorrect(session, id);
-
-          if (correct === true || correct === false) {
-            recordQuestionAnswer(id, correct);
-          }
-        });
-      }
+      session.questionIds.forEach((id) => {
+        recordAnsweredQuestion(session, id);
+      });
 
       saveResult(finalResult);
       clearLastSession();
@@ -563,7 +552,6 @@ export default function QuizClient() {
               type="button"
               className="z4-choice-button"
               onClick={() => handleAnswer(displayedIndex as OptionIndex)}
-              disabled={!isExamMode && revealed}
               style={buttonStyle}
             >
               <span style={numberStyle}>{displayedIndex + 1}</span>

@@ -462,14 +462,31 @@ export default function QuizClient() {
 
       <header style={headerStyle}>
         <div style={headerInnerStyle}>
-          <button type="button" onClick={() => router.back()} style={backButtonStyle} aria-label="戻る">
-            ←
-          </button>
+          <div style={topMetaGroupStyle}>
+            <span style={topSubjectPillStyle}>{subjectLabel(currentQuestion.subject)}</span>
+            <span style={topCountPillStyle}>
+              {session.currentIndex + 1} / {session.questionIds.length}
+            </span>
+          </div>
 
-          <div style={headerTitleStyle}>{session.label}</div>
-
-          <div style={headerCountStyle}>
-            {session.currentIndex + 1} / {session.questionIds.length}
+          <div style={topActionGroupStyle}>
+            <button
+              type="button"
+              style={topTextSizeButtonStyle}
+              aria-label="文字サイズ"
+              title="文字サイズ"
+            >
+              Aa
+            </button>
+            <button
+              type="button"
+              onClick={() => router.back()}
+              style={topExitButtonStyle}
+              aria-label="終了"
+              title="終了"
+            >
+              ×
+            </button>
           </div>
         </div>
       </header>
@@ -671,31 +688,92 @@ export default function QuizClient() {
   );
 }
 
-const backButtonStyle: CSSProperties = {
-  border: 'none',
-  background: 'transparent',
-  color: '#0E1A2B',
-  fontSize: 26,
-  lineHeight: 1,
-  padding: 0,
-  textAlign: 'left',
+const topMetaGroupStyle: CSSProperties = {
+  minWidth: 0,
+  display: 'flex',
+  alignItems: 'center',
+  gap: 6,
 };
 
-const headerTitleStyle: CSSProperties = {
-  color: '#A36E38',
-  fontSize: 17,
-  fontWeight: 600,
-  textAlign: 'center',
+const topSubjectPillStyle: CSSProperties = {
+  maxWidth: 116,
+  minHeight: 30,
+  padding: '5px 10px',
+  borderRadius: 999,
+  border: '1px solid #C9A55A',
+  background: '#FFF8E8',
+  color: '#8B6226',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  fontSize: 13,
+  fontWeight: 800,
   fontFamily:
     '"Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif',
 };
 
-const headerCountStyle: CSSProperties = {
-  color: '#0E1A2B',
-  fontSize: 24,
-  fontWeight: 600,
-  textAlign: 'right',
+const topCountPillStyle: CSSProperties = {
+  minHeight: 30,
+  padding: '5px 9px',
+  borderRadius: 999,
+  border: '1px solid #D8D2C6',
+  background: 'rgba(255, 252, 248, 0.96)',
+  color: '#4F4A42',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  whiteSpace: 'nowrap',
+  fontSize: 13,
+  fontWeight: 800,
   fontFamily: 'Cormorant Garamond, Georgia, serif',
+};
+
+const topActionGroupStyle: CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  gap: 6,
+};
+
+const topTextSizeButtonStyle: CSSProperties = {
+  width: 34,
+  height: 34,
+  borderRadius: 10,
+  border: '1px solid #D8D2C6',
+  background: 'rgba(255, 252, 248, 0.96)',
+  color: '#6B5B43',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: 0,
+  fontSize: 14,
+  fontWeight: 900,
+  lineHeight: 1,
+  cursor: 'pointer',
+  fontFamily:
+    '"Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif',
+};
+
+const topExitButtonStyle: CSSProperties = {
+  width: 34,
+  height: 34,
+  borderRadius: 10,
+  border: '1px solid #D8D2C6',
+  background: 'rgba(255, 252, 248, 0.96)',
+  color: '#A36E38',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: 0,
+  fontSize: 24,
+  fontWeight: 500,
+  lineHeight: 1,
+  cursor: 'pointer',
+  fontFamily:
+    '"Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif',
 };
 
 const questionLineStyle: CSSProperties = {
@@ -742,7 +820,7 @@ const pageStyle: CSSProperties = {
   maxWidth: 430,
   margin: '0 auto',
   minHeight: '100vh',
-  padding: '82px 18px 150px',
+  padding: '66px 18px 150px',
   background:
     'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.95) 0%, rgba(250,247,242,0.96) 45%, #F7F1EA 100%)',
   color: '#0E1A2B',
@@ -754,19 +832,20 @@ const headerStyle: CSSProperties = {
   left: 0,
   right: 0,
   zIndex: 30,
-  background: 'rgba(250, 247, 242, 0.96)',
-  borderBottom: '1px solid rgba(218, 210, 198, 0.9)',
+  background: 'rgba(255, 252, 248, 0.96)',
+  borderBottom: '1px solid rgba(218, 210, 198, 0.82)',
   backdropFilter: 'blur(12px)',
 };
 
 const headerInnerStyle: CSSProperties = {
   maxWidth: 430,
   margin: '0 auto',
-  minHeight: 62,
-  padding: '0 18px',
+  minHeight: 52,
+  padding: '0 14px',
   display: 'grid',
-  gridTemplateColumns: '44px 1fr 72px',
+  gridTemplateColumns: 'minmax(0, 1fr) auto',
   alignItems: 'center',
+  gap: 10,
 };
 
 const logoBlockStyle: CSSProperties = {

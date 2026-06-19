@@ -1,4 +1,4 @@
-﻿import type { ExplanationMetaMap } from './explanation_meta_types';
+import type { ExplanationMetaMap } from './explanation_meta_types';
 
 export const explanationMetaPilotPropV1: ExplanationMetaMap = {
   'PROP-003-001': {
@@ -27,6 +27,7 @@ export const explanationMetaPilotPropV1: ExplanationMetaMap = {
       {
         cells: ['強化液の棒状放射', '油面を強く叩き、飛散・拡大のおそれ', '不適切'],
         variant: 'danger',
+        isKey: true,
       },
       {
         cells: ['強化液の霧状放射', '油面を叩きにくく、冷却・窒息効果', '適切'],

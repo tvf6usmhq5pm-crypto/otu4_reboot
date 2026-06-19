@@ -1,4 +1,4 @@
-﻿export type ExplanationStyle =
+export type ExplanationStyle =
   | 'short'
   | 'procedure_table'
   | 'comparison_table'
@@ -26,6 +26,7 @@ export type ExplanationRow = {
   cells: string[];
   variant?: RowVariant;
   note?: string;
+  isKey?: boolean;
 };
 
 export type ProcessStep = {

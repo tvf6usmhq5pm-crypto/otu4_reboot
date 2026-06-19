@@ -192,23 +192,6 @@ export function ComparisonTable({ tableHeader = [], rows = [] }: ComparisonTable
                     gap: 5,
                   }}
                 >
-                  {row.isKey ? (
-                    <span
-                      style={{
-                        width: 'fit-content',
-                        borderRadius: 999,
-                        border: '1px solid rgba(201, 165, 90, 0.55)',
-                        background: '#FFF7DF',
-                        color: '#7A5A14',
-                        fontSize: 11,
-                        fontWeight: 900,
-                        lineHeight: 1,
-                        padding: '4px 8px',
-                      }}
-                    >
-                      決め手
-                    </span>
-                  ) : null}
 
                   <div
                     style={{

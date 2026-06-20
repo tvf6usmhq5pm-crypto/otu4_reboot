@@ -22,9 +22,11 @@ function renderVisualBlock(meta: ExplanationMeta) {
     return <ProcedureTable tableHeader={meta.tableHeader} rows={meta.rows} />;
   }
 
-  {meta.questionId === 'PROP-003-001' ? <Type4FireSprayDiagram /> : null}
-
   if (meta.style === 'comparison_table') {
+    if (meta.questionId === 'PROP-003-001') {
+      return <Type4FireSprayDiagram />;
+    }
+
     return <ComparisonTable tableHeader={meta.tableHeader} rows={meta.rows} />;
   }
 

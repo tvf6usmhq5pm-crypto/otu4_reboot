@@ -5,6 +5,7 @@ import type { ExplanationMeta } from '../../../data/explanation_meta_types';
 import { CalculationStep } from './CalculationStep';
 import { ComparisonTable } from './ComparisonTable';
 import { FacilityMap } from './FacilityMap';
+import { Type4FireSprayDiagram } from './Type4FireSprayDiagram';
 import { NumberCard } from './NumberCard';
 import { OptionMemoList } from './OptionMemoList';
 import { ProcedureTable } from './ProcedureTable';
@@ -20,6 +21,8 @@ function renderVisualBlock(meta: ExplanationMeta) {
   if (meta.style === 'procedure_table') {
     return <ProcedureTable tableHeader={meta.tableHeader} rows={meta.rows} />;
   }
+
+  {meta.questionId === 'PROP-003-001' ? <Type4FireSprayDiagram /> : null}
 
   if (meta.style === 'comparison_table') {
     return <ComparisonTable tableHeader={meta.tableHeader} rows={meta.rows} />;

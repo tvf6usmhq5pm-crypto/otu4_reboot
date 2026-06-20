@@ -26,12 +26,32 @@ export function FacilityMap({ facilityItems }: FacilityMapProps) {
             </td>
           </tr>
 
-          {targetItems.map((item) => (
-            <tr key={`${item.label}-${item.distance}`}>
-              <td style={facilityCellStyle}>{item.label}</td>
-              <td style={distanceCellStyle}>{item.distance}</td>
-            </tr>
-          ))}
+          {targetItems.map((item) => {
+            const isKey = item.isKey === true;
+            const facilityStyle: CSSProperties = isKey
+              ? {
+                  ...facilityCellStyle,
+                  background: '#FFF7DF',
+                  borderColor: '#C9A55A',
+                  boxShadow: 'inset 4px 0 0 #C9A55A',
+                }
+              : facilityCellStyle;
+            const distanceStyle: CSSProperties = isKey
+              ? {
+                  ...distanceCellStyle,
+                  background: '#FFF7DF',
+                  borderColor: '#C9A55A',
+                  color: '#7A4D0B',
+                }
+              : distanceCellStyle;
+
+            return (
+              <tr key={`${item.label}-${item.distance}`}>
+                <td style={facilityStyle}>{item.label}</td>
+                <td style={distanceStyle}>{item.distance}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
 

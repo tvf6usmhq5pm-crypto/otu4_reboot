@@ -66,6 +66,7 @@ export type FacilityMapItem = {
   distance?: string;
   note?: string;
   variant?: RowVariant;
+  isKey?: boolean;
 };
 
 export type DiagramNode = {

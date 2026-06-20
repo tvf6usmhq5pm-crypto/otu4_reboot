@@ -178,30 +178,19 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
     shortExplanation:
       '第3類は自然発火性物質及び禁水性物質です。可燃性固体は第2類の性質で、マグネシウムも第2類に分類されます。',
     highlightTerms: ['第3類', '自然発火性物質及び禁水性物質', '可燃性固体', '第2類', 'マグネシウム'],
-    tableHeader: ['類', '性質名', '注意点'],
+    tableHeader: ['混同ポイント', '正しい分類', '見分け方'],
     rows: [
       {
-        cells: ['第1類', '酸化性固体', '酸素を出して燃焼を助ける'],
-        variant: 'neutral',
-      },
-      {
-        cells: ['第2類', '可燃性固体', 'マグネシウムはここ'],
+        cells: ['マグネシウム', '第2類・可燃性固体', '第3類ではなく、第2類で切る'],
         variant: 'correct',
       },
       {
         cells: ['第3類', '自然発火性物質・禁水性物質', '可燃性固体ではない'],
         variant: 'danger',
+        isKey: true,
       },
       {
-        cells: ['第4類', '引火性液体', '乙4の中心'],
-        variant: 'neutral',
-      },
-      {
-        cells: ['第5類', '自己反応性物質', '内部に燃える性質を持つ'],
-        variant: 'neutral',
-      },
-      {
-        cells: ['第6類', '酸化性液体', '液体の酸化性物質'],
+        cells: ['判定ルート', '物質名 → 性質名 → 類', '今回は「マグネシウム → 可燃性固体 → 第2類」'],
         variant: 'neutral',
       },
     ],

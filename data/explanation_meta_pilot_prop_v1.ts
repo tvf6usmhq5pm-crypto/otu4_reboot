@@ -110,27 +110,20 @@ export const explanationMetaPilotPropV1: ExplanationMetaMap = {
     style: 'comparison_table',
     shortExplanation:
       '泡と二酸化炭素は主に窒息作用、粉末とハロゲン化物は主に抑制作用で整理します。霧状強化液は冷却・抑制が中心であり、除去作用ではありません。',
-    tableHeader: ['消火剤', '主たる作用', '判断'],
+    tableHeader: ['作用の型', '代表例', '見分け方'],
     rows: [
       {
-        cells: ['泡消火剤', '窒息作用', '油面を覆って空気を遮断する'],
+        cells: ['窒息作用', '泡消火剤・二酸化炭素消火剤', '空気を遮断する／酸素濃度を下げる'],
         variant: 'correct',
       },
       {
-        cells: ['二酸化炭素消火剤', '窒息作用', '酸素濃度を下げる'],
-        variant: 'correct',
-      },
-      {
-        cells: ['粉末消火剤', '抑制作用', '燃焼の連鎖反応を抑える'],
-        variant: 'correct',
-      },
-      {
-        cells: ['ハロゲン化物消火剤', '抑制作用', '燃焼の連鎖反応を抑える'],
+        cells: ['抑制作用', '粉末消火剤・ハロゲン化物消火剤', '燃焼の連鎖反応を抑える'],
         variant: 'correct',
       },
       {
         cells: ['強化液消火剤（霧状）', '除去作用ではない', '冷却・抑制が中心'],
         variant: 'danger',
+        isKey: true,
       },
     ],
     optionMemos: {

@@ -2501,6 +2501,105 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       4: '酸素を失う、または水素と化合する変化は還元。正しい記述。',
     },
   },
+
+  'PHYS-020-001': {
+    questionId: 'PHYS-020-001',
+    schemaVersion: 1,
+    misconceptionId: 'simple-compound-mixture-gasoline',
+    lossCategory: 'classification_confusion',
+    lossTitle: '混合物を、化合物や単体と取り違える',
+    style: 'short',
+    shortExplanation: '混合物は、複数の物質が化学反応せずに混ざっているものです。ガソリンは、いろいろな炭化水素が混ざった混合物です。空気も混合物、水や二酸化炭素は化合物、鉄のさびは酸化鉄などの化合物であり、単体ではありません。',
+    optionMemos: {
+      0: '空気は酸素や窒素などが混ざった混合物。化合物ではない。',
+      1: '水は水素と酸素が化学的に結びついた化合物。混合物ではない。',
+      2: '二酸化炭素は炭素と酸素が化学的に結びついた化合物。混合物ではない。',
+      3: 'ガソリンは種々の炭化水素が混ざった混合物。これが正解。',
+      4: '鉄のさびは酸化鉄などの化合物。酸素と結びついた単体ではない。',
+    },
+  },
+
+  'PHYS-020-002': {
+    questionId: 'PHYS-020-002',
+    schemaVersion: 1,
+    misconceptionId: 'salt-water-mixture-not-compound',
+    lossCategory: 'classification_confusion',
+    lossTitle: '食塩水を、化合物ではなく混合物として見分けられない',
+    style: 'short',
+    shortExplanation: '化合物は、元素や物質が化学的に結びついて別の物質になったものです。食塩水は、食塩と水が化学反応して新しい物質になったものではなく、ただ混ざっているだけです。したがって食塩水は混合物です。',
+    optionMemos: {
+      0: '水は電気分解で水素と酸素に分けられるので化合物。正しい記述。',
+      1: '硫黄やアルミニウムは、それぞれ1種類の元素からなる単体。正しい記述。',
+      2: '赤リンと黄リンは、どちらもリンからなる単体。正しい記述。',
+      3: '食塩水は食塩と水が混ざった混合物で、化合物ではない。これが誤りで、これが正解。',
+      4: 'ガソリンや灯油はいろいろな炭化水素成分からなる混合物。正しい記述。',
+    },
+  },
+
+  'PHYS-020-003': {
+    questionId: 'PHYS-020-003',
+    schemaVersion: 1,
+    misconceptionId: 'simple-compound-mixture-examples',
+    lossCategory: 'classification_confusion',
+    lossTitle: '単体・化合物・混合物の代表例を分類できない',
+    style: 'comparison_table',
+    shortExplanation: '単体は1種類の元素だけからなる物質、化合物は2種類以上の元素が化学的に結びついた物質、混合物は複数の物質が混ざっているものです。窒素は単体、アンモニアは化合物、岩石は混合物なので、この組合せが正しいです。',
+    visualBlockTitle: '単体・化合物・混合物は「結びつき方」で見分ける',
+    tableHeader: ['分類', '見分け方'],
+    rows: [
+      { cells: ['単体', '1種類の元素だけからなる物質。例：窒素、水素、亜鉛'] },
+      { cells: ['化合物', '2種類以上の元素が化学的に結びついた物質。例：水、アンモニア、塩化ナトリウム'] },
+      { cells: ['混合物', '複数の物質が化学反応せずに混ざったもの。例：空気、海水、岩石、ガソリン'], variant: 'correct', isKey: true },
+    ],
+    optionMemos: {
+      0: '空気は混合物で、単体ではない。水蒸気は気体の水なので化合物。',
+      1: '水素は単体でよいが、ガソリンは化合物ではなく混合物。',
+      2: '塩酸は単体ではなく混合物、塩素は化合物ではなく単体。',
+      3: '窒素は単体、アンモニアは化合物、岩石は混合物。これが正解。',
+      4: '亜鉛と塩化ナトリウムはよいが、ドライアイスは固体の二酸化炭素で化合物。',
+    },
+  },
+
+  'PHYS-020-004': {
+    questionId: 'PHYS-020-004',
+    schemaVersion: 1,
+    misconceptionId: 'allotrope-same-element-scop',
+    lossCategory: 'classification_confusion',
+    lossTitle: '同素体を、同じ元素からなる単体同士として見分けられない',
+    style: 'short',
+    shortExplanation: '同素体は、同じ元素からできた単体でありながら、性質が異なるものです。代表は硫黄・炭素・酸素・リンで、SCOPと覚えます。銀Agと水銀Hgは名前が似ていますが別の元素なので、同素体ではありません。',
+    optionMemos: {
+      0: 'ダイヤモンドと黒鉛は、どちらも炭素からなる同素体。正しい組合せ。',
+      1: '黄リンと赤リンは、どちらもリンからなる同素体。正しい組合せ。',
+      2: '酸素とオゾンは、どちらも酸素元素からなる同素体。正しい組合せ。',
+      3: '斜方硫黄と単斜硫黄は、どちらも硫黄からなる同素体。正しい組合せ。',
+      4: '銀Agと水銀Hgは別の元素であり、同素体ではない。これが誤りで、これが正解。',
+    },
+  },
+
+  'PHYS-020-005': {
+    questionId: 'PHYS-020-005',
+    schemaVersion: 1,
+    misconceptionId: 'structural-isomer-vs-allotrope-stereoisomer',
+    lossCategory: 'classification_confusion',
+    lossTitle: '構造異性体を、同素体や立体異性体と混同する',
+    style: 'comparison_table',
+    shortExplanation: '構造異性体は、分子式は同じでも原子の結びつき方が異なる化合物です。エタノールとジメチルエーテルはどちらもC₂H₆Oですが、原子のつながり方が違うので構造異性体です。',
+    visualBlockTitle: '構造異性体は「分子式は同じ、つながり方が違う」',
+    tableHeader: ['分類', '見分け方'],
+    rows: [
+      { cells: ['構造異性体', '分子式は同じだが、原子の結びつき方が違う'], variant: 'correct', isKey: true },
+      { cells: ['同素体', '同じ元素からなる単体だが、性質が違う'] },
+      { cells: ['幾何異性体', '原子の結びつき方は同じで、空間的な向きが違う'] },
+    ],
+    optionMemos: {
+      0: 'エタノールとジメチルエーテルは分子式C₂H₆Oで、結びつき方が違う。これが正解。',
+      1: '赤リンと黄リンは同じリン元素からなる同素体。構造異性体ではない。',
+      2: '単斜硫黄と斜方硫黄は同じ硫黄元素からなる同素体。構造異性体ではない。',
+      3: '酸素とオゾンは同じ酸素元素からなる同素体。構造異性体ではない。',
+      4: 'シス－2－ブテンとトランス－2－ブテンは幾何異性体。結びつき方が違う構造異性体ではない。',
+    },
+  },
 };
 
 

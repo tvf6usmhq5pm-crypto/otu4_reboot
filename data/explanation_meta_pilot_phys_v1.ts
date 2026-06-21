@@ -2600,6 +2600,111 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       4: 'シス－2－ブテンとトランス－2－ブテンは幾何異性体。結びつき方が違う構造異性体ではない。',
     },
   },
+
+  'PHYS-020-006': {
+    questionId: 'PHYS-020-006',
+    schemaVersion: 1,
+    misconceptionId: 'dilution-is-not-separation-operation',
+    lossCategory: 'procedure_confusion',
+    lossTitle: '希釈を、混合物を分ける操作と取り違える',
+    style: 'short',
+    shortExplanation: '混合物を分離する操作は、混ざっている成分を分けるための操作です。ろ過、蒸留、遠心分離、抽出はいずれも分離操作です。一方、希釈は水などの溶媒を加えて濃度を薄める操作で、成分を分ける操作ではありません。',
+    optionMemos: {
+      0: 'ろ過は、固体と液体などを分ける分離操作。',
+      1: '希釈は濃度を薄める操作で、混合物を分ける分離操作ではない。これが誤りで、これが正解。',
+      2: '蒸留は、沸点の違いを利用して成分を分ける分離操作。',
+      3: '遠心分離は、遠心力を利用して成分を分ける分離操作。',
+      4: '抽出は、溶けやすさの違いを利用して成分を取り出す分離操作。',
+    },
+  },
+
+  'PHYS-021-001': {
+    questionId: 'PHYS-021-001',
+    schemaVersion: 1,
+    misconceptionId: 'mass-number-atomic-number-neutron-count',
+    lossCategory: 'number_confusion',
+    lossTitle: '左上の質量数と左下の原子番号の読み方を取り違える',
+    style: 'calculation_step',
+    shortExplanation: '原子の左下の数字は原子番号で、陽子の数を表します。左上の数字は質量数で、陽子と中性子の合計です。したがって中性子の数は、質量数から陽子の数を引いて求めます。',
+    visualBlockTitle: '左下 = 陽子数、左上 = 質量数',
+    calcLines: [
+      { step: '原子番号 = 13 → 陽子の数 = 13' },
+      { step: '質量数 = 27' },
+      { step: '中性子の数 = 27 - 13 = 14' },
+    ],
+    optionMemos: {
+      0: '陽子13、中性子14、質量数27。これが正解。',
+      1: '中性子を27としているが、27は質量数。',
+      2: '陽子と中性子を逆にしている。左下13が陽子の数。',
+      3: '陽子14ではない。左下13が陽子の数。',
+      4: '27は陽子数ではなく質量数。質量数も13ではない。',
+    },
+  },
+
+  'PHYS-021-002': {
+    questionId: 'PHYS-021-002',
+    schemaVersion: 1,
+    misconceptionId: 'neutron-count-from-isotope-symbol',
+    lossCategory: 'number_confusion',
+    lossTitle: '中性子数を、質量数−原子番号で求められない',
+    style: 'calculation_step',
+    shortExplanation: '中性子の数は、左上の質量数から左下の原子番号を引いて求めます。選択肢ごとに計算すると、13−6=7となる炭素だけが条件に合います。',
+    visualBlockTitle: '中性子数 = 質量数 − 原子番号',
+    calcLines: [
+      { step: 'Na：23 - 11 = 12' },
+      { step: 'O：16 - 8 = 8' },
+      { step: 'F：19 - 9 = 10' },
+      { step: 'C：13 - 6 = 7' },
+      { step: 'Li：7 - 3 = 4' },
+    ],
+    optionMemos: {
+      0: '²³₁₁Na は 23−11=12。中性子7ではない。',
+      1: '¹⁶₈O は 16−8=8。中性子7ではない。',
+      2: '¹⁹₉F は 19−9=10。中性子7ではない。',
+      3: '¹³₆C は 13−6=7。これが正解。',
+      4: '⁷₃Li は 7−3=4。中性子7ではない。',
+    },
+  },
+
+  'PHYS-021-003': {
+    questionId: 'PHYS-021-003',
+    schemaVersion: 1,
+    misconceptionId: 'gas-volume-mol-mass-conversion',
+    lossCategory: 'number_confusion',
+    lossTitle: '気体の体積をmolに直してから質量を求める流れを外す',
+    style: 'calculation_step',
+    shortExplanation: '標準状態では、気体1molの体積は22.4Lです。まず33.6Lをmolに直し、そのあとCOの分子量28を掛けて質量を求めます。',
+    visualBlockTitle: '気体の体積 → mol → 質量の順で計算する',
+    calcLines: [
+      { step: 'COの分子量 = C 12 + O 16 = 28' },
+      { step: '物質量 = 33.6 ÷ 22.4 = 1.5 mol' },
+      { step: '質量 = 1.5 × 28 = 42.0 g' },
+    ],
+    optionMemos: {
+      0: '28.0gはCO 1mol分の質量。33.6Lは1.5molなので不足。',
+      1: '33.6gは体積33.6Lの数字をそのまま質量にしている。',
+      2: '33.6÷22.4=1.5mol、1.5×28=42.0g。これが正解。',
+      3: '50.4gは大きすぎる。COの分子量28を使って1.5mol分を求める。',
+      4: '61.6gは大きすぎる。体積からmolへの変換を確認する。',
+    },
+  },
+
+  'PHYS-021-004': {
+    questionId: 'PHYS-021-004',
+    schemaVersion: 1,
+    misconceptionId: 'complete-combustion-products-cs2',
+    lossCategory: 'classification_confusion',
+    lossTitle: '完全燃焼で、炭素と硫黄が何になるかを取り違える',
+    style: 'short',
+    shortExplanation: '完全燃焼では、炭素Cは酸素と結びついて二酸化炭素CO₂になり、硫黄Sは酸素と結びついて二酸化硫黄SO₂になります。CS₂には水素Hがないので、水蒸気はできません。',
+    optionMemos: {
+      0: 'CS₂には水素がないので、水蒸気は生成物に入らない。',
+      1: '炭素は二酸化炭素、硫黄は二酸化硫黄になる。これが正解。',
+      2: '水蒸気は出ない。CS₂には水素が含まれていない。',
+      3: '完全燃焼では炭素は一酸化炭素ではなく、二酸化炭素になる。',
+      4: '硫黄を含むため、二酸化硫黄も生成する。一酸化炭素ではない。',
+    },
+  },
 };
 
 

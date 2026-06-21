@@ -176,6 +176,9 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
 
   'PHYS-001-001': {
     questionId: 'PHYS-001-001',
+    schemaVersion: 1,
+    misconceptionId: 'incomplete-combustion-byproduct',
+    lossCategory: '燃焼の化学と区分',
     lossTitle: '不完全燃焼で増えるのはCOであり、煙や炎・CO₂増加と混同する',
     style: 'short',
     shortExplanation: '燃焼は熱と光を伴う酸化反応で、生成物は酸化物です。酸素が不足すると不完全燃焼になり、完全に酸化されなかった一酸化炭素（CO）が増えます。「煙と炎」や「二酸化炭素が増加」はダミーで、急所はウ（不完全燃焼で増える物質）がCOだと言えることです。',
@@ -189,6 +192,9 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
   },
   'PHYS-001-003': {
     questionId: 'PHYS-001-003',
+    schemaVersion: 1,
+    misconceptionId: 'fire-triangle-role-confusion',
+    lossCategory: '燃焼の化学と区分',
     lossTitle: '燃焼の三要素（可燃物・酸素供給源・点火源）の役割を取り違える',
     style: 'short',
     shortExplanation: '燃焼の三要素は、それぞれ別の役割を持つ物質が当てはまる必要があります。可燃物が酸素供給源の役を兼ねたり、吸熱反応（気化熱）が点火源になったりすることはありません。各語が三要素のどの役なのかを当てはめることが急所です。',
@@ -202,6 +208,9 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
   },
   'PHYS-001-004': {
     questionId: 'PHYS-001-004',
+    schemaVersion: 1,
+    misconceptionId: 'fully-oxidized-vs-combustible',
+    lossCategory: '燃焼の化学と区分',
     lossTitle: '「完全酸化物（燃え尽きた物質）」を可燃物と誤認する',
     style: 'short',
     shortExplanation: '一酸化炭素はまだ酸素と結びつく余地がある可燃性ガスですが、二酸化炭素・三酸化硫黄・五酸化リンは限界まで酸化された「燃え尽きた」物質で、これ以上燃えません。「酸化物」と名前が付いていても、まだ燃えるか・もう燃えないかを見分けるのが急所です。',
@@ -215,6 +224,9 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
   },
   'PHYS-001-005': {
     questionId: 'PHYS-001-005',
+    schemaVersion: 1,
+    misconceptionId: 'oxidation-without-light-not-combustion',
+    lossCategory: '燃焼の化学と区分',
     lossTitle: '「発光しない酸化反応（さび等）」を燃焼と誤認する',
     style: 'comparison_table',
     shortExplanation: '燃焼の定義は「熱と光を伴う酸化反応」です。鉄のさびは酸化反応ですが、光を出さないため燃焼ではありません。蒸発・表面・分解の各燃焼はどれも熱と光を伴うので燃焼に含まれます。急所は「酸化＝燃焼ではなく、発光があるかどうか」を見分けることです。',
@@ -239,6 +251,9 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
   },
   'PHYS-001-007': {
     questionId: 'PHYS-001-007',
+    schemaVersion: 1,
+    misconceptionId: 'solid-can-be-evaporative-combustion',
+    lossCategory: '燃焼の化学と区分',
     lossTitle: '「固体＝表面/分解燃焼」と思い込み、蒸発燃焼の固体例を見落とす',
     style: 'comparison_table',
     shortExplanation: '硫黄は固体ですが、加熱すると熱分解せずに気体になり、その蒸気が燃える「蒸発燃焼」です。固体だから表面燃焼・分解燃焼とは限らないことが急所です。燃焼形態は物質の状態（固体/液体）だけでは決まりません。',
@@ -263,6 +278,9 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
   },
   'PHYS-001-009': {
     questionId: 'PHYS-001-009',
+    schemaVersion: 1,
+    misconceptionId: 'type4-liquid-always-evaporative',
+    lossCategory: '燃焼の化学と区分',
     lossTitle: 'ガソリン(第4類)は例外なく蒸発燃焼であり、分解燃焼ではない',
     style: 'short',
     shortExplanation: '第4類危険物(引火性液体)は、すべて例外なく蒸発燃焼です。ガソリンも液面から出た蒸気が燃えるのであり、分解燃焼ではありません。この問題の急所は、ナフタレン・セルロイド・プラスチック・マグネシウムの組合せは正しく、ガソリンだけが「分解燃焼」と誤記されている点を見抜くことです。',
@@ -276,6 +294,9 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
   },
   'PHYS-002-003': {
     questionId: 'PHYS-002-003',
+    schemaVersion: 1,
+    misconceptionId: 'surface-combustion-group',
+    lossCategory: '燃焼の化学と区分',
     lossTitle: '表面燃焼グループ(木炭・コークス・金属粉)を他の燃焼形態と混同する',
     style: 'comparison_table',
     shortExplanation: '表面燃焼は、蒸発も熱分解もせず、固体の表面が直接酸素と結びついて赤熱しながら燃える現象です。木炭・コークス・金属粉がこのグループに当たります。他の選択肢はそれぞれ分解燃焼・蒸発燃焼・内部燃焼の代表例であり、グループを丸ごと取り違えないことが急所です。',
@@ -300,6 +321,9 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
   },
   'PHYS-002-004': {
     questionId: 'PHYS-002-004',
+    schemaVersion: 1,
+    misconceptionId: 'internal-combustion-no-external-oxygen',
+    lossCategory: '燃焼の化学と区分',
     lossTitle: '内部燃焼(自己燃焼)を「外部酸素が要る燃焼」と誤認する',
     style: 'comparison_table',
     shortExplanation: '内部燃焼(自己燃焼)は、物質自体が分子内に酸素を持つため、外部からの酸素供給なしに激しく燃える現象です。セルロイドなど第5類危険物が該当します。窒息消火(酸素を断つ)が効かない点が、他の燃焼形態との最大の違いであり急所です。',
@@ -324,6 +348,9 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
   },
   'PHYS-002-005': {
     questionId: 'PHYS-002-005',
+    schemaVersion: 1,
+    misconceptionId: 'type4-liquid-always-evaporative',
+    lossCategory: '燃焼の化学と区分',
     lossTitle: '「粘度が高い(重油)から分解燃焼」という見た目の思い込み',
     style: 'short',
     shortExplanation: '第4類危険物は、粘度や見た目に関わらず例外なくすべて蒸発燃焼です。重油は粘度が高くドロドロしていますが、液体である以上、熱分解ではなく蒸気が燃える蒸発燃焼です。「粘度が高い→分解燃焼」という見た目の思い込みが急所です。',
@@ -337,6 +364,9 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
   },
   'PHYS-002-006': {
     questionId: 'PHYS-002-006',
+    schemaVersion: 1,
+    misconceptionId: 'solid-can-be-evaporative-combustion',
+    lossCategory: '燃焼の化学と区分',
     lossTitle: '「固体だから表面/分解燃焼」と決めつけ、硫黄の蒸発燃焼を見落とす',
     style: 'short',
     shortExplanation: '蒸発燃焼は液体の燃え方が原則ですが、硫黄やナフタレンなどは例外的に固体から融解・昇華して蒸発燃焼を行います。固体だからといって表面燃焼や分解燃焼と決めつけないことが急所です。',

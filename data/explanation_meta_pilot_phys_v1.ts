@@ -690,6 +690,121 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       4: '燃焼点は引火点より高く、発火点より低い。',
     },
   },
+
+
+  'PHYS-005-001': {
+    questionId: 'PHYS-005-001',
+    schemaVersion: 1,
+    misconceptionId: 'combustion-range-upper-limit',
+    lossCategory: 'property_confusion',
+    lossTitle: '上限を超えると「最も激しく燃える」と錯覚する',
+    style: 'short',
+    shortExplanation: '燃焼するには、可燃性蒸気と酸素が適切な割合で混ざっている必要があります。燃焼範囲の上限を超えた状態は、蒸気が濃すぎて酸素が足りないため、点火してもその混合気としては燃焼しません。「濃度が高いほど激しく燃える」という直感的な誤解が急所です。',
+    optionMemos: {
+      0: '燃焼が起こる濃度範囲を燃焼範囲（爆発範囲）という。正しい記述。',
+      1: '混合気中の濃度が下限値より低い場合は、薄すぎて燃焼しない。正しい記述。',
+      2: '混合気中の濃度が上限値より高い場合は、濃すぎて燃焼しない。正しい記述。',
+      3: '上限を超えると燃焼しなくなるため、「最も激しく燃焼する」が誤りで、本問の正解。',
+      4: '燃焼範囲は、一定条件下では物質ごとに固有の数値を持っている。正しい記述。',
+    },
+  },
+  'PHYS-005-002': {
+    questionId: 'PHYS-005-002',
+    schemaVersion: 1,
+    misconceptionId: 'widest-combustion-range',
+    lossCategory: 'property_confusion',
+    lossTitle: '各物質の燃焼範囲の広さを比較できない',
+    style: 'comparison_table',
+    shortExplanation: '選択肢の中で最も燃焼範囲が広いのはジエチルエーテルです。範囲が広いほど、少しの漏洩でも燃焼しやすい濃度に達しやすく、また換気して燃焼範囲の下限未満まで下がるのに時間がかかるため、危険性が高くなります。',
+    visualBlockTitle: '燃焼範囲は「下限〜上限の幅」で比べる',
+    tableHeader: ['物質', '燃焼範囲（下限〜上限）と幅'],
+    rows: [
+      {
+        cells: ['ジエチルエーテル', '1.9〜36vol%（幅 約34）'],
+        variant: 'danger',
+        isKey: true,
+      },
+      {
+        cells: ['エタノール', '3.3〜19vol%（幅 約16）'],
+        variant: 'neutral',
+      },
+      {
+        cells: ['酢酸エチル', '2.0〜11.5vol%（幅 約9.5）'],
+        variant: 'neutral',
+      },
+      {
+        cells: ['ガソリン・ベンゼン', '幅は約6台で、ジエチルエーテルより狭い'],
+        variant: 'neutral',
+      },
+    ],
+    optionMemos: {
+      0: 'ガソリンの幅は約6.2。最大ではない。',
+      1: 'ベンゼンの幅は約6.6。最大ではない。',
+      2: 'ジエチルエーテルの幅は約34.1で、この中で最も広い。これが正解。',
+      3: '酢酸エチルの幅は約9.5。最大ではない。',
+      4: 'エタノールの幅は約15.7。最大ではない。',
+    },
+  },
+  'PHYS-005-003': {
+    questionId: 'PHYS-005-003',
+    schemaVersion: 1,
+    misconceptionId: 'combustion-range-vol-calculation',
+    lossCategory: 'number_confusion',
+    lossTitle: '混合気体の濃度計算で「全体の体積」を間違える',
+    style: 'calculation_step',
+    shortExplanation: '体積パーセント（vol%）は、「空気」ではなく「空気＋蒸気の全体の体積」に対する割合です。蒸気5Lの場合、全体の体積は105L（100+5）になり、濃度は「5 ÷ 105 × 100 ≒ 4.8vol%」となります。これが燃焼範囲（1.4〜7.6vol%）内かを確認します。',
+    visualBlockTitle: '濃度（vol%）は「空気＋蒸気の合計」で割る',
+    calcLines: [
+      { step: '全体積を出す', formula: '100 + 5 = 105L', result: '105L' },
+      { step: '濃度を計算', formula: '5 ÷ 105 × 100', result: '4.76vol%' },
+      { step: '判定', result: '範囲内なので燃焼する' }
+    ],
+    optionMemos: {
+      0: '1Lの場合、1÷101×100≒0.99%。下限未満。',
+      1: '5Lの場合、5÷105×100≒4.8%。範囲内なので燃焼する。これが正解。',
+      2: '10Lの場合、10÷110×100≒9.1%。上限超え。',
+      3: '15Lの場合、15÷115×100≒13%。上限超え。',
+      4: '20Lの場合、20÷120×100≒16.7%。上限超え。',
+    },
+  },
+  'PHYS-005-004': {
+    questionId: 'PHYS-005-004',
+    schemaVersion: 1,
+    misconceptionId: 'combustion-range-vol-calculation',
+    lossCategory: 'number_confusion',
+    lossTitle: '混合気体の濃度計算で「全体の体積」を間違える',
+    style: 'calculation_step',
+    shortExplanation: '濃度は「蒸気 ÷ (空気＋蒸気) × 100」で求めます。蒸気が15Lの場合、全体の体積は115Lになるため、濃度は「15 ÷ 115 × 100 ≒ 13.0vol%」となります。これが指定された燃焼範囲（6.0〜14vol%）に収まっているかを見極めます。',
+    visualBlockTitle: '濃度（vol%）は「空気＋蒸気の合計」で割る',
+    calcLines: [
+      { step: '全体積を出す', formula: '100 + 15 = 115L', result: '115L' },
+      { step: '濃度を計算', formula: '15 ÷ 115 × 100', result: '13.04vol%' },
+      { step: '判定', result: '範囲内なので燃焼する' }
+    ],
+    optionMemos: {
+      0: '1Lの濃度は約0.99%。下限未満。',
+      1: '5Lの濃度は約4.8%。下限未満。',
+      2: '15Lの濃度は約13.0%。範囲内であり燃焼する。これが正解。',
+      3: '40Lの濃度は約28.6%。上限超え。',
+      4: '50Lの濃度は約33.3%。上限超え。',
+    },
+  },
+  'PHYS-005-005': {
+    questionId: 'PHYS-005-005',
+    schemaVersion: 1,
+    misconceptionId: 'flash-point-lower-limit-confusion',
+    lossCategory: 'property_confusion',
+    lossTitle: '引火点を燃焼範囲の「上限」や他の概念と取り違える',
+    style: 'short',
+    shortExplanation: '引火点とは、液面から可燃性蒸気が発生し、空気と混ざって「燃焼範囲の下限値（ギリギリ燃える薄さ）」に達するときの最低の液温のことです。上限値に達する温度や、中間の温度ではありません。',
+    optionMemos: {
+      0: '上限値ではなく、下限値に達するときの液温が引火点である。',
+      1: '燃焼範囲の下限値に達するときの液温が引火点である。これが正解。',
+      2: '液温が引火点未満のときは蒸気が薄く、燃焼範囲の下限に達していない。',
+      3: '燃焼点は燃焼が継続する最低温度であり、「範囲の中間」という定義はない。',
+      4: '燃焼範囲の広さと引火点の高さに直接の決まった法則性はない。',
+    },
+  },
 };
 
 

@@ -75,6 +75,14 @@ export type DiagramNode = {
   variant?: RowVariant;
 };
 
+export type ExplanationVisualImage = {
+  src: string;
+  alt: string;
+  aspectRatio?: '1:1' | '4:5';
+  caption?: string;
+  replacesVisual?: boolean;
+};
+
 export type ExplanationMeta = {
   questionId: string;
   schemaVersion: number;
@@ -84,6 +92,7 @@ export type ExplanationMeta = {
   style: ExplanationStyle;
   shortExplanation: string;
   visualKey?: string;
+  visualImage?: ExplanationVisualImage;
   highlightTerms?: string[];
 
   tableHeader?: string[];

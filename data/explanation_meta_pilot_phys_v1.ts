@@ -73,6 +73,13 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     misconceptionId: 'phys.combustion.wood_charcoal',
     lossCategory: 'classification_confusion',
     visualKey: 'solid_combustion_compare',
+    visualImage: {
+      src: '/explanations/wood-charcoal-combustion.png',
+      alt: '\u6728\u6750\u306f\u767a\u751f\u3057\u305f\u53ef\u71c3\u6027\u30ac\u30b9\u304c\u71c3\u3048\u3001\u6728\u70ad\u306f\u56fa\u4f53\u8868\u9762\u304c\u8d64\u71b1\u3057\u3066\u71c3\u3048\u308b\u3053\u3068\u3092\u793a\u3059\u56f3',
+      aspectRatio: '4:5',
+      caption: '\u6728\u6750\u306f\u30ac\u30b9\u3001\u6728\u70ad\u306f\u8868\u9762\u304c\u71c3\u3048\u308b',
+      replacesVisual: true,
+    },
     lossTitle: '木材・紙と木炭・コークスの燃え方を混同している',
     style: 'comparison_table',
     shortExplanation:
@@ -102,6 +109,13 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     misconceptionId: 'phys.combustion.wood_charcoal',
     lossCategory: 'classification_confusion',
     visualKey: 'solid_combustion_compare',
+    visualImage: {
+      src: '/explanations/wood-charcoal-combustion.png',
+      alt: '\u6728\u6750\u306f\u767a\u751f\u3057\u305f\u53ef\u71c3\u6027\u30ac\u30b9\u304c\u71c3\u3048\u3001\u6728\u70ad\u306f\u56fa\u4f53\u8868\u9762\u304c\u8d64\u71b1\u3057\u3066\u71c3\u3048\u308b\u3053\u3068\u3092\u793a\u3059\u56f3',
+      aspectRatio: '4:5',
+      caption: '\u6728\u6750\u306f\u30ac\u30b9\u3001\u6728\u70ad\u306f\u8868\u9762\u304c\u71c3\u3048\u308b',
+      replacesVisual: true,
+    },
     lossTitle: '同じ「木」でも燃焼形態が同じだと思ってしまう',
     style: 'comparison_table',
     shortExplanation:

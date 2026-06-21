@@ -4,6 +4,7 @@ import type { CSSProperties } from 'react';
 import type { ExplanationMeta } from '../../../data/explanation_meta_types';
 import { CalculationStep } from './CalculationStep';
 import { ComparisonTable } from './ComparisonTable';
+import { ExplanationImage } from './ExplanationImage';
 import { FacilityMap } from './FacilityMap';
 import { Type4FireSprayDiagram } from './Type4FireSprayDiagram';
 import { NumberCard } from './NumberCard';
@@ -50,7 +51,7 @@ function renderVisualBlock(meta: ExplanationMeta) {
 }
 
 export function ExplanationCard({ meta, onNext }: ExplanationCardProps) {
-  const visualBlock = renderVisualBlock(meta);
+  const visualBlock = meta.visualImage?.replacesVisual ? null : renderVisualBlock(meta);
 
   return (
     <section style={cardStyle} aria-label="解説">
@@ -71,6 +72,8 @@ export function ExplanationCard({ meta, onNext }: ExplanationCardProps) {
 
       {/* pilot段階では highlightTerms は赤表示しない。必要問題だけ後で限定導入する。 */}
       <p style={shortExplanationStyle}><InlineMarkdownText text={meta.shortExplanation} /></p>
+
+      {meta.visualImage ? <ExplanationImage image={meta.visualImage} /> : null}
 
       {visualBlock ? <div style={visualWrapStyle}>{visualBlock}</div> : null}
 

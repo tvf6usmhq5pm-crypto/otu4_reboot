@@ -2404,6 +2404,103 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       4: '36.0Lは大きすぎる。温度差や係数を大きく見積もっている。',
     },
   },
+
+  'PHYS-019-001': {
+    questionId: 'PHYS-019-001',
+    schemaVersion: 1,
+    misconceptionId: 'chemical-change-new-substance',
+    lossCategory: 'classification_confusion',
+    lossTitle: '化学変化を「新しい物質ができるか」で見分けられない',
+    style: 'short',
+    shortExplanation: '化学変化は、物質そのものが別の物質に変わる変化です。鉄が空気中でさびると、鉄が酸素などと反応して酸化鉄という別の物質になります。氷が水になる、水が水蒸気になる、砂糖が水に溶ける、ばねが伸びるのは、物質そのものは変わらないので物理変化です。',
+    optionMemos: {
+      0: '鉄が酸素などと反応して酸化鉄という別の物質になる。これが正解。',
+      1: '氷が水になるのは状態変化。物質は水のままなので物理変化。',
+      2: '水が水蒸気になるのは状態変化。物質は水のままなので物理変化。',
+      3: '砂糖が水に溶けても、砂糖そのものが別物質になるわけではない。',
+      4: 'ばねが伸びるのは形の変化。新しい物質はできていない。',
+    },
+  },
+
+  'PHYS-019-002': {
+    questionId: 'PHYS-019-002',
+    schemaVersion: 1,
+    misconceptionId: 'dry-ice-sublimation-physical-change',
+    lossCategory: 'classification_confusion',
+    lossTitle: '状態変化を化学変化と取り違える',
+    style: 'short',
+    shortExplanation: '化学変化かどうかは、新しい物質ができるかで判断します。ドライアイスは固体の二酸化炭素が気体の二酸化炭素になる昇華で、物質は二酸化炭素のままです。したがって化学変化ではなく物理変化です。',
+    optionMemos: {
+      0: 'ドライアイスの昇華は、固体CO₂が気体CO₂になるだけで物質は変わらない。これが誤りで、これが正解。',
+      1: '氷が水になるのは状態変化なので物理変化。正しい記述。',
+      2: '鉄が赤さびを生じるのは、別の物質ができる化学変化。正しい記述。',
+      3: 'ニクロム線が赤くなるのは温度や発光の変化で、新しい物質ができるわけではない。正しい記述。',
+      4: '鉛が溶けるのは融解で、物質は鉛のまま。物理変化で正しい。',
+    },
+  },
+
+  'PHYS-019-003': {
+    questionId: 'PHYS-019-003',
+    schemaVersion: 1,
+    misconceptionId: 'chemical-change-combination-compound-terms',
+    lossCategory: 'classification_confusion',
+    lossTitle: '化学変化・化合・化合物の用語を混合と取り違える',
+    style: 'short',
+    shortExplanation: '新しい物質ができる変化は化学変化です。その中で、2種類以上の物質が化学的に結びついて別の物質になることを化合といい、できた物質を化合物といいます。混合は単に混ざるだけで、新しい物質ができるとは限りません。',
+    optionMemos: {
+      0: 'Aが物理変化ではない。新しい物質ができるので化学変化。',
+      1: 'Aは化学変化でよいが、Bは混合ではなく化合、Cは混合物ではなく化合物。',
+      2: 'AとCはよいが、Bは重合ではなく化合。重合は分子がつながる反応を指す。',
+      3: 'Aが物理変化ではなく、Bも混合ではない。',
+      4: 'Aは化学変化、Bは化合、Cは化合物。これが正解。',
+    },
+  },
+
+  'PHYS-019-004': {
+    questionId: 'PHYS-019-004',
+    schemaVersion: 1,
+    misconceptionId: 'deliquescence-vs-efflorescence',
+    lossCategory: 'classification_confusion',
+    lossTitle: '潮解を、風解や析出と取り違える',
+    style: 'comparison_table',
+    shortExplanation: '潮解は、固体が空気中の水分を吸収し、その水に溶けて水溶液になる現象です。水分を失って粉末になる風解とは逆です。',
+    visualBlockTitle: '潮解と風解は「水分を吸うか失うか」で見分ける',
+    tableHeader: ['現象', '見分け方'],
+    rows: [
+      { cells: ['潮解', '空気中の水分を吸収し、その水に溶けて水溶液になる'], variant: 'correct', isKey: true },
+      { cells: ['風解', '結晶水などを失って粉末状になる'] },
+    ],
+    optionMemos: {
+      0: '水蒸気と反応して固化する現象ではない。潮解は水分を吸って溶ける。',
+      1: '結晶水を失って粉末になるのは風解。潮解とは逆。',
+      2: '固体が空気中の水分を吸収し、その水に溶けて水溶液になる。これが正解。',
+      3: '化学反応で分解する現象ではない。潮解は水分を吸って溶ける現象。',
+      4: '水溶液から固体が出てくる析出や結晶化の説明。潮解ではない。',
+    },
+  },
+
+  'PHYS-019-005': {
+    questionId: 'PHYS-019-005',
+    schemaVersion: 1,
+    misconceptionId: 'efflorescence-called-deliquescence',
+    lossCategory: 'classification_confusion',
+    lossTitle: '風解を潮解と逆に覚えている',
+    style: 'comparison_table',
+    shortExplanation: '結晶性の物質が空気中で水分を失って粉末状態になる現象は風解です。潮解は逆に、空気中の水分を吸って溶ける現象です。',
+    visualBlockTitle: '潮解と風解は、水分の向きが逆',
+    tableHeader: ['現象', '見分け方'],
+    rows: [
+      { cells: ['潮解', '空気中の水分を吸って溶ける'] },
+      { cells: ['風解', '水分や結晶水を失って粉末状態になる'], variant: 'correct', isKey: true },
+    ],
+    optionMemos: {
+      0: '炭素が酸素と結びついて二酸化炭素になるので、化合を含む化学変化。正しい記述。',
+      1: '水分を失って粉末状態になるのは潮解ではなく風解。これが誤りで、これが正解。',
+      2: '物質が酸素と結びつく化学変化は酸化。正しい記述。',
+      3: '相手を酸化させる物質は酸化剤。正しい記述。',
+      4: '酸素を失う、または水素と化合する変化は還元。正しい記述。',
+    },
+  },
 };
 
 

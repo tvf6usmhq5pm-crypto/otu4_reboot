@@ -20,7 +20,7 @@ type ExplanationCardProps = {
 
 function renderVisualBlock(meta: ExplanationMeta) {
   if (meta.style === 'procedure_table') {
-    return <ProcedureTable tableHeader={meta.tableHeader} rows={meta.rows} />;
+    return <ProcedureTable ariaLabel={meta.visualBlockTitle ?? '手順表'} tableHeader={meta.tableHeader} rows={meta.rows} />;
   }
 
   if (meta.style === 'comparison_table') {

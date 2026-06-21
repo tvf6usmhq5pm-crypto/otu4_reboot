@@ -948,6 +948,122 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       4: '木炭粉末は気体を吸着するときの吸着熱が原因となる。',
     },
   },
+
+
+  'PHYS-006-003': {
+    questionId: 'PHYS-006-003',
+    schemaVersion: 1,
+    misconceptionId: 'spontaneous-ignition-heat-source-types',
+    lossCategory: 'classification_confusion',
+    lossTitle: '自然発火の原因熱と物質の対応を取り違える',
+    style: 'comparison_table',
+    shortExplanation: '自然発火の原因熱は、物質ごとに典型パターンがあります。乾性油・原綿・石炭・ゴム粉・プラスチック粉は酸化熱、活性炭・木炭粉末は吸着熱、セルロイド・ニトロセルロースは分解熱です。ゴム粉やプラスチック粉を吸着熱とする組合せが誤りです。',
+    visualBlockTitle: '原因熱は「酸化・吸着・分解」で分類する',
+    tableHeader: ['原因熱', '代表物質'],
+    rows: [
+      {
+        cells: ['酸化熱', '乾性油・原綿・石炭・ゴム粉・プラスチック粉'],
+        variant: 'danger',
+        isKey: true,
+      },
+      {
+        cells: ['吸着熱', '活性炭・木炭粉末'],
+        variant: 'neutral',
+      },
+      {
+        cells: ['分解熱', 'セルロイド・ニトロセルロース'],
+        variant: 'neutral',
+      },
+    ],
+    optionMemos: {
+      0: '乾性油は酸化熱。正しい組合せ。',
+      1: '原綿・石炭は酸化熱。正しい組合せ。',
+      2: '活性炭・木炭粉末は吸着熱。正しい組合せ。',
+      3: 'セルロイド・ニトロセルロースは分解熱。正しい組合せ。',
+      4: 'ゴム粉・プラスチック粉は酸化熱。吸着熱ではないため、これが誤りで本問の正解。',
+    },
+  },
+  'PHYS-006-004': {
+    questionId: 'PHYS-006-004',
+    schemaVersion: 1,
+    misconceptionId: 'spontaneous-ignition-heat-source-types',
+    lossCategory: 'classification_confusion',
+    lossTitle: '自然発火の原因熱から正しい物質を選べない',
+    style: 'short',
+    shortExplanation: 'ニトロセルロースやセルロイド類は、物質自体が分解するときに生じる分解熱によって自然発火することがあります。活性炭は吸着熱、ゴム粉・石炭は酸化熱です。ここでは「ニトロセルロース ── 分解熱」の対応を選びます。',
+    optionMemos: {
+      0: 'セルロイド類は分解熱。酸化熱ではない。',
+      1: '活性炭は吸着熱。分解熱ではない。',
+      2: 'ゴム粉は酸化熱。分解熱ではない。',
+      3: 'ニトロセルロースは分解熱。これが正解。',
+      4: '石炭は酸化熱。発酵熱ではない。',
+    },
+  },
+  'PHYS-007-001': {
+    questionId: 'PHYS-007-001',
+    schemaVersion: 1,
+    misconceptionId: 'dust-explosion-condition-vs-toxicity',
+    lossCategory: 'scope_confusion',
+    lossTitle: '粉じん爆発の発生条件と、人体への有害性を混同する',
+    style: 'short',
+    shortExplanation: '粉じん爆発に直接関係するのは、可燃性粉じんが空気中に浮遊し、濃度が燃焼範囲内にあり、着火源があり、粒子が細かく空気とよく接触することです。人体に有毒かどうかは健康被害の問題であり、爆発の発生条件そのものではありません。',
+    optionMemos: {
+      0: '可燃性粉じんが空気中に浮遊・分散していることは、粉じん爆発の基本条件。',
+      1: '粉じん濃度が燃焼範囲内にあることは、爆発の発生条件。',
+      2: '最小着火エネルギー以上の着火源があることは、爆発の発生条件。',
+      3: '粒子が細かく比表面積が大きいほど、空気と接触しやすく爆発しやすい。',
+      4: '人体に有毒かどうかは健康被害の問題であり、粉じん爆発の発生条件には直接関係しない。これが正解。',
+    },
+  },
+  'PHYS-007-002': {
+    questionId: 'PHYS-007-002',
+    schemaVersion: 1,
+    misconceptionId: 'dust-explosion-incomplete-combustion',
+    lossCategory: 'property_confusion',
+    lossTitle: '粉じん爆発を完全燃焼と考え、一酸化炭素の危険を見落とす',
+    style: 'short',
+    shortExplanation: '粉じん爆発では、粉じんと空気の混合が不均一になりやすく、不完全燃焼を起こしやすいです。そのため、爆発後に一酸化炭素（CO）が大量に発生し、中毒の危険を伴います。また、粉じん爆発は急速な燃焼なので、急激な圧力上昇も起こります。',
+    optionMemos: {
+      0: '粉じんと空気は均一に混ざるとは限らず、常に完全燃焼するわけではない。',
+      1: '粉じん爆発では不完全燃焼により一酸化炭素が発生する危険がある。',
+      2: '粒子内部まで十分に酸素が行き渡らず、すすや不完全燃焼生成物が生じることがある。',
+      3: '粉じん爆発は不完全燃焼を起こしやすく、大量の一酸化炭素による中毒の危険を伴う。これが正解。',
+      4: '粉じん爆発は急速な燃焼であり、急激な圧力上昇を起こす。燃焼速度が極めて遅いわけではない。',
+    },
+  },
+  'PHYS-007-003': {
+    questionId: 'PHYS-007-003',
+    schemaVersion: 1,
+    misconceptionId: 'dust-explosion-secondary-chain',
+    lossCategory: 'procedure_confusion',
+    lossTitle: '一次爆発から二次・三次爆発へ広がる仕組みをつかめない',
+    style: 'procedure_table',
+    shortExplanation: '粉じん爆発では、最初の爆発で終わらず、爆風によって床や梁に堆積していた粉じんが舞い上がることがあります。その粉じん雲に着火すると二次爆発が起こり、さらに三次爆発へ連鎖することがあります。堆積粉じんが再び空気中に分散することが被害拡大の急所です。',
+    visualBlockTitle: '二次爆発は「舞い上がり→着火→連鎖」で広がる',
+    tableHeader: ['流れ', '何が起きるか'],
+    rows: [
+      {
+        cells: ['一次爆発', '爆風で堆積していた粉じんが舞い上がる'],
+        variant: 'danger',
+      },
+      {
+        cells: ['粉じん雲ができる', '可燃性粉じんが空気中に再び分散する'],
+        variant: 'danger',
+      },
+      {
+        cells: ['着火して連鎖', '二次・三次爆発へ広がる'],
+        variant: 'danger',
+        isKey: true,
+      },
+    ],
+    optionMemos: {
+      0: '一次爆発で酸素を全て消費するとは限らず、舞い上がった粉じんにより二次爆発が起こることがある。',
+      1: '一次爆発の爆風で堆積粉じんが舞い上がり、それに引火して二次・三次爆発へ連鎖する。これが正解。',
+      2: '粉じん爆発は密閉・半密閉空間でも起こりやすく、必ず開放空間から始まるわけではない。',
+      3: '粉じんは静電気を帯びることがあり、放電火花が着火源になることもある。',
+      4: '飛び散った粉じん粒子は、再び粉じん雲を作り、次の爆発につながることがある。',
+    },
+  },
 };
 
 

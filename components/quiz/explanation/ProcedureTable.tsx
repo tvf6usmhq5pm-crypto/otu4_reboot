@@ -2,11 +2,15 @@
 import type { ExplanationRow } from '../../../data/explanation_meta_types';
 
 type ProcedureTableProps = {
+  ariaLabel?: string;
   tableHeader?: string[];
   rows?: ExplanationRow[];
 };
 
-export function ProcedureTable({ tableHeader, rows }: ProcedureTableProps) {
+export function ProcedureTable({
+  ariaLabel = '手順表',
+  tableHeader, rows
+}: ProcedureTableProps) {
   const headers = tableHeader && tableHeader.length > 0 ? tableHeader : ['区分', '相手', '手続き'];
 
   if (!rows || rows.length === 0) {
@@ -14,8 +18,11 @@ export function ProcedureTable({ tableHeader, rows }: ProcedureTableProps) {
   }
 
   return (
-    <div style={wrapStyle}>
-      <div style={titleStyle}>手続き一覧</div>
+    <div style={wrapStyle}
+      role="group"
+      aria-label={ariaLabel}
+    >
+      
 
       <table style={tableStyle}>
         <thead>

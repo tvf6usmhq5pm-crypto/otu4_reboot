@@ -28,7 +28,7 @@ function renderVisualBlock(meta: ExplanationMeta) {
       return <Type4FireSprayDiagram />;
     }
 
-    return <ComparisonTable tableHeader={meta.tableHeader} rows={meta.rows} />;
+    return <ComparisonTable ariaLabel={meta.visualBlockTitle ?? '比較表'} tableHeader={meta.tableHeader} rows={meta.rows} />;
   }
 
   if (meta.style === 'number_card') {
@@ -71,11 +71,21 @@ export function ExplanationCard({ meta, onNext }: ExplanationCardProps) {
       </div>
 
       {/* pilot段階では highlightTerms は赤表示しない。必要問題だけ後で限定導入する。 */}
-      <p style={shortExplanationStyle}><InlineMarkdownText text={meta.shortExplanation} /></p>
-
       {meta.visualImage ? <ExplanationImage image={meta.visualImage} /> : null}
 
-      {visualBlock ? <div style={visualWrapStyle}>{visualBlock}</div> : null}
+      <p style={shortExplanationStyle}><InlineMarkdownText text={meta.shortExplanation} /></p>
+
+      {visualBlock ? (
+        <div style={visualWrapStyle}>
+          {meta.visualBlockTitle ? (
+            <div style={visualBlockTitleStyle}>
+              <InlineMarkdownText text={meta.visualBlockTitle} />
+            </div>
+          ) : null}
+
+          {visualBlock}
+        </div>
+      ) : null}
 
       <OptionMemoList optionMemos={meta.optionMemos} />
 
@@ -175,6 +185,15 @@ const shortExplanationStyle: CSSProperties = {
   lineHeight: 1.75,
 };
 
+const visualBlockTitleStyle: CSSProperties = {
+  position: 'relative',
+  zIndex: 1,
+  margin: '0 0 8px',
+  color: '#1A2238',
+  fontSize: 13,
+  fontWeight: 900,
+  lineHeight: 1.4,
+};
 const visualWrapStyle: CSSProperties = {
   position: 'relative',
   zIndex: 1,

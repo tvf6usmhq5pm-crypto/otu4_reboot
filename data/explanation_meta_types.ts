@@ -95,6 +95,7 @@ export type ExplanationMeta = {
   visualImage?: ExplanationVisualImage;
   highlightTerms?: string[];
 
+  visualBlockTitle?: string;
   tableHeader?: string[];
   rows?: ExplanationRow[];
 

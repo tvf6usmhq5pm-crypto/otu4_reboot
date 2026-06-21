@@ -1,6 +1,7 @@
 import type { ExplanationRow } from '../../../data/explanation_meta_types';
 
 type ComparisonTableProps = {
+  ariaLabel?: string;
   tableHeader?: string[];
   rows?: ExplanationRow[];
 };
@@ -128,31 +129,23 @@ function getCardParts(row: ExplanationRow) {
   };
 }
 
-export function ComparisonTable({ tableHeader = [], rows = [] }: ComparisonTableProps) {
+export function ComparisonTable({
+  ariaLabel = '比較表',
+  tableHeader = [],
+  rows = [],
+}: ComparisonTableProps) {
   if (rows.length === 0) {
     return null;
   }
 
   return (
     <section
-      aria-label="比較一覧"
+      aria-label={ariaLabel}
       style={{
         marginTop: 16,
         marginBottom: 16,
       }}
     >
-      <div
-        style={{
-          marginBottom: 8,
-          color: '#1A2238',
-          fontSize: 13,
-          fontWeight: 900,
-          lineHeight: 1.4,
-        }}
-      >
-        比較一覧
-      </div>
-
       <div
         style={{
           display: 'grid',

@@ -419,6 +419,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     lossCategory: 'property_confusion',
     lossTitle: '液体の燃えやすさを「沸点・粘度・比重」の大小と取り違える',
     style: 'comparison_table',
+    visualBlockTitle: '燃えやすさは「蒸発しやすさ」で見る',
     shortExplanation: '可燃性液体は、蒸発した可燃性蒸気が空気と混ざって燃えます（蒸発燃焼）。したがって、「蒸発しやすい＝沸点が低い」液体ほど蒸気が多く発生し、燃えやすくなります。比重や粘度の大きさではなく、蒸発のしやすさ（沸点の低さ）が燃焼の鍵となることが急所です。',
     tableHeader: ['液体の性質', '燃えやすさへの影響'],
     rows: [

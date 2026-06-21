@@ -2300,6 +2300,110 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       4: '空気は気体で熱を伝えにくく、熱伝導率が最も小さい。これが正解。',
     },
   },
+
+  'PHYS-018-001': {
+    questionId: 'PHYS-018-001',
+    schemaVersion: 1,
+    misconceptionId: 'thermal-expansion-order-and-water-density',
+    lossCategory: 'property_confusion',
+    lossTitle: '体膨張率の大小と水の4℃例外を混同する',
+    style: 'short',
+    shortExplanation: '一般に、体膨張率は気体が最も大きく、次に液体、固体の順に小さくなります。「約273分の1」は主に気体の膨張で出てくる数で、固体や液体にはそのまま使えません。また、水は例外的に約4℃で体積が最も小さくなり、密度が最大になります。',
+    optionMemos: {
+      0: '気体の体積は温度変化と大きく関係する。温度に関係しないとはいえない。',
+      1: '約273分の1は、固体や液体ではなく気体の膨張で出てくる目安。',
+      2: '固体の体膨張率は気体よりかなり小さい。「気体の3倍」ではない。',
+      3: '水は約4℃で体積が最も小さくなり、密度が最大になる。これが正解。',
+      4: '液体の体膨張率は、気体よりはるかに小さい。',
+    },
+  },
+
+  'PHYS-018-002': {
+    questionId: 'PHYS-018-002',
+    schemaVersion: 1,
+    misconceptionId: 'tank-space-volume-for-liquid-expansion',
+    lossCategory: 'property_confusion',
+    lossTitle: '空間容積を蒸発や酸化対策と取り違える',
+    style: 'short',
+    shortExplanation: '液体の危険物は、温度が上がると体積が増えます。満タンに入れて逃げ場がないと、液体があふれたり、容器やタンクに無理な圧力がかかったりします。そのため、あらかじめ空間容積を残しておく理由は体膨張です。',
+    optionMemos: {
+      0: '酸化は物質が酸素と反応すること。空間容積を設ける主理由ではない。',
+      1: '還元は酸化の逆方向の反応。液体を入れる余裕とは直接関係しない。',
+      2: '蒸発も危険物では重要だが、空間容積の主目的は温度上昇による体膨張への余裕。',
+      3: '熱伝導は熱の伝わり方。液体が増えた分の逃げ場を作る理由ではない。',
+      4: '温度上昇で液体の体積が増えるため、空間容積を残す。これが正解。',
+    },
+  },
+
+  'PHYS-018-003': {
+    questionId: 'PHYS-018-003',
+    schemaVersion: 1,
+    misconceptionId: 'liquid-volume-expansion-overflow-basic',
+    lossCategory: 'number_confusion',
+    lossTitle: '温度差20を掛け忘れ、1℃ぶんの増加量だけで判断する',
+    style: 'calculation_step',
+    shortExplanation: '満たされたタンクでは、温められて増えた体積分がそのままあふれ出ます。15℃から35℃なので、20℃ぶん温める点をまず押さえます。',
+    visualBlockTitle: '増えた体積 = 元の体積 × 体膨張率 × 温度差',
+    calcLines: [
+      { step: '温度差 = 35 - 15 = 20℃ぶん' },
+      { step: '増加体積 = 1000 × 1.35×10⁻³ × 20' },
+      { step: '= 27.0 L' },
+    ],
+    optionMemos: {
+      0: '1.35Lは、1000Lを1℃ぶん温めたときの増加量に近い。20℃ぶんを掛ける。',
+      1: '6.75Lでは小さすぎる。温度差20℃ぶんを反映できていない。',
+      2: '13.5Lは、10℃ぶん程度で止めた値。今回は20℃ぶん温める。',
+      3: '1000×1.35×10⁻³×20=27.0L。これが正解。',
+      4: '54.0Lは大きすぎる。温度差を二重に見たり、計算を2倍している。',
+    },
+  },
+
+  'PHYS-018-004': {
+    questionId: 'PHYS-018-004',
+    schemaVersion: 1,
+    misconceptionId: 'liquid-expansion-temperature-back-calculation',
+    lossCategory: 'number_confusion',
+    lossTitle: '増加量20Lから温度差を逆算できない',
+    style: 'calculation_step',
+    shortExplanation: 'この問題は、体膨張の式を逆に使います。1000Lが1020Lになったので、増えた量は20Lです。そこから温度差を求めます。',
+    visualBlockTitle: '温度差 = 増加体積 ÷（元の体積 × 体膨張率）',
+    calcLines: [
+      { step: '増加体積 = 1020 - 1000 = 20 L' },
+      { step: '温度差 = 20 ÷（1000 × 1.35×10⁻³）' },
+      { step: '≒ 14.8℃ぶん' },
+      { step: '0℃から温めたので、液温は約15℃' },
+    ],
+    optionMemos: {
+      0: '5℃では、20Lも増えるには温度上昇が小さすぎる。',
+      1: '10℃でもまだ小さい。逆算すると約14.8℃ぶん上がっている。',
+      2: '20÷（1000×1.35×10⁻³）≒14.8なので、最も近い15℃。これが正解。',
+      3: '20℃は高すぎる。20Lという増加量そのものを温度と混同しない。',
+      4: '25℃は高すぎる。式で逆算すると約15℃に近い。',
+    },
+  },
+
+  'PHYS-018-005': {
+    questionId: 'PHYS-018-005',
+    schemaVersion: 1,
+    misconceptionId: 'liquid-volume-expansion-overflow-800l',
+    lossCategory: 'number_confusion',
+    lossTitle: '10℃から40℃までを30℃ぶん温めると見抜けない',
+    style: 'calculation_step',
+    shortExplanation: 'あふれ出る量は、温められて増えた体積です。10℃から40℃なので、温度差は30℃ぶんです。',
+    visualBlockTitle: '増加体積 = 元の体積 × 体膨張率 × 温度差',
+    calcLines: [
+      { step: '温度差 = 40 - 10 = 30℃ぶん' },
+      { step: '増加体積 = 800 × 1.2×10⁻³ × 30' },
+      { step: '= 28.8 L' },
+    ],
+    optionMemos: {
+      0: '9.6Lは、10℃ぶんで計算した値に近い。今回は30℃ぶん温める。',
+      1: '14.4Lでは小さすぎる。温度差30℃ぶんを使う。',
+      2: '24.0Lでは足りない。800×1.2×10⁻³×30で計算する。',
+      3: '800×1.2×10⁻³×30=28.8L。これが正解。',
+      4: '36.0Lは大きすぎる。温度差や係数を大きく見積もっている。',
+    },
+  },
 };
 
 

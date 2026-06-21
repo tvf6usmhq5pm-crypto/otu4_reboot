@@ -805,6 +805,149 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       4: '燃焼範囲の広さと引火点の高さに直接の決まった法則性はない。',
     },
   },
+
+
+  'PHYS-005-006': {
+    questionId: 'PHYS-005-006',
+    schemaVersion: 1,
+    misconceptionId: 'temperature-vs-flash-point',
+    lossCategory: 'property_confusion',
+    lossTitle: '20℃での引火危険性を、引火点の低さと結びつけられない',
+    style: 'comparison_table',
+    shortExplanation:
+      '20℃での引火危険性は、まず「液温20℃が引火点を超えているか」で見ます。AとBは20℃が引火点を超えており、可燃性蒸気が出やすい状態です。一方、C〜Eは20℃が引火点未満なので、通常は引火しにくい状態です。AとBでは、Aの方が引火点が低く、燃焼範囲も広いため、最も危険性が高くなります。※ 蒸気比重は「蒸気がどこに滞留するか」に関わる数値で、20℃での引火しやすさの判断には使いません。',
+    visualBlockTitle: '液温20℃と引火点を比べる',
+    tableHeader: ['20℃との関係', ''],
+    rows: [
+      {
+        cells: ['液温20℃が引火点より高い', '可燃性蒸気が出やすく、点火源があれば引火しやすい'],
+        variant: 'danger',
+        isKey: true,
+      },
+      {
+        cells: ['液温20℃が引火点より低い', '通常は可燃性蒸気が不足し、引火しにくい'],
+        variant: 'correct',
+      },
+    ],
+    optionMemos: {
+      0: 'Aは引火点が-11℃で20℃を大きく下回り、燃焼範囲も広い。引火の危険性が最も高い。これが正解。',
+      1: 'Bも20℃が引火点を超えているが、Aより引火点が高く、燃焼範囲も狭い。',
+      2: 'Cは引火点40℃で、20℃では通常引火しにくい。',
+      3: 'Dは引火点70℃で、20℃では通常引火しにくい。',
+      4: 'Eは引火点130℃で、20℃では通常引火しにくい。',
+    },
+  },
+  'PHYS-006-001': {
+    questionId: 'PHYS-006-001',
+    schemaVersion: 1,
+    misconceptionId: 'spontaneous-ignition-heat-accumulation',
+    lossCategory: 'property_confusion',
+    lossTitle: '自然発火を「熱が発生すること」だけで判断し、熱の逃げやすさを見落とす',
+    style: 'comparison_table',
+    shortExplanation: '自然発火は、酸化などで発生した熱が外へ逃げずに蓄積し、温度が発火点に達すると起こります。表面積が大きい・周囲温度が高い・保温性が高い・水分で発熱が促される状態は起こりやすく、通風や換気が良く熱が逃げる状態では起こりにくくなります。',
+    visualBlockTitle: '自然発火は「熱が出る＋逃げない」で起こる',
+    tableHeader: ['状態', '自然発火への影響'],
+    rows: [
+      {
+        cells: ['熱が出やすい・逃げにくい', '表面積大、高温、熱伝導率小、水分による発熱などで自然発火しやすい'],
+        variant: 'danger',
+      },
+      {
+        cells: ['熱が逃げやすい', '通風・換気が良いと熱が蓄積せず、自然発火しにくい'],
+        variant: 'correct',
+        isKey: true,
+      },
+    ],
+    optionMemos: {
+      0: '空気との接触面積が大きいと酸化が進みやすく、自然発火しやすくなる。正しい記述。',
+      1: '周囲温度が高く熱が蓄積されやすい状態は、自然発火しやすい。正しい記述。',
+      2: '熱伝導率が小さいと熱が逃げにくく、自然発火しやすい。正しい記述。',
+      3: '通風や換気が良いと熱が外へ逃げやすく、自然発火は起こりにくい。これが誤りで、本問の正解。',
+      4: '適度な水分が微生物などの発熱を促し、自然発火に関係する場合がある。正しい記述。',
+    },
+  },
+  'PHYS-006-001-V01': {
+    questionId: 'PHYS-006-001-V01',
+    schemaVersion: 1,
+    misconceptionId: 'spontaneous-ignition-heat-accumulation',
+    lossCategory: 'procedure_confusion',
+    lossTitle: '油のしみ込んだ布を、熱が逃げにくい状態にすると危険だと判断できない',
+    style: 'short',
+    shortExplanation: '自然発火は、酸化などで発生した熱が逃げずに蓄積すると起こります。油がしみ込んだ布を重ねて通風の悪い場所に放置すると、空気中で酸化して発生した熱が内部にこもり、自然発火しやすくなります。逆に、薄く広げる・少量に分ける・通風を確保する・低温に保つことは、熱を逃がす方向です。',
+    optionMemos: {
+      0: '油がしみ込んだ布を重ね、通風の悪い場所に置くと酸化熱が蓄積しやすい。これが正解。',
+      1: '薄く広げると熱が逃げやすくなり、自然発火しにくい。',
+      2: '少量ずつ分けて冷暗所に保管すると、熱が蓄積しにくい。',
+      3: '通風を確保すると発生した熱が逃げやすく、自然発火しにくい。',
+      4: '空気との接触を少なくし低温に保つと、酸化や発熱を抑えやすい。',
+    },
+  },
+  'PHYS-006-001-V02': {
+    questionId: 'PHYS-006-001-V02',
+    schemaVersion: 1,
+    misconceptionId: 'spontaneous-ignition-heat-source-types',
+    lossCategory: 'classification_confusion',
+    lossTitle: '自然発火に関係する発熱の種類と例を対応させられない',
+    style: 'comparison_table',
+    shortExplanation: '自然発火では、酸化熱・吸着熱・分解熱などが蓄積して温度が上がることがあります。油のしみ込んだ布が空気中で酸化して発熱するのは、酸化熱による自然発火の典型例です。完全燃焼の熱や蒸発時に奪う熱とは別の現象です。',
+    visualBlockTitle: '自然発火の原因熱は「何で熱が出るか」で分ける',
+    tableHeader: ['発熱の種類', '代表例'],
+    rows: [
+      {
+        cells: ['酸化熱', '油のしみ込んだ布・乾性油などが空気中で酸化して発熱する'],
+        variant: 'correct',
+        isKey: true,
+      },
+      {
+        cells: ['吸着熱', '活性炭や木炭粉末などが気体を吸着して発熱する'],
+        variant: 'neutral',
+      },
+      {
+        cells: ['分解熱', 'セルロイドやニトロセルロースなどが分解して発熱する'],
+        variant: 'neutral',
+      },
+    ],
+    optionMemos: {
+      0: '油のしみ込んだ布が空気中で酸化して発熱するのは酸化熱の例。これが正解。',
+      1: '完全燃焼で発生する熱は燃焼熱であり、吸着熱ではない。',
+      2: '液体が蒸発するときに周囲から奪う熱は気化熱であり、分解熱ではない。',
+      3: '水が氷になるときの熱は凝固に関係する熱であり、酸化熱ではない。',
+      4: '金属に電流を通すときの発熱は主にジュール熱であり、吸着熱ではない。',
+    },
+  },
+  'PHYS-006-002': {
+    questionId: 'PHYS-006-002',
+    schemaVersion: 1,
+    misconceptionId: 'spontaneous-ignition-heat-source-types',
+    lossCategory: 'classification_confusion',
+    lossTitle: '自然発火の原因熱から、該当する物質を選べない',
+    style: 'comparison_table',
+    shortExplanation: 'アマニ油などの乾性油は、空気中で徐々に酸化され、その酸化熱が蓄積して自然発火することがあります。活性炭や木炭粉末は吸着熱、セルロイドやニトロセルロースは分解熱が自然発火の原因として問われます。原因熱と物質を対応させるのが急所です。',
+    visualBlockTitle: '酸化熱・吸着熱・分解熱で物質を分ける',
+    tableHeader: ['原因熱', '代表物質'],
+    rows: [
+      {
+        cells: ['酸化熱', 'アマニ油などの乾性油・石炭・原綿'],
+        variant: 'correct',
+        isKey: true,
+      },
+      {
+        cells: ['吸着熱', '活性炭・木炭粉末'],
+        variant: 'neutral',
+      },
+      {
+        cells: ['分解熱', 'セルロイド・ニトロセルロース'],
+        variant: 'neutral',
+      },
+    ],
+    optionMemos: {
+      0: 'アマニ油は乾性油で、空気中で酸化して発生する酸化熱が蓄積し自然発火することがある。これが正解。',
+      1: '活性炭は気体を吸着するときの吸着熱が原因となる。',
+      2: 'セルロイドは分解熱が原因となる。',
+      3: 'ニトロセルロースは分解熱が原因となる。',
+      4: '木炭粉末は気体を吸着するときの吸着熱が原因となる。',
+    },
+  },
 };
 
 

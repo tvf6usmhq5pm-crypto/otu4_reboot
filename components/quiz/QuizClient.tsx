@@ -603,6 +603,7 @@ export default function QuizClient() {
             {currentQuestion.question}
           </h1>
         </div>
+        <QuestionAssistBlock questionId={questionId} />
       </section>
 
       <section style={choicesStyle} aria-label="choices">
@@ -922,6 +923,111 @@ const topTextSizeOptionActiveStyle: CSSProperties = {
   borderColor: '#C9A55A',
   background: '#FFF8E8',
   color: '#8B6226',
+};
+
+function QuestionAssistBlock({ questionId }: { questionId: string }) {
+  if (questionId !== 'PHYS-021-001') {
+    return null;
+  }
+
+  return (
+    <aside style={questionAssistStyle} aria-label="原子記号の読み方">
+      <div style={questionAssistHeaderStyle}>原子記号の読み方</div>
+
+      <div style={questionAssistBodyStyle}>
+        <div
+          style={nuclideSymbolStyle}
+          aria-label="アルミニウム、上の数字27、下の数字13"
+        >
+          <span style={nuclideNumbersStyle}>
+            <span style={nuclideNumberStyle}>27</span>
+            <span style={nuclideNumberStyle}>13</span>
+          </span>
+          <span style={nuclideElementStyle}>Al</span>
+        </div>
+
+        <div style={nuclideLegendStyle}>
+          <div>
+            <strong>上の数字</strong> = 質量数
+          </div>
+          <div>
+            <strong>下の数字</strong> = 原子番号
+          </div>
+          <div>
+            ※ここでは数字の位置だけ確認します
+          </div>
+        </div>
+      </div>
+    </aside>
+  );
+}
+
+const questionAssistStyle: CSSProperties = {
+  marginTop: 14,
+  padding: '12px 14px',
+  border: '1px solid #E6D6B4',
+  borderRadius: 16,
+  background: '#FFFCF2',
+  color: '#243044',
+  boxShadow: '0 8px 22px rgba(88, 64, 22, 0.08)',
+};
+
+const questionAssistHeaderStyle: CSSProperties = {
+  color: '#8A5A18',
+  fontSize: 13,
+  fontWeight: 700,
+  letterSpacing: '0.04em',
+  marginBottom: 10,
+};
+
+const questionAssistBodyStyle: CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: 14,
+  flexWrap: 'wrap',
+};
+
+const nuclideSymbolStyle: CSSProperties = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  minWidth: 94,
+  padding: '10px 12px',
+  borderRadius: 14,
+  background: '#FFFFFF',
+  border: '1px solid #E9DEC4',
+  boxShadow: 'inset 0 0 0 1px rgba(255, 255, 255, 0.7)',
+};
+
+const nuclideNumbersStyle: CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-end',
+  justifyContent: 'center',
+  lineHeight: 0.9,
+  marginRight: 4,
+};
+
+const nuclideNumberStyle: CSSProperties = {
+  fontSize: 18,
+  fontWeight: 700,
+  fontFamily: 'Georgia, serif',
+  color: '#8A5A18',
+};
+
+const nuclideElementStyle: CSSProperties = {
+  fontSize: 38,
+  fontWeight: 700,
+  lineHeight: 1,
+  fontFamily: 'Georgia, serif',
+  color: '#1F2A3A',
+};
+
+const nuclideLegendStyle: CSSProperties = {
+  display: 'grid',
+  gap: 4,
+  fontSize: 13.5,
+  lineHeight: 1.55,
 };
 
 const questionLineStyle: CSSProperties = {

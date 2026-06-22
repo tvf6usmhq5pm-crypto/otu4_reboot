@@ -2935,6 +2935,108 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       4: '44.8LはCO₂ 2mol分で大きすぎる。',
     },
   },
+
+  'PHYS-021-015': {
+    questionId: 'PHYS-021-015',
+    schemaVersion: 1,
+    misconceptionId: 'mass-percent-mixture-sulfuric-acid',
+    lossCategory: 'number_confusion',
+    lossTitle: '混合後の濃度を、純粋な硫酸の質量で式にできない',
+    style: 'calculation_step',
+    shortExplanation: '濃度の混合問題では、全体の質量ではなく、溶けている硫酸そのものの質量で式を立てます。80%硫酸Aをxg、30%硫酸Bを100−xgとして、最終的に50%の硫酸100gになる条件を使います。',
+    visualBlockTitle: '純粋な硫酸の質量で等式を作る',
+    calcLines: [
+      { step: 'Aをxg、Bを100−xgとする' },
+      { step: 'Aに含まれる硫酸 = 0.80x' },
+      { step: 'Bに含まれる硫酸 = 0.30(100−x)' },
+      { step: '完成品に含まれる硫酸 = 0.50100 = 50g' },
+      { step: '0.80x + 0.30(100−x) = 50' },
+      { step: '0.50x + 30 = 50' },
+      { step: 'x = 40g、B = 60g' },
+    ],
+    optionMemos: {
+      0: 'Aが12gでは80%硫酸が少なすぎ、50%にはならない。',
+      1: 'Aが20gではまだ濃度が低すぎる。',
+      2: 'A40g、B60gなら 0.840 + 0.360 = 50g。これが正解。',
+      3: 'A44gでは硫酸量が多くなり、50%を超える。',
+      4: 'A50g、B50gでは 40+15=55g となり、55%になる。',
+    },
+  },
+
+  'PHYS-021-016': {
+    questionId: 'PHYS-021-016',
+    schemaVersion: 1,
+    misconceptionId: 'benzene-ring-structure-identification',
+    lossCategory: 'classification_confusion',
+    lossTitle: '正六角形のベンゼン環を、鎖状の炭化水素と取り違える',
+    style: 'comparison_table',
+    shortExplanation: '6個の炭素原子が正六角形に並び、単結合と二重結合が交互に描かれる構造はベンゼン環です。この構造を持つ代表がベンゼンです。',
+    visualBlockTitle: '構造の形で代表物質を見分ける',
+    tableHeader: ['物質', '構造の目印'],
+    rows: [
+      { cells: ['ベンゼン', 'C₆H₆。6個の炭素が正六角形に並ぶベンゼン環'], variant: 'correct', isKey: true },
+      { cells: ['エチレン', 'C₂H₄。二重結合を1つ持つ鎖状の炭化水素'] },
+      { cells: ['アセチレン', 'C₂H₂。三重結合を1つ持つ鎖状の炭化水素'] },
+    ],
+    optionMemos: {
+      0: '6個の炭素が正六角形に並ぶベンゼン環はベンゼン。これが正解。',
+      1: 'エチレンはC=Cを持つ鎖状の炭化水素。正六角形ではない。',
+      2: 'アセチレンはCCを持つ鎖状の炭化水素。ベンゼン環ではない。',
+      3: 'エタノールはC₂H₅OHで、ベンゼン環を持たない。',
+      4: 'アセトンはCH₃-CO-CH₃で、ベンゼン環を持たない。',
+    },
+  },
+
+  'PHYS-021-017': {
+    questionId: 'PHYS-021-017',
+    schemaVersion: 1,
+    misconceptionId: 'acetone-structure-carbonyl-between-methyls',
+    lossCategory: 'classification_confusion',
+    lossTitle: 'CH₃-CO-CH₃ の -CO- をアセトンの目印として見抜けない',
+    style: 'short',
+    shortExplanation: 'CH₃-CO-CH₃ は、カルボニル基 -CO- の両側にメチル基 CH₃ がついた構造です。この構造で表される代表物質はアセトンです。エタノールは -OH、酢酸は -COOH、ベンゼンはベンゼン環が目印です。',
+    optionMemos: {
+      0: 'エタノールはCH₃-CH₂-OH。-OHが目印。',
+      1: 'CH₃-CO-CH₃ はアセトン。これが正解。',
+      2: 'キシレンはベンゼン環にメチル基が2つついた芳香族化合物。',
+      3: 'ベンゼンはC₆H₆の正六角形の環構造。',
+      4: '酢酸はCH₃-COOH。-COOHが目印。',
+    },
+  },
+
+  'PHYS-021-018': {
+    questionId: 'PHYS-021-018',
+    schemaVersion: 1,
+    misconceptionId: 'acetic-acid-carboxyl-group',
+    lossCategory: 'classification_confusion',
+    lossTitle: 'CH₃-COOH の -COOH を酢酸の目印として見抜けない',
+    style: 'short',
+    shortExplanation: 'CH₃-COOH は、メチル基CH₃にカルボキシ基 -COOH が結合した構造です。-COOHを持つ代表物質が酢酸です。アセトンはCH₃-CO-CH₃、エタノールはCH₃-CH₂-OHです。',
+    optionMemos: {
+      0: 'エタノールはCH₃-CH₂-OH。-COOHではない。',
+      1: 'CH₃-COOH は酢酸。これが正解。',
+      2: 'キシレンは芳香族炭化水素で、CH₃-COOHではない。',
+      3: 'ベンゼンはC₆H₆の環構造。',
+      4: 'アセトンはCH₃-CO-CH₃。-COOHではない。',
+    },
+  },
+
+  'PHYS-021-019': {
+    questionId: 'PHYS-021-019',
+    schemaVersion: 1,
+    misconceptionId: 'ethanol-hydroxyl-group',
+    lossCategory: 'classification_confusion',
+    lossTitle: 'CH₃-CH₂-OH や C₂H₅OH をエタノールとして見分けられない',
+    style: 'short',
+    shortExplanation: 'CH₃-CH₂-OH、またはC₂H₅OHで表される物質はエタノールです。末尾の -OH はヒドロキシ基で、アルコール類の目印です。酢酸は -COOH、アセトンは -CO- が目印です。',
+    optionMemos: {
+      0: 'キシレンはベンゼン環にメチル基が2つついた物質。C₂H₅OHではない。',
+      1: 'CH₃-CH₂-OH、C₂H₅OH はエタノール。これが正解。',
+      2: '酢酸はCH₃-COOH。-COOHが目印。',
+      3: 'ベンゼンはC₆H₆の環構造。',
+      4: 'アセトンはCH₃-CO-CH₃。-OHではない。',
+    },
+  },
 };
 
 

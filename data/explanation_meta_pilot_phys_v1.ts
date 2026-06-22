@@ -3620,7 +3620,6 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       4: '同じ性質の不燃性物質どうしは、混合危険の代表ではない。',
     },
   },
-
   'PHYS-025-001-V02': {
     questionId: 'PHYS-025-001-V02',
     schemaVersion: 1,

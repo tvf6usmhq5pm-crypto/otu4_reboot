@@ -3498,7 +3498,6 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       4: '相手によって酸化剤にも還元剤にもなる物質もある。必ず酸化剤だけとは限らない。',
     },
   },
-
   'PHYS-024-004': {
     questionId: 'PHYS-024-004',
     schemaVersion: 1,

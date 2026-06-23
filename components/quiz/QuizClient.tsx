@@ -931,8 +931,8 @@ function QuestionAssistBlock({ questionId }: { questionId: string }) {
   }
 
   return (
-    <aside style={questionAssistStyle} aria-label="原子記号の読み方">
-      <div style={questionAssistHeaderStyle}>原子記号の読み方</div>
+    <aside style={questionAssistStyle} aria-label="原子記号の表示">
+      <div style={questionAssistHeaderStyle}>原子記号の表示</div>
 
       <div style={questionAssistBodyStyle}>
         <div
@@ -944,18 +944,6 @@ function QuestionAssistBlock({ questionId }: { questionId: string }) {
             <span style={nuclideNumberStyle}>13</span>
           </span>
           <span style={nuclideElementStyle}>Al</span>
-        </div>
-
-        <div style={nuclideLegendStyle}>
-          <div>
-            <strong>上の数字</strong> = 質量数
-          </div>
-          <div>
-            <strong>下の数字</strong> = 原子番号
-          </div>
-          <div>
-            ※ここでは数字の位置だけ確認します
-          </div>
         </div>
       </div>
     </aside>

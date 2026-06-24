@@ -74,7 +74,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     lossCategory: 'classification_confusion',
     visualKey: 'solid_combustion_compare',
     visualImage: {
-      src: '/explanations/wood-charcoal-combustion.png',
+      src: '/explanations/wood-charcoal-combustion.webp',
       alt: '\u6728\u6750\u306f\u767a\u751f\u3057\u305f\u53ef\u71c3\u6027\u30ac\u30b9\u304c\u71c3\u3048\u3001\u6728\u70ad\u306f\u56fa\u4f53\u8868\u9762\u304c\u8d64\u71b1\u3057\u3066\u71c3\u3048\u308b\u3053\u3068\u3092\u793a\u3059\u56f3',
       aspectRatio: '4:5',
       caption: '\u6728\u6750\u306f\u30ac\u30b9\u3001\u6728\u70ad\u306f\u8868\u9762\u304c\u71c3\u3048\u308b',
@@ -84,6 +84,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     style: 'comparison_table',
     shortExplanation:
       '木材や紙は、加熱により熱分解して発生した可燃性ガスが燃えるので分解燃焼です。木炭やコークスは、固体表面が直接酸素と反応して赤熱するので表面燃焼です。',
+    visualBlockTitle: '木材は分解燃焼、木炭は表面燃焼',
     tableHeader: ['対象', '燃焼形態', '理由'],
     rows: [
       {
@@ -110,7 +111,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     lossCategory: 'classification_confusion',
     visualKey: 'solid_combustion_compare',
     visualImage: {
-      src: '/explanations/wood-charcoal-combustion.png',
+      src: '/explanations/wood-charcoal-combustion.webp',
       alt: '\u6728\u6750\u306f\u767a\u751f\u3057\u305f\u53ef\u71c3\u6027\u30ac\u30b9\u304c\u71c3\u3048\u3001\u6728\u70ad\u306f\u56fa\u4f53\u8868\u9762\u304c\u8d64\u71b1\u3057\u3066\u71c3\u3048\u308b\u3053\u3068\u3092\u793a\u3059\u56f3',
       aspectRatio: '4:5',
       caption: '\u6728\u6750\u306f\u30ac\u30b9\u3001\u6728\u70ad\u306f\u8868\u9762\u304c\u71c3\u3048\u308b',
@@ -120,6 +121,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     style: 'comparison_table',
     shortExplanation:
       '木材は、加熱で熱分解して可燃性ガスを発生し、そのガスが燃える分解燃焼です。一方、木炭はすでにガス成分が抜けた状態なので、固体表面が直接酸素と反応して燃える表面燃焼です。',
+    visualBlockTitle: '同じ木でも、木材は分解燃焼・木炭は表面燃焼',
     tableHeader: ['物質', '燃焼形態', 'ポイント'],
     rows: [
       {
@@ -2218,11 +2220,12 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     lossTitle: '対流を、液体や気体が動いて熱を運ぶ現象として見分けられない',
     style: 'short',
     visualImage: {
-      src: '/explanations/heat-transfer-types.png',
+      src: '/explanations/heat-transfer-types.webp',
       alt: '伝導・対流・放射の見分け方。対流は液体や気体が動いて熱を運ぶ。',
       caption: '対流は「液体や気体が動くか」で見分ける。BとDがこれに当たる。',
     },
     shortExplanation: 'この問題では、まず「対流」だけを拾います。対流は、温まった液体や気体そのものが動いて熱を運ぶ現象です。Bは暖かい空気が上昇して天井付近が高温になるので対流、Dは温められた水が循環して全体が温まるので対流です。Aは太陽からの放射、CとEは接して熱が伝わる伝導なので、対流はBとDの2つです。',
+    visualBlockTitle: '対流は「液体・気体が動いて」熱を運ぶ',
     optionMemos: {
       0: '1つではない。対流に当たるのはBとDの2つ。',
       1: 'BとDの2つが対流。これが正解。',
@@ -2255,11 +2258,12 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     lossTitle: '水が温まる仕組みを伝導と対流で取り違える',
     style: 'short',
     visualImage: {
-      src: '/explanations/heat-transfer-types.png',
+      src: '/explanations/heat-transfer-types.webp',
       alt: '伝導・対流・放射の見分け方。鍋の水が循環して温まる対流を示す図。',
       caption: '水が全体に温まるのは、表面から伝導するからではなく、水が循環する対流による。',
     },
     shortExplanation: 'この問題は「水がどう温まるか」を見分ける問題です。ガスコンロで水を沸かすと、底で温められた水が上がり、冷たい水が下がって循環します。したがって、水全体が温まる主な理由は対流です。「表面から伝導で温まる」という説明が誤りです。',
+    visualBlockTitle: '水が温まる主役は、動いて熱を運ぶ対流',
     optionMemos: {
       0: 'ストーブに向いた側が熱くなるのは放射熱による。正しい記述。',
       1: '水は表面から伝導で温まるのではなく、主に対流で全体が温まる。これが誤り。これが正解。',

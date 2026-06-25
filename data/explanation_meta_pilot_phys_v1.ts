@@ -3599,6 +3599,14 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       { cells: ['水と接触して発熱・発火', '水との接触で危険が生じる'] },
       { cells: ['衝撃・摩擦・点火源で発火爆発', '混ぜただけで直ちに発火しなくても混合危険に該当する'], variant: 'danger' },
     ],
+
+    visualImage: {
+      src: '/explanations/mixed-danger-oxidizer-combustible.webp',
+      alt: '酸化性物質と可燃性・還元性物質を混ぜると混合危険になることを示した図',
+      aspectRatio: '4:5',
+      caption: '混合危険は、酸化性と可燃性・還元性の組合せで見る。',
+      replacesVisual: true,
+    },
     optionMemos: {
       0: '強い酸化性物質と還元性物質の組合せは、混合危険のおそれがある。正しい記述。',
       1: '空気との接触で自然発火する物質も、混合危険性物質として考えられる。正しい記述。',
@@ -3606,6 +3614,8 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       3: '水と接触して発熱・発火する物質も混合危険性物質に含まれる。正しい記述。',
       4: '混ぜた状態で点火源、衝撃、摩擦により発火・爆発する危険も混合危険に該当する。これが誤りで、これが正解。',
     },
+
+
   },
 
   'PHYS-025-001-V01': {
@@ -3624,6 +3634,14 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       { cells: ['窒素 + 二酸化炭素', 'どちらも燃焼を助ける代表ではなく、混合危険性は低い'] },
       { cells: ['不燃性物質どうし', '混合危険の代表ではない'] },
     ],
+
+    visualImage: {
+      src: '/explanations/mixed-danger-oxidizer-combustible.webp',
+      alt: '酸化性物質と可燃性・還元性物質を混ぜると混合危険になることを示した図',
+      aspectRatio: '4:5',
+      caption: '混合危険は、酸化性と可燃性・還元性の組合せで見る。',
+      replacesVisual: true,
+    },
     optionMemos: {
       0: '強い酸化性物質と可燃性・還元性物質は、混合危険を生じる代表的な組合せ。これが正解。',
       1: '水と塩化ナトリウムは、通常この文脈の混合危険の代表ではない。',
@@ -3631,6 +3649,8 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       3: '水と砂は、混合危険を生じる代表的な組合せではない。',
       4: '同じ性質の不燃性物質どうしは、混合危険の代表ではない。',
     },
+
+
   },
   'PHYS-025-001-V02': {
     questionId: 'PHYS-025-001-V02',
@@ -3648,6 +3668,13 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       { cells: ['衝撃摩擦点火源を軽視する', '混ぜた瞬間に発火しなくても混合危険に含まれる'] },
       { cells: ['性質を確認せず同じ棚にまとめる', '混触のおそれがあり不適切'] },
     ],
+    visualImage: {
+      src: '/explanations/mixed-danger-oxidizer-combustible.webp',
+      alt: '酸化性物質と可燃性・還元性物質を混ぜると混合危険になることを示した図',
+      aspectRatio: '4:5',
+      caption: '混合危険は、酸化性と可燃性・還元性の組合せで見る。',
+      replacesVisual: true,
+    },
     optionMemos: {
       0: '性質の異なる危険物は分離して保管し、器具も必要に応じて分ける。これが正解。',
       1: '酸化性物質と可燃性物質を同じ容器に入れるのは危険。反応確認目的でも不適切。',

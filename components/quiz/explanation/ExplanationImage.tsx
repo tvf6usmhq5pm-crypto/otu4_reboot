@@ -10,13 +10,13 @@ export function ExplanationImage({ image }: ExplanationImageProps) {
 
   const figureStyle: CSSProperties = {
     ...baseFigureStyle,
-    width: isTall ? '80%' : '86%',
-    maxWidth: isTall ? 320 : 340,
+    width: '100%',
+    maxWidth: isTall ? 430 : 460,
   };
 
   const imageStyle: CSSProperties = {
     ...baseImageStyle,
-    maxHeight: isTall ? 390 : 360,
+    maxHeight: isTall ? 560 : 430,
   };
 
   return (

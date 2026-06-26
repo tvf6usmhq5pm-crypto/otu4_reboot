@@ -958,39 +958,28 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       4: '木炭粉末は気体を吸着するときの吸着熱が原因となる。',
     },
   },
-
-
   'PHYS-006-003': {
     questionId: 'PHYS-006-003',
     schemaVersion: 1,
-    misconceptionId: 'spontaneous-ignition-heat-source-types',
+    misconceptionId: 'phys-spontaneous-ignition-heat-mechanism-match',
     lossCategory: 'classification_confusion',
-    lossTitle: '自然発火の原因熱と物質の対応を取り違える',
-    style: 'comparison_table',
-    shortExplanation: '自然発火の原因熱は、物質ごとに典型パターンがあります。乾性油・原綿・石炭・ゴム粉・プラスチック粉は酸化熱、活性炭・木炭粉末は吸着熱、セルロイド・ニトロセルロースは分解熱です。ゴム粉やプラスチック粉を吸着熱とする組合せが誤りです。',
-    visualBlockTitle: '原因熱は「酸化・吸着・分解」で分類する',
-    tableHeader: ['原因熱', '代表物質'],
-    rows: [
-      {
-        cells: ['酸化熱', '乾性油・原綿・石炭・ゴム粉・プラスチック粉'],
-        variant: 'danger',
-        isKey: true,
-      },
-      {
-        cells: ['吸着熱', '活性炭・木炭粉末'],
-        variant: 'neutral',
-      },
-      {
-        cells: ['分解熱', 'セルロイド・ニトロセルロース'],
-        variant: 'neutral',
-      },
-    ],
+    lossTitle: '自然発火の発熱機構と代表物質を取り違える',
+    style: 'short',
+    shortExplanation:
+      '自然発火は、発熱機構と代表物質をセットで覚える。乾性油であるアマニ油やキリ油は酸化熱、セルロイドやニトロセルロースは分解熱、活性炭や木炭粉末は吸着熱で押さえる。',
+    visualImage: {
+      src: '/explanations/spontaneous-ignition-heat-mechanisms.webp',
+      alt: '自然発火の頻出3セットとして酸化熱・分解熱・吸着熱と代表物質を整理した図',
+      aspectRatio: '4:5',
+      caption: '自然発火は、発熱機構と代表例をセットで見る。',
+      replacesVisual: true,
+    },
     optionMemos: {
-      0: '乾性油は酸化熱。正しい組合せ。',
-      1: '原綿・石炭は酸化熱。正しい組合せ。',
-      2: '活性炭・木炭粉末は吸着熱。正しい組合せ。',
-      3: 'セルロイド・ニトロセルロースは分解熱。正しい組合せ。',
-      4: 'ゴム粉・プラスチック粉は酸化熱。吸着熱ではないため、これが誤りで本問の正解。',
+      0: '乾性油は酸化熱、セルロイドは分解熱、活性炭は吸着熱。正しい並びなので、これが正解。',
+      1: 'セルロイドと活性炭の対応が逆。セルロイドは分解熱、活性炭は吸着熱で見る。',
+      2: '乾性油とセルロイドの対応が逆。乾性油は酸化熱、セルロイドは分解熱。',
+      3: '乾性油は吸着熱ではなく酸化熱。活性炭は酸化熱ではなく吸着熱。',
+      4: '燃焼熱、生成熱、中和熱は、この自然発火の頻出セットとして選ぶ語ではない。',
     },
   },
   'PHYS-006-004': {
@@ -4122,30 +4111,16 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     misconceptionId: 'co2-properties-fill-in',
     lossCategory: 'property_confusion',
     lossTitle: '二酸化炭素の生成過程・重さ・液性(弱酸性)を取り違える',
-    style: 'comparison_table',
+    style: 'short',
     shortExplanation:
-      '二酸化炭素は、炭素や炭素化合物の完全燃焼で生成し、空気より重く、水に少し溶けて弱い酸性を示します。不完全燃焼、軽い、アルカリ性という取り違えをまとめて外すのが急所です。',
-    visualBlockTitle: 'CO₂は「完全燃焼・重い・弱酸性・不燃」で押さえる',
-    tableHeader: ['見る点', '正しい理解', '取り違えやすい誤り'],
-    rows: [
-      {
-        cells: ['生成', '炭素化合物の完全燃焼で生じる', '不完全燃焼ではCOが多くなる'],
-        variant: 'correct',
-        isKey: true,
-      },
-      {
-        cells: ['重さ', '空気より重い', '軽いではない'],
-        variant: 'correct',
-      },
-      {
-        cells: ['水溶液', '水に少し溶け、弱い酸性を示す', 'アルカリ性ではない'],
-        variant: 'correct',
-      },
-      {
-        cells: ['燃焼性', 'すでに完全に酸化されており不燃性', '可燃物ではない'],
-        variant: 'correct',
-      },
-    ],
+      '二酸化炭素は、炭素や炭素化合物の完全燃焼で生成し、空気より重く、水に少し溶けて弱い酸性を示します。不完全燃焼・軽い・アルカリ性という取り違えをまとめて外すのが急所です。',
+    visualImage: {
+      src: '/explanations/co2-properties.webp',
+      alt: '二酸化炭素の3つの性質（完全燃焼で生成・空気より重い・弱酸性）と、もう燃えない性質を整理した図',
+      aspectRatio: '4:5',
+      caption: 'CO₂は「完全燃焼・重い・弱酸性・不燃」で押さえる',
+      replacesVisual: true,
+    },
     optionMemos: {
       0: 'A「無機化合物」、B「不完全」、D「アルカリ」が誤り。CO₂は炭素化合物の完全燃焼で生じ、弱酸性を示す。',
       1: 'A炭素化合物・B完全・C重い・D酸の正しい組合せ。これが正解。',

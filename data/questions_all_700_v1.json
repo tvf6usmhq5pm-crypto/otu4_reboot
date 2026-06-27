@@ -12622,7 +12622,7 @@
     "sectionKey": "phys-006",
     "item_id": 6,
     "item_name": "発熱機構と物質（総合）",
-    "star": 0,
+    "star": 3,
     "difficulty": 3,
     "previousDifficulty": 3,
     "difficultySource": "manual",

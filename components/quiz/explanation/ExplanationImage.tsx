@@ -56,10 +56,14 @@ const baseImageStyle: CSSProperties = {
 };
 
 const captionStyle: CSSProperties = {
-  margin: '0 0 7px',
-  color: '#4F463A',
-  fontSize: 12,
-  lineHeight: 1.55,
-  fontWeight: 800,
-  textAlign: 'center',
+  margin: '0 0 9px',
+  padding: '8px 10px',
+  borderLeft: '4px solid #C9A55A',
+  borderRadius: 12,
+  background: '#FFF7E6',
+  color: '#0E1A2B',
+  fontSize: 14,
+  lineHeight: 1.45,
+  fontWeight: 900,
+  textAlign: 'left',
 };

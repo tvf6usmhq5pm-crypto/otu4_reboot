@@ -533,16 +533,12 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
   'PHYS-003-007-V01': {
     lossTitle: '引火点が低く、蒸気が出やすく、接触面積が大きいと燃えやすい',
     shortExplanation:
-      '同じ火源なら、引火点が低く蒸気を発生しやすいほど着火しやすい。空気との接触面積が大きいほど酸素と触れやすく、燃焼しやすくなる。',    shortExplanation:
-      '燃えやすい条件では、熱伝導率だけ「小さい」が正解。熱が逃げにくいと内部に蓄熱し、燃えやすくなる。',    questionId: 'PHYS-003-007-V01',
+      '同じ火源なら、引火点が低く蒸気を発生しやすいほど着火しやすい。空気との接触面積が大きいほど酸素と触れやすく、燃焼しやすくなる。',
+
+    questionId: 'PHYS-003-007-V01',
     schemaVersion: 1,
     misconceptionId: 'combustibility-condition-confusion',
-    lossCategory: 'property_confusion',    style: 'comparison_table',    visualKey: 'combustibility_conditions',    rows: [
-      { cells: ['引火点が低い・蒸気が出やすい', '低い温度でも可燃性蒸気ができる'] },
-      { cells: ['空気との接触面積が大きい', '酸素と触れる面が増えて反応しやすい'] },
-      { cells: ['熱が逃げにくい', '発火・燃焼に必要な熱が蓄積しやすい'] },
-    ],
-    optionMemos: {
+    lossCategory: 'property_confusion',    style: 'comparison_table',    visualKey: 'combustibility_conditions',    optionMemos: {
       0: '引火点が低く、蒸気を発生しやすく、空気との接触面積が大きい状態は最も燃焼しやすい条件です。これが正解です。',
       1: '引火点が高く、蒸気が出にくく、表面積が小さい状態は燃えにくい条件です。',
       2: '酸素がほとんどなく、熱がすぐ逃げる状態では燃焼しにくくなります。',
@@ -962,22 +958,21 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     },
   },
   'PHYS-006-003': {
+    lossTitle: '乾性油→酸化熱、セルロイド→分解熱、活性炭→吸着熱',
+    shortExplanation:
+      'アマニ油・キリ油は、植物の種子から取れる乾きやすい油。油は空気で酸化するので酸化熱。セルロイドは、ニトロセルロース系の古いプラスチックなので分解熱。活性炭は、表面に物質をくっつける炭なので吸着熱。',
+    visualImage: {
+      src: '/explanations/natural-ignition-substance-mechanism.webp',
+      alt: '乾性油は酸化熱、セルロイドは分解熱、活性炭は吸着熱の対応図',
+      aspectRatio: '4:5',
+      caption: '',
+      replacesVisual: true,
+    },
+
     questionId: 'PHYS-006-003',
     schemaVersion: 1,
     misconceptionId: 'phys-spontaneous-ignition-heat-mechanism-match',
-    lossCategory: 'classification_confusion',
-    lossTitle: '自然発火の発熱機構と代表物質を取り違える',
-    style: 'short',
-    shortExplanation:
-      '自然発火は、発熱機構と代表物質をセットで覚える。乾性油であるアマニ油やキリ油は酸化熱、セルロイドやニトロセルロースは分解熱、活性炭や木炭粉末は吸着熱で押さえる。',
-    visualImage: {
-      src: '/explanations/spontaneous-ignition-heat-mechanisms.webp',
-      alt: '自然発火の頻出3セットとして酸化熱・分解熱・吸着熱と代表物質を整理した図',
-      aspectRatio: '4:5',
-      caption: '物質から熱の種類を選ぶ。',
-      replacesVisual: true,
-    },
-    optionMemos: {
+    lossCategory: 'classification_confusion',    style: 'short',    optionMemos: {
       0: '乾性油は酸化熱、セルロイドは分解熱、活性炭は吸着熱。正しい並びなので、これが正解。',
       1: 'セルロイドと活性炭の対応が逆。セルロイドは分解熱、活性炭は吸着熱で見る。',
       2: '乾性油とセルロイドの対応が逆。乾性油は酸化熱、セルロイドは分解熱。',

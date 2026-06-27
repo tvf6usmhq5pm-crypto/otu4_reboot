@@ -3571,29 +3571,22 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
   },
 
   'PHYS-025-001': {
+    lossTitle: '刺激を加えることで発火しても、混合危険',
+    shortExplanation:
+      '混合危険は、混ぜた瞬間だけではない。2種類以上の物質を混合し、点火源・衝撃・摩擦・加熱などの刺激を加えることで発火・爆発する場合も含む。',
+    visualImage: {
+      src: '/explanations/mixed-danger-stimulus-ignition.webp',
+      alt: '2種類以上の物質を混合し、刺激を加えることで発火爆発しても混合危険に該当することを示す図',
+      aspectRatio: '4:5',
+      caption: '',
+      replacesVisual: true,
+    },
+
     questionId: 'PHYS-025-001',
     schemaVersion: 1,
     misconceptionId: 'mixed-danger-includes-triggered-ignition',
     lossCategory: 'scope_confusion',
-    lossTitle: '混合直後に発火しないものは混合危険ではないと狭く考える',
     style: 'comparison_table',
-    shortExplanation: '混合危険は、混ぜた瞬間に必ず発火するものだけではありません。混合した状態で、衝撃、摩擦、点火源などを受けて発火・爆発する危険が生じる場合も、混合危険に含まれます。',
-    visualBlockTitle: '混合危険は「混ぜた後に危険が生じるか」で見る',
-    tableHeader: ['該当する危険', '考え方'],
-    rows: [
-      { cells: ['酸化性物質 + 還元性物質', '代表的な混合危険の組合せ'], variant: 'correct', isKey: true },
-      { cells: ['空気と接触して自然発火', '接触で危険が生じるため混合危険性物質として扱う'] },
-      { cells: ['水と接触して発熱・発火', '水との接触で危険が生じる'] },
-      { cells: ['衝撃・摩擦・点火源で発火爆発', '混ぜただけで直ちに発火しなくても混合危険に該当する'], variant: 'danger' },
-    ],
-
-    visualImage: {
-      src: '/explanations/mixed-danger-oxidizer-combustible.webp',
-      alt: '酸化性物質と可燃性・還元性物質を混ぜると混合危険になることを示した図',
-      aspectRatio: '4:5',
-      caption: '酸化性と燃える側を近づけない。',
-      replacesVisual: true,
-    },
     optionMemos: {
       0: '強い酸化性物質と還元性物質の組合せは、混合危険のおそれがある。正しい記述。',
       1: '空気との接触で自然発火する物質も、混合危険性物質として考えられる。正しい記述。',

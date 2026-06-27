@@ -4097,29 +4097,31 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     },
   },
   'PHYS-031-002': {
+    lossTitle: 'CO₂=炭素化合物の完全燃焼・重い・弱酸性',
+    shortExplanation:
+      '不完全燃焼で増えるのはCO。CO₂は完全燃焼・呼吸・発酵で生じる重い気体で、水に少し溶けて弱酸性。',
+
+    optionMemos: {
+      0: '無機化合物の不完全燃焼ではなく、炭素化合物の完全燃焼で生じる。重さ・液性も誤り（軽い→重い、アルカリ→酸）。',
+      1: '炭素化合物の完全燃焼・呼吸・発酵で生じ、空気より重く、弱酸性。これが本問の正解。',
+      2: '不完全燃焼で増えるのは一酸化炭素。CO₂は完全燃焼で生じ、重く、弱酸性。「軽い」「アルカリ」も誤り。',
+      3: '無機化合物ではなく炭素化合物の完全燃焼で生じる。「軽い」も誤りで、正しくは重い。',
+      4: '完全燃焼は正しいが、「軽い」「アルカリ」が誤り。CO₂は重く、弱酸性。',
+    },
+
     questionId: 'PHYS-031-002',
     schemaVersion: 1,
     misconceptionId: 'co2-properties-fill-in',
     lossCategory: 'property_confusion',
-    lossTitle: '二酸化炭素の生成過程・重さ・液性(弱酸性)を取り違える',
     style: 'short',
-    shortExplanation:
-      '二酸化炭素は、炭素や炭素化合物の完全燃焼で生成し、空気より重く、水に少し溶けて弱い酸性を示します。不完全燃焼・軽い・アルカリ性という取り違えをまとめて外すのが急所です。',
     visualImage: {
       src: '/explanations/co2-properties.webp',
       alt: '二酸化炭素の3つの性質（完全燃焼で生成・空気より重い・弱酸性）と、もう燃えない性質を整理した図',
       aspectRatio: '4:5',
-      caption: 'A/Bは生成、Cは重さ、Dは液性を見る。',
+      caption: '',
       replacesVisual: true,
     },
-    optionMemos: {
-      0: 'A「無機化合物」、B「不完全」、D「アルカリ」が誤り。CO₂は炭素化合物の完全燃焼で生じ、弱酸性を示す。',
-      1: 'A炭素化合物・B完全・C重い・D酸の正しい組合せ。これが正解。',
-      2: 'B「不完全」、C「軽い」、D「アルカリ」が誤り。不完全燃焼で多くなるのはCOで、CO₂は重く弱酸性。',
-      3: 'A「無機化合物」、C「軽い」が誤り。CO₂は炭素化合物の完全燃焼で生じ、空気より重い。',
-      4: 'B「不完全」、C「軽い」、D「アルカリ」が誤り。正しくは完全・重い・酸。',
     },
-  },
   'PHYS-031-003': {
     questionId: 'PHYS-031-003',
     schemaVersion: 1,

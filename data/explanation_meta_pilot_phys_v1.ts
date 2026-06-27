@@ -383,14 +383,20 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
 
 
   'PHYS-003-001': {
+    lossTitle: '熱伝導率は「大」ではなく「小」で燃えやすい',
+    shortExplanation:
+      '熱伝導率が小さいと、発生した熱が周囲に逃げにくく内部に蓄熱する。熱が逃げやすい「熱伝導率が大きい」は、燃えやすい条件としては誤り。',
+    visualImage: {
+      src: '/explanations/thermal-conductivity-small-heat-trap.webp',
+      alt: '熱伝導率が小さいと熱が逃げず、内部に蓄熱して燃えやすくなることを示す図',
+      aspectRatio: '4:5',
+      caption: '',
+      replacesVisual: true,
+    },
     questionId: 'PHYS-003-001',
     schemaVersion: 1,
     misconceptionId: 'thermal-conductivity-confusion',
-    lossCategory: 'property_confusion',
-    lossTitle: '「熱伝導率が大きい＝燃えやすい」という直感的な誤解',
-    style: 'short',
-    shortExplanation: '燃焼するためには、発生した熱が逃げずに蓄積される必要があります。熱伝導率（熱の伝わりやすさ）が大きい物質は、熱がすぐに周囲へ逃げてしまうため、点火しにくく燃えにくい性質があります。「熱が伝わりやすいから燃えやすい」という直感的な誤解が急所です。',
-    optionMemos: {
+    lossCategory: 'property_confusion',    style: 'short',    optionMemos: {
       0: '周囲の温度が高いほど、発火点や引火点に達しやすいため燃えやすい。正しい記述なので本問の正解ではない。',
       1: '空気（酸素）との接触面積が大きいほど、酸化反応が速く進むため燃えやすい。正しい記述なので本問の正解ではない。',
       2: '熱伝導率が大きいと熱が逃げて蓄積しないため、燃えにくい。これが誤りであり、本問の正解。',
@@ -411,7 +417,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       src: '/explanations/combustibility-factors.webp',
       alt: '燃焼の難易に関係する4つの性質と、関係しない体膨張率を分けた図',
       aspectRatio: '4:5',
-      caption: '燃焼の難易は、酸化のされやすさ・熱伝導率・発熱量・空気との接触面積で見る。',
+      caption: '体膨張率は判断から外す。',
       replacesVisual: true,
     },
     optionMemos: {
@@ -525,16 +531,13 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     },
   },
   'PHYS-003-007-V01': {
-    questionId: 'PHYS-003-007-V01',
+    lossTitle: '引火点が低く、蒸気が出やすく、接触面積が大きいと燃えやすい',
+    shortExplanation:
+      '同じ火源なら、引火点が低く蒸気を発生しやすいほど着火しやすい。空気との接触面積が大きいほど酸素と触れやすく、燃焼しやすくなる。',    shortExplanation:
+      '燃えやすい条件では、熱伝導率だけ「小さい」が正解。熱が逃げにくいと内部に蓄熱し、燃えやすくなる。',    questionId: 'PHYS-003-007-V01',
     schemaVersion: 1,
     misconceptionId: 'combustibility-condition-confusion',
-    lossCategory: 'property_confusion',
-    lossTitle: '燃えやすい条件を「引火点・蒸気・接触面積」の組合せで判断できない',
-    style: 'comparison_table',
-    shortExplanation: '同じ火源を近づけた場合、燃えやすさは「引火点が低い」「蒸気が発生しやすい」「空気との接触面積が大きい」ほど高くなります。逆に、蒸気が出にくい、酸素が少ない、熱が逃げる、表面積が小さい状態は燃えにくくなります。',
-    visualKey: 'combustibility_conditions',
-    tableHeader: ['燃えやすい条件', '理由'],
-    rows: [
+    lossCategory: 'property_confusion',    style: 'comparison_table',    visualKey: 'combustibility_conditions',    rows: [
       { cells: ['引火点が低い・蒸気が出やすい', '低い温度でも可燃性蒸気ができる'] },
       { cells: ['空気との接触面積が大きい', '酸素と触れる面が増えて反応しやすい'] },
       { cells: ['熱が逃げにくい', '発火・燃焼に必要な熱が蓄積しやすい'] },
@@ -971,7 +974,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       src: '/explanations/spontaneous-ignition-heat-mechanisms.webp',
       alt: '自然発火の頻出3セットとして酸化熱・分解熱・吸着熱と代表物質を整理した図',
       aspectRatio: '4:5',
-      caption: '自然発火は、発熱機構と代表例をセットで見る。',
+      caption: '物質から熱の種類を選ぶ。',
       replacesVisual: true,
     },
     optionMemos: {
@@ -3593,7 +3596,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       src: '/explanations/mixed-danger-oxidizer-combustible.webp',
       alt: '酸化性物質と可燃性・還元性物質を混ぜると混合危険になることを示した図',
       aspectRatio: '4:5',
-      caption: '混合危険は、酸化性と可燃性・還元性の組合せで見る。',
+      caption: '酸化性と燃える側を近づけない。',
       replacesVisual: true,
     },
     optionMemos: {
@@ -3628,7 +3631,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       src: '/explanations/mixed-danger-oxidizer-combustible.webp',
       alt: '酸化性物質と可燃性・還元性物質を混ぜると混合危険になることを示した図',
       aspectRatio: '4:5',
-      caption: '混合危険は、酸化性と可燃性・還元性の組合せで見る。',
+      caption: '酸化性と燃える側を近づけない。',
       replacesVisual: true,
     },
     optionMemos: {
@@ -3661,7 +3664,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       src: '/explanations/mixed-danger-oxidizer-combustible.webp',
       alt: '酸化性物質と可燃性・還元性物質を混ぜると混合危険になることを示した図',
       aspectRatio: '4:5',
-      caption: '混合危険は、酸化性と可燃性・還元性の組合せで見る。',
+      caption: '酸化性と燃える側を近づけない。',
       replacesVisual: true,
     },
     optionMemos: {
@@ -4118,7 +4121,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       src: '/explanations/co2-properties.webp',
       alt: '二酸化炭素の3つの性質（完全燃焼で生成・空気より重い・弱酸性）と、もう燃えない性質を整理した図',
       aspectRatio: '4:5',
-      caption: 'CO₂は「完全燃焼・重い・弱酸性・不燃」で押さえる',
+      caption: 'A/Bは生成、Cは重さ、Dは液性を見る。',
       replacesVisual: true,
     },
     optionMemos: {

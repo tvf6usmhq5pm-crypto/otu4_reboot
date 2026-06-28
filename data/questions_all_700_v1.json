@@ -13622,7 +13622,7 @@
     "sectionKey": "phys-010",
     "item_id": 10,
     "item_name": "静電気の基礎メカニズム",
-    "star": 0,
+    "star": 2,
     "difficulty": 2,
     "previousDifficulty": 3,
     "difficultySource": "manual",
@@ -13631,7 +13631,7 @@
     "reviewReason": "",
     "auditPriority": "none",
     "basicCandidate": false,
-    "auditNote": "静電気の発生要因を複数現象から比較する標準問題。計算や複合事例ではないため標準へ変更。",
+    "auditNote": "液体や気体でも静電気が発生することを問う、公論★★対応の重要問題として★2に補正。",
     "question": "静電気の発生要因に関する説明として、誤っているものはどれか。",
     "options": [
       "静電気は、2つの異なる物質が摩擦されたときだけでなく、接触やはく離（引き剥がすこと）によっても発生する。",

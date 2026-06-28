@@ -80,13 +80,14 @@ export function ExplanationCard({ meta, onNext }: ExplanationCardProps) {
         </div>
       ) : null}
 
+      {/* pilot段階では highlightTerms は赤表示しない。必要問題だけ後で限定導入する。 */}
+      {meta.visualImage ? <ExplanationImage image={meta.visualImage} /> : null}
+
       <div style={explanationHeaderStyle}>
         <span style={iconStyle}>💡</span>
         <span style={explanationTitleStyle}>解説</span>
       </div>
 
-      {/* pilot段階では highlightTerms は赤表示しない。必要問題だけ後で限定導入する。 */}
-      {meta.visualImage ? <ExplanationImage image={meta.visualImage} /> : null}
 
       <p style={shortExplanationStyle}>{renderInlineStrongText(meta.shortExplanation)}</p>
 

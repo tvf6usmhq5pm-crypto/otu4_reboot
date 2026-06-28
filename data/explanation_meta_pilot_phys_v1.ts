@@ -35,37 +35,29 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
   },
 
   'PHYS-001-006': {
+    lossTitle: '第4類は「液体」ではなく「蒸気」が燃える',
+    shortExplanation:
+      '引火性液体の燃焼は液体ではなく、蒸気が燃える **蒸気燃焼** である。液体は蒸気を出す係。燃える主役は液面上の蒸気。',
+    optionMemos: {
+      0: '液体そのものが直接燃えているわけではない。燃える主役は液面上の蒸気。',
+      1: '液体の内部で燃えるのではない。燃焼は液面の上で起こる。',
+      2: '液面から出た可燃性蒸気が空気と混ざって燃える。これが正解。',
+      3: '第4類の通常の燃え方は、熱分解ガスではなく蒸発した可燃性蒸気を見る。',
+      4: '水分が燃えるわけではない。燃えるのは可燃性蒸気。',
+    },
+    visualImage: {
+      src: '/explanations/PHYS-001-006.webp',
+      alt: '第4類の引火性液体は液体そのものではなく液面から出た蒸気が燃えることを示す図',
+      caption: '',
+    },
+
     questionId: 'PHYS-001-006',
     schemaVersion: 1,
     misconceptionId: 'phys.combustion.liquid_evaporative',
     lossCategory: 'classification_confusion',
     visualKey: 'vapor_combustion_flow',
-    lossTitle: '第4類の燃焼形態を物質ごとに別物と考えてしまう',
-    style: 'process_diagram',
-    shortExplanation:
-      'ガソリン、灯油、軽油、重油などの引火性液体は、基本的に液面から発生した蒸気が空気と混ざって燃える蒸発燃焼です。液体そのものが表面燃焼・分解燃焼・内部燃焼するわけではありません。',
-    steps: [
-      {
-        label: '第4類危険物は引火性液体',
-        note: '試験では、まず「液体そのもの」ではなく「蒸気」に注目します。',
-      },
-      {
-        label: '液面から蒸気が発生する',
-        note: 'ガソリン・灯油・軽油・重油も、この発想で整理します。',
-      },
-      {
-        label: '蒸気が空気と混合して燃える',
-        note: '通常の燃焼形態は蒸発燃焼です。',
-        variant: 'correct',
-      },
-    ],
-    optionMemos: {
-      0: 'ガソリンは表面燃焼ではありません。液面から発生した蒸気が燃える蒸発燃焼です。',
-      1: '灯油は分解燃焼ではありません。引火性液体なので蒸発燃焼です。',
-      2: '重油は内部燃焼ではありません。液体内部ではなく、発生した蒸気が燃えます。',
-      4: '軽油は自己燃焼ではありません。第4類の引火性液体なので蒸発燃焼です。',
+    style: 'short',
     },
-  },
 
   'PHYS-001-008': {
     questionId: 'PHYS-001-008',

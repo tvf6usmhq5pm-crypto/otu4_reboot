@@ -50,6 +50,19 @@ function renderVisualBlock(meta: ExplanationMeta) {
   return null;
 }
 
+const renderInlineStrongText = (text: string) =>
+  text.split(/(\\*\\*[^*]+\\*\\*)/g).map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return (
+        <strong key={index} style={{ fontWeight: 800 }}>
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+
+    return <span key={index}>{part}</span>;
+  });
+
 export function ExplanationCard({ meta, onNext }: ExplanationCardProps) {
   const visualBlock = meta.visualImage?.replacesVisual ? null : renderVisualBlock(meta);
 
@@ -57,13 +70,15 @@ export function ExplanationCard({ meta, onNext }: ExplanationCardProps) {
     <section style={cardStyle} aria-label="解説">
       <div style={watermarkStyle}>Z4</div>
 
-      <div style={lossHeaderStyle}>
-        <div style={redBarStyle} />
-        <div>
-          <div style={lossCaptionStyle}>この問題の急所</div>
-          <div style={lossTitleStyle}>{meta.lossTitle}</div>
+      {meta.lossTitle?.trim() ? (
+        <div style={lossHeaderStyle}>
+          <div style={redBarStyle} />
+          <div>
+            <div style={lossCaptionStyle}>この問題の急所</div>
+            <div style={lossTitleStyle}>{meta.lossTitle}</div>
+          </div>
         </div>
-      </div>
+      ) : null}
 
       <div style={explanationHeaderStyle}>
         <span style={iconStyle}>💡</span>
@@ -73,7 +88,7 @@ export function ExplanationCard({ meta, onNext }: ExplanationCardProps) {
       {/* pilot段階では highlightTerms は赤表示しない。必要問題だけ後で限定導入する。 */}
       {meta.visualImage ? <ExplanationImage image={meta.visualImage} /> : null}
 
-      <p style={shortExplanationStyle}><InlineMarkdownText text={meta.shortExplanation} /></p>
+      <p style={shortExplanationStyle}><InlineMarkdownText text={renderInlineStrongText(meta.shortExplanation)} /></p>
 
       {visualBlock ? (
         <div style={visualWrapStyle}>

@@ -12065,7 +12065,7 @@
     "sectionKey": "phys-004",
     "item_id": 4,
     "item_name": "引火点・燃焼点・発火点",
-    "star": 2,
+    "star": 1,
     "difficulty": 2,
     "previousDifficulty": 3,
     "difficultySource": "manual",

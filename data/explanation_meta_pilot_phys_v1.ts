@@ -3498,6 +3498,9 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
 
   'PHYS-024-002': {
   questionId: 'PHYS-024-002',
+    schemaVersion: 1,
+    misconceptionId: 'phys-oxidation-allotrope-confusion',
+    lossCategory: 'classification_confusion',
   lossTitle: '',
   style: 'short',
   shortExplanation: '酸化反応は、酸素と結びつくかで判定する。黄リンが赤リンに変わるのは同素体変化で、酸素と結びついていない。',

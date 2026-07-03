@@ -783,23 +783,23 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
   'PHYS-005-003': {
     questionId: 'PHYS-005-003',
     schemaVersion: 1,
-    misconceptionId: 'combustion-range-vol-calculation',
+    misconceptionId: 'combustion-range-concentration-window',
     lossCategory: 'number_confusion',
-    lossTitle: '混合気体の濃度計算で「全体の体積」を間違える',
-    style: 'calculation_step',
-    shortExplanation: '体積パーセント（vol%）は、「空気」ではなく「空気＋蒸気の全体の体積」に対する割合です。蒸気5Lの場合、全体の体積は105L（100+5）になり、濃度は「5 ÷ 105 × 100 ≒ 4.8vol%」となります。これが燃焼範囲（1.4〜7.6vol%）内かを確認します。',
-    visualBlockTitle: '濃度（vol%）は「空気＋蒸気の合計」で割る',
-    calcLines: [
-      { step: '全体積を出す', formula: '100 + 5 = 105L', result: '105L' },
-      { step: '濃度を計算', formula: '5 ÷ 105 × 100', result: '4.76vol%' },
-      { step: '判定', result: '範囲内なので燃焼する' }
-    ],
+    lossTitle: '',
+    style: 'short',
+    shortExplanation: 'この問題は、蒸気のL数をそのまま%として見ないのが急所です。100Lの空気に蒸気5Lを足すと、混ざったあとの全体は105Lになります。この105Lの中に蒸気が5Lあるので、蒸気の割合は5÷105です。これをパーセントに直すために×100をして、約4.8vol%。これは1.4〜7.6vol%の中に入るため燃えます。',
+    visualImage: {
+      src: '/explanations/PHYS-005-003.webp',
+      alt: '燃焼範囲では薄すぎても濃すぎても燃えず、100Lの空気に蒸気を加えたときは全体量で濃度を見ることを示す教育図',
+      aspectRatio: '4:5',
+      caption: '',
+    },
     optionMemos: {
-      0: '1Lの場合、1÷101×100≒0.99%。下限未満。',
-      1: '5Lの場合、5÷105×100≒4.8%。範囲内なので燃焼する。これが正解。',
-      2: '10Lの場合、10÷110×100≒9.1%。上限超え。',
-      3: '15Lの場合、15÷115×100≒13%。上限超え。',
-      4: '20Lの場合、20÷120×100≒16.7%。上限超え。',
+      0: '1Lを足すと、全体は101Lです。この101Lの中に蒸気が1Lあるので、1÷101×100≒1.0vol%。1.4vol%未満なので、薄すぎて燃えません。',
+      1: '5Lを足すと、全体は105Lです。この105Lの中に蒸気が5Lあるので、5÷105×100≒4.8vol%。1.4〜7.6vol%の範囲内です。ここが正解です。',
+      2: '10Lを足すと、全体は110Lです。この110Lの中に蒸気が10Lあるので、10÷110×100≒9.1vol%。7.6vol%を超えるため、濃すぎて燃えません。',
+      3: '15Lを足すと、全体は115Lです。この115Lの中に蒸気が15Lあるので、15÷115×100≒13.0vol%。7.6vol%を大きく超えるため、濃すぎて燃えません。',
+      4: '20Lを足すと、全体は120Lです。この120Lの中に蒸気が20Lあるので、20÷120×100≒16.7vol%。さらに濃すぎるため、燃えません。',
     },
   },
   'PHYS-005-004': {

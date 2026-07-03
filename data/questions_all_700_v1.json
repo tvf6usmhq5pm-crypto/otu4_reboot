@@ -11990,7 +11990,7 @@
     "sectionKey": "phys-003",
     "item_id": 3,
     "item_name": "燃焼の難易",
-    "star": 3,
+    "star": 2,
     "difficulty": 2,
     "previousDifficulty": 2,
     "difficultySource": "manual",

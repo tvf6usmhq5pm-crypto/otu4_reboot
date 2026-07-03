@@ -805,23 +805,23 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
   'PHYS-005-004': {
     questionId: 'PHYS-005-004',
     schemaVersion: 1,
-    misconceptionId: 'combustion-range-vol-calculation',
+    misconceptionId: 'experiment-reading-melting-boiling-ignition-range',
     lossCategory: 'number_confusion',
-    lossTitle: '混合気体の濃度計算で「全体の体積」を間違える',
-    style: 'calculation_step',
-    shortExplanation: '濃度は「蒸気 ÷ (空気＋蒸気) × 100」で求めます。蒸気が15Lの場合、全体の体積は115Lになるため、濃度は「15 ÷ 115 × 100 ≒ 13.0vol%」となります。これが指定された燃焼範囲（6.0〜14vol%）に収まっているかを見極めます。',
-    visualBlockTitle: '濃度（vol%）は「空気＋蒸気の合計」で割る',
-    calcLines: [
-      { step: '全体積を出す', formula: '100 + 15 = 115L', result: '115L' },
-      { step: '濃度を計算', formula: '15 ÷ 115 × 100', result: '13.04vol%' },
-      { step: '判定', result: '範囲内なので燃焼する' }
-    ],
+    lossTitle: '',
+    style: 'short',
+    shortExplanation: 'この型は、実験で見えた変化をそのまま温度の名前に直すと取れます。固体がとけ始めた温度が融点、同じ温度のまま沸いて全部気化した温度が沸点です。火花を近づけて燃えたのは引火であり、火花なしで自然に燃える発火点ではありません。2.0vol%で燃えたことから、その濃度は燃焼範囲内だと分かりますが、燃焼範囲全体までは分かりません。',
+    visualImage: {
+      src: '/explanations/PHYS-005-004.webp',
+      alt: '実験結果から、とけ始めた温度を融点、同じ温度のまま沸いて気化する温度を沸点として読み取る教育図',
+      aspectRatio: '4:5',
+      caption: '',
+    },
     optionMemos: {
-      0: '1Lの濃度は約0.99%。下限未満。',
-      1: '5Lの濃度は約4.8%。下限未満。',
-      2: '15Lの濃度は約13.0%。範囲内であり燃焼する。これが正解。',
-      3: '40Lの濃度は約28.6%。上限超え。',
-      4: '50Lの濃度は約33.3%。上限超え。',
+      0: '-60℃は実験を始めた温度です。まだ固体で、とけ始めた温度ではありません。融点は-35℃なので、今回は選びません。',
+      1: '2.0vol%で燃えたので、2.0vol%が燃焼範囲内だとは分かります。ただし、燃焼範囲が0〜2.0vol%だとは分かりません。今回は選びません。',
+      2: '-35℃で固体が液体になり始めたので、ここは融点です。分解温度ではありません。今回は選びません。',
+      3: '95℃で液温が同じまま沸き続け、その間にすべて気化したので、95℃が沸点です。ここが正解です。',
+      4: '20℃で火花を近づけて燃えたのは引火です。発火点は、火花なしで自然に燃え始める温度なので、この実験からは分かりません。今回は選びません。',
     },
   },
   'PHYS-005-005': {

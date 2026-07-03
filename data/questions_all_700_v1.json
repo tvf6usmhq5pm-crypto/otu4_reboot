@@ -17368,7 +17368,7 @@
     "sectionKey": "phys-024",
     "item_id": 24,
     "item_name": "酸化反応の判定",
-    "star": 1,
+    "star": 2,
     "difficulty": 2,
     "previousDifficulty": 2,
     "difficultySource": "manual",

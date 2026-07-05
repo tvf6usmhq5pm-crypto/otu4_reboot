@@ -1786,20 +1786,27 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
 
 
 
-  'PHYS-012-002': {
+    'PHYS-012-002': {
     questionId: 'PHYS-012-002',
     schemaVersion: 1,
-    misconceptionId: 'state-change-names-and-direction',
+    misconceptionId: 'drying-oil-rags-oxidation-heat-spontaneous-ignition',
     lossCategory: 'classification_confusion',
-    lossTitle: '状態変化の名称と向きを取り違える',
+    lossTitle: '',
+    correctAnswerLine: "正解：① 乾性油がしみ込んだぼろ布を、通風の悪い場所に積み重ねて放置する。",
     style: 'short',
-    shortExplanation: '気体が熱を放出して液体になる状態変化は、凝縮または液化です。固体が液体になるのは融解、液体が固体になるのは凝固です。また、固体が液体を経ずに直接気体になる昇華も存在します。',
+    shortExplanation: "乾性油がしみ込んだぼろ布を重ねて通風の悪い場所に置くと、酸化熱が逃げずにたまります。その熱が大きくなると、火を近づけなくても自然発火しやすくなります。",
+    visualImage: {
+      src: '/explanations/PHYS-012-002.webp',
+      alt: '乾性油がしみ込んだぼろ布を通風の悪い場所に積むと酸化熱がこもり自然発火しやすいことを示す答えカード画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
     optionMemos: {
-      0: '一般に融点は沸点より低い。融点が沸点より高いとはいえない。',
-      1: '固体が液体になる状態変化は凝固ではなく融解。',
-      2: '固体が直接気体になる昇華は存在する。',
-      3: '気体が熱を放出して液体になる変化は凝縮。これが正解。',
-      4: '融点12℃の物質は、20℃では融点を超えているため、通常は固体ではない。',
+      0: "乾性油がしみ込んだぼろ布を重ねると、空気中で酸化して出た熱が逃げにくくなり、自然発火しやすくなります。",
+      1: "密閉できる不燃性容器は、油がしみた布を安全に保管・処理する場面で出る対策です。",
+      2: "直射日光を避ける保管は、第4類危険物全体でよく出る基本管理です。",
+      3: "水に浸す処理は、油がしみた布の酸化熱を抑える対策として出ます。",
+      4: "動植物油類は、乾性油・半乾性油・不乾性油のように乾きやすさでも区別されます。",
     },
   },
   'PHYS-012-003': {

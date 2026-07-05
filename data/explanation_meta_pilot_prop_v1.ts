@@ -209,4 +209,27 @@ export const explanationMetaPilotPropV1: ExplanationMetaMap = {
       4: "水に混ざる液体では普通の泡が消えやすくなります。泡を液面に残すため、水溶性液体用泡を使います。",
     },
   },
+    'PROP-006-004-V01': {
+    questionId: 'PROP-006-004-V01',
+    schemaVersion: 1,
+    misconceptionId: 'diethyl-ether-peroxide-air-sunlight',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    correctAnswerLine: "正解：④ ジエチルエーテル",
+    style: 'short',
+    shortExplanation: "空気・日光・過酸化物を見たら、ジエチルエーテルです。ジエチルエーテルは過酸化物を生じやすく、できた過酸化物は衝撃や加熱で爆発のおそれがあります。",
+    visualImage: {
+      src: '/explanations/PROP-006-004-V01.webp',
+      alt: 'ジエチルエーテルが空気や日光で過酸化物を生じやすく、衝撃や加熱で爆発危険につながることを示す答えカード画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    optionMemos: {
+      0: "二硫化炭素は発火点が約90℃と低く、水を張って蒸気を抑えて保存する物質です。",
+      1: "ベンゼンは引火点が約-11℃の、第4類を代表する引火性液体です。",
+      2: "ピリジンは水に混ざり、特有のにおいがある液体です。",
+      3: "ジエチルエーテルは空気や日光で過酸化物を生じ、その過酸化物が衝撃や加熱で爆発することがあります。",
+      4: "エチルメチルケトンは水に混ざる第1石油類で、泡消火では水溶性液体用泡を使います。",
+    },
+  },
 };

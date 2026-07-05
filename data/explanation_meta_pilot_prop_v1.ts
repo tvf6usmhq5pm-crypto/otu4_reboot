@@ -186,4 +186,27 @@ export const explanationMetaPilotPropV1: ExplanationMetaMap = {
       4: "水溶性液体では普通の泡が消えやすくなります。泡を液面に残すため、水溶性液体用泡を使います。",
     },
   },
+  'PROP-003-006': {
+    questionId: 'PROP-003-006',
+    schemaVersion: 1,
+    misconceptionId: 'acetone-ethyl-methyl-ketone-special-foam',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    correctAnswerLine: "正解：④ アセトンやエチルメチルケトンの火災に泡消火剤を使用する場合は、水溶性液体用のものが必要である。",
+    style: 'short',
+    shortExplanation: "アセトンやエチルメチルケトンは、水に混ざる液体です。普通の泡はそこで消えやすいため、液面を覆い続けられません。水溶性液体用泡は膜を作って泡を残すため、火を抑えられます。",
+    visualImage: {
+      src: '/explanations/PROP-003-006.webp',
+      alt: 'アセトンやエチルメチルケトンは水に混ざる液体で、普通の泡は消えやすく、水溶性液体用泡が必要であることを示す図',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    optionMemos: {
+      0: "水に混ざる液体では普通の泡が消えやすくなります。泡を液面に残すため、水溶性液体用泡を使います。",
+      1: "アセトンやエチルメチルケトンは水に混ざる液体です。普通の泡ではなく、水溶性液体用泡を選びます。",
+      2: "水に混ざる液体では普通の泡が消えやすくなります。泡を液面に残すため、水溶性液体用泡を使います。",
+      3: "アセトンやエチルメチルケトンは水に混ざる液体です。普通の泡は消えやすいため、水溶性液体用泡を使います。",
+      4: "水に混ざる液体では普通の泡が消えやすくなります。泡を液面に残すため、水溶性液体用泡を使います。",
+    },
+  },
 };

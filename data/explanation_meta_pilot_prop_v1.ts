@@ -163,4 +163,27 @@ export const explanationMetaPilotPropV1: ExplanationMetaMap = {
       4: "道路上では水が低い方や側溝へ流れます。ガソリンは水に浮くため、その流れに乗って火災範囲を広げます。",
     },
   },
+  'PROP-003-006-V01': {
+    questionId: 'PROP-003-006-V01',
+    schemaVersion: 1,
+    misconceptionId: 'water-soluble-liquid-special-foam-remains',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    correctAnswerLine: "正解：① 一般の泡は消泡しやすいため、水溶性液体用泡消火剤を用いる。",
+    style: 'short',
+    shortExplanation: "普通の泡は、水溶性液体にふれると消えやすいです。水溶性液体用泡は、液体との間に膜を作って泡を残すため、液面を覆って火を抑えられます。",
+    visualImage: {
+      src: '/explanations/PROP-003-006-V01.webp',
+      alt: '水溶性液体では普通の泡が消えやすく、水溶性液体用泡は膜を作って泡を残し液面を覆えることを示す図',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    optionMemos: {
+      0: "普通の泡は水溶性液体で消えやすくなります。水溶性液体用泡は、液体との間に膜を作って泡を残し、液面を覆えます。",
+      1: "水溶性液体では普通の泡が消えやすくなります。泡を液面に残すため、水溶性液体用泡を使います。",
+      2: "泡なら何でもよいわけではありません。水溶性液体では普通の泡が消えやすいため、専用泡を使います。",
+      3: "粉末や二酸化炭素の話ではありません。泡消火剤を使う場合に、普通の泡ではなく専用泡を選びます。",
+      4: "水溶性液体では普通の泡が消えやすくなります。泡を液面に残すため、水溶性液体用泡を使います。",
+    },
+  },
 };

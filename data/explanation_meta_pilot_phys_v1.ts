@@ -4192,6 +4192,38 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       4: '水素は可燃性、酸素は支燃性で自身は燃えない。可燃/不燃が逆で誤り。',
     },
   },
+'PHYS-012-001': {
+    questionId: 'PHYS-012-001',
+    schemaVersion: 1,
+    misconceptionId: 'boiling-point-elevation-colligative-property',
+    lossCategory: 'property_confusion',
+    lossTitle: '沸点上昇を溶質の種類や蒸気圧上昇で説明してしまう',
+    style: 'short',
+    shortExplanation: '不揮発性の物質を溶媒に溶かすと、溶液の蒸気圧は純粋な溶媒より低くなります。そのため沸騰するにはより高い温度が必要になり、沸点が上がります。希薄溶液では、沸点上昇度は溶質の種類ではなく、質量モル濃度にほぼ比例します。',
+    optionMemos: {
+      0: '沸点上昇では、溶液の沸点は純粋な溶媒より高くなる。',
+      1: '希薄溶液では、沸点上昇度は溶質の種類より粒子数、つまり質量モル濃度に依存する。',
+      2: '沸点上昇度は質量モル濃度にほぼ比例する。これが正解。',
+      3: '濃度が高くなるほど、一般に沸点上昇は大きくなる。',
+      4: '沸点上昇は、溶液の蒸気圧が純溶媒より低くなるために起こる。',
+    },
+  },
+'PHYS-012-002': {
+    questionId: 'PHYS-012-002',
+    schemaVersion: 1,
+    misconceptionId: 'state-change-names-and-direction',
+    lossCategory: 'classification_confusion',
+    lossTitle: '状態変化の名称と向きを取り違える',
+    style: 'short',
+    shortExplanation: '気体が熱を放出して液体になる状態変化は、凝縮または液化です。固体が液体になるのは融解、液体が固体になるのは凝固です。また、固体が液体を経ずに直接気体になる昇華も存在します。',
+    optionMemos: {
+      0: '一般に融点は沸点より低い。融点が沸点より高いとはいえない。',
+      1: '固体が液体になる状態変化は凝固ではなく融解。',
+      2: '固体が直接気体になる昇華は存在する。',
+      3: '気体が熱を放出して液体になる変化は凝縮。これが正解。',
+      4: '融点12℃の物質は、20℃では融点を超えているため、通常は固体ではない。',
+    },
+  },
 };
 
 

@@ -14254,7 +14254,7 @@
     "sectionKey": "phys-012",
     "item_id": 12,
     "item_name": "沸点上昇",
-    "star": 0,
+    "star": 3,
     "difficulty": 2,
     "previousDifficulty": 3,
     "difficultySource": "manual",

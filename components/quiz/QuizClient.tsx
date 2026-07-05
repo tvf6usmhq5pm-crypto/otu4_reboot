@@ -33,6 +33,7 @@ import type { LastSession, OptionIndex } from '../../lib/types';
 import { InlineMarkdownText } from './explanation/MarkdownText';
 import { getExplanationMeta } from '../../data/explanation_meta_index';
 import { ExplanationCard } from './explanation/ExplanationCard';
+import { OptionMemoList } from './explanation/OptionMemoList';
 import { QuestionListModal } from './QuestionListModal';
 
 const OPTION_INDICES: OptionIndex[] = [0, 1, 2, 3, 4];
@@ -430,12 +431,17 @@ export default function QuizClient() {
   const order = session.optionOrders?.[questionId] ?? OPTION_INDICES;
   const revealed = Boolean(session.revealed?.[questionId]);
   const result = isQuestionCorrect(session, questionId);
+  const selectedIndex = session.answers[questionId];
   const explanationMeta = getExplanationMeta(questionId);
   const isLast = session.currentIndex === session.questionIds.length - 1;
   const isFirst = session.currentIndex === 0;
   const isExamMode = session.sessionType === 'mock-exam';
   const hasAnswered = session.answers[questionId] !== undefined;
   const canProceed = true;
+  const optionDetailMemos = currentQuestion.option_details.reduce<Record<number, string>>((acc, detail, index) => {
+    acc[index] = detail;
+    return acc;
+  }, {});
   const progressPercent =
     ((session.currentIndex + 1) / session.questionIds.length) * 100;
 
@@ -609,7 +615,7 @@ export default function QuizClient() {
       <section style={choicesStyle} aria-label="choices">
         {order.map((originalIndex, displayedIndex) => {
           const optionText = currentQuestion.options[originalIndex];
-          const selected = session.answers[questionId] === originalIndex;
+          const selected = selectedIndex === originalIndex;
           const correct = currentQuestion.correct === originalIndex;
 
           let buttonStyle = choiceButtonStyle;
@@ -702,7 +708,11 @@ export default function QuizClient() {
 
       {!isExamMode && revealed && (
         explanationMeta ? (
-          <ExplanationCard meta={explanationMeta} />
+          <ExplanationCard
+            meta={explanationMeta}
+            selectedIndex={selectedIndex}
+            correctIndex={currentQuestion.correct}
+          />
         ) : (
           <section style={explanationStyle}>
             <h2 style={subTitleStyle}>
@@ -712,15 +722,11 @@ export default function QuizClient() {
 
             <p style={explanationTextStyle}><InlineMarkdownText text={currentQuestion.explanation} /></p>
 
-            <details style={detailsStyle}>
-              <summary style={detailsSummaryStyle}>{TEXT.optionDetails}</summary>
-
-              <ul style={detailListStyle}>
-                {currentQuestion.option_details.map((detail, index) => (
-                  <li key={index}><InlineMarkdownText text={detail} /></li>
-                ))}
-              </ul>
-            </details>
+            <OptionMemoList
+              optionMemos={optionDetailMemos}
+              selectedIndex={selectedIndex}
+              correctIndex={currentQuestion.correct}
+            />
           </section>
         )
       )}

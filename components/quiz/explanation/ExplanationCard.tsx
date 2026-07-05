@@ -15,6 +15,8 @@ import { InlineMarkdownText } from './MarkdownText';
 
 type ExplanationCardProps = {
   meta: ExplanationMeta;
+  selectedIndex?: number;
+  correctIndex?: number;
   onNext?: () => void;
 };
 
@@ -63,7 +65,7 @@ const renderInlineStrongText = (text: string) =>
     return <span key={index}>{part}</span>;
   });
 
-export function ExplanationCard({ meta, onNext }: ExplanationCardProps) {
+export function ExplanationCard({ meta, selectedIndex, correctIndex, onNext }: ExplanationCardProps) {
   const visualBlock = meta.visualImage?.replacesVisual ? null : renderVisualBlock(meta);
 
   return (
@@ -103,7 +105,7 @@ export function ExplanationCard({ meta, onNext }: ExplanationCardProps) {
         </div>
       ) : null}
 
-      <OptionMemoList optionMemos={meta.optionMemos} />
+      <OptionMemoList optionMemos={meta.optionMemos} selectedIndex={selectedIndex} correctIndex={correctIndex} />
 
       <div style={ctaRowStyle}>
         <button type="button" style={nextButtonStyle} onClick={onNext}>

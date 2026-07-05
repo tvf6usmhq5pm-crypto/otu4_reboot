@@ -89,6 +89,7 @@ export type ExplanationMeta = {
   misconceptionId: string;
   lossCategory: LossCategory;
   lossTitle: string;
+  correctAnswerLine?: string;
   style: ExplanationStyle;
   shortExplanation: string;
   visualKey?: string;

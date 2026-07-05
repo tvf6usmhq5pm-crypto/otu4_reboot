@@ -7,6 +7,7 @@ export const explanationMetaPilotPropV1: ExplanationMetaMap = {
     misconceptionId: 'rod-shaped-reinforced-liquid-fire-spread',
     lossCategory: 'classification_confusion',
     lossTitle: '',
+    correctAnswerLine: '正解：② 棒状の強化液を放射する消火器',
     style: 'short',
     shortExplanation: "この問題は「強化液がダメ」ではなく、「棒状放射で燃えている液体を飛散させるのがダメ」と見る問題です。粉末・二酸化炭素・泡は液面を飛び散らせにくい消火方法で、強化液も霧状なら使えます。棒状強化液は、液面に強く当たり、ベンゼン・トルエンを飛散させるおそれがあるため不適切です。",
     visualImage: {

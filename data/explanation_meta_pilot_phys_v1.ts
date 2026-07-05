@@ -66,7 +66,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     lossCategory: 'classification_confusion',
     visualKey: 'solid_combustion_compare',
     visualImage: {
-      src: '/explanations/wood-charcoal-combustion.webp',
+      src: '/explanations/PHYS-001-008.webp',
       alt: '\u6728\u6750\u306f\u767a\u751f\u3057\u305f\u53ef\u71c3\u6027\u30ac\u30b9\u304c\u71c3\u3048\u3001\u6728\u70ad\u306f\u56fa\u4f53\u8868\u9762\u304c\u8d64\u71b1\u3057\u3066\u71c3\u3048\u308b\u3053\u3068\u3092\u793a\u3059\u56f3',
       aspectRatio: '4:5',
       caption: '\u6728\u6750\u306f\u30ac\u30b9\u3001\u6728\u70ad\u306f\u8868\u9762\u304c\u71c3\u3048\u308b',
@@ -103,7 +103,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     lossCategory: 'classification_confusion',
     visualKey: 'solid_combustion_compare',
     visualImage: {
-      src: '/explanations/wood-charcoal-combustion.webp',
+      src: '/explanations/PHYS-002-002.webp',
       alt: '\u6728\u6750\u306f\u767a\u751f\u3057\u305f\u53ef\u71c3\u6027\u30ac\u30b9\u304c\u71c3\u3048\u3001\u6728\u70ad\u306f\u56fa\u4f53\u8868\u9762\u304c\u8d64\u71b1\u3057\u3066\u71c3\u3048\u308b\u3053\u3068\u3092\u793a\u3059\u56f3',
       aspectRatio: '4:5',
       caption: '\u6728\u6750\u306f\u30ac\u30b9\u3001\u6728\u70ad\u306f\u8868\u9762\u304c\u71c3\u3048\u308b',
@@ -227,7 +227,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       4: '五酸化リンはリンが十分に酸化された物質で、さらに燃えるものではない。',
     },
     visualImage: {
-      src: '/explanations/carbon-monoxide-burns-at-20c.webp',
+      src: '/explanations/PHYS-001-004.webp',
       alt: '20℃・1気圧で燃えるのは一酸化炭素。一酸化炭素はまだ燃え、二酸化炭素はもう燃えない。',
       caption: '',
     },
@@ -401,7 +401,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     shortExplanation:
       '熱伝導率が小さいと、発生した熱が周囲に逃げにくく内部に蓄熱する。熱が逃げやすい「熱伝導率が大きい」は、燃えやすい条件としては誤り。',
     visualImage: {
-      src: '/explanations/thermal-conductivity-small-heat-trap.webp',
+      src: '/explanations/PHYS-003-001.webp',
       alt: '熱伝導率が小さいと熱が逃げず、内部に蓄熱して燃えやすくなることを示す図',
       aspectRatio: '4:5',
       caption: '',
@@ -428,7 +428,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     shortExplanation:
       '燃焼のしやすさは、酸化されやすさ、熱の蓄積しやすさ、発熱量、酸素との接触面積などで決まります。体膨張率は温度が上がったときの体積変化の割合であり、燃焼の難易とは直接関係しないダミーの性質です。',
     visualImage: {
-      src: '/explanations/combustibility-factors.webp',
+      src: '/explanations/PHYS-003-002.webp',
       alt: '燃焼の難易に関係する4つの性質と、関係しない体膨張率を分けた図',
       aspectRatio: '4:5',
       caption: '体膨張率は判断から外す。',
@@ -987,7 +987,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     shortExplanation:
       'アマニ油・キリ油は、植物の種子から取れる乾きやすい油。油は空気で酸化するので酸化熱。セルロイドは、ニトロセルロース系の古いプラスチックなので分解熱。活性炭は、表面に物質をくっつける炭なので吸着熱。',
     visualImage: {
-      src: '/explanations/natural-ignition-substance-mechanism.webp',
+      src: '/explanations/PHYS-006-003.webp',
       alt: '乾性油は酸化熱、セルロイドは分解熱、活性炭は吸着熱の対応図',
       aspectRatio: '4:5',
       caption: '',
@@ -2259,7 +2259,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     lossTitle: '対流を、液体や気体が動いて熱を運ぶ現象として見分けられない',
     style: 'short',
     visualImage: {
-      src: '/explanations/heat-transfer-types.webp',
+      src: '/explanations/PHYS-017-001.webp',
       alt: '伝導・対流・放射の見分け方。対流は液体や気体が動いて熱を運ぶ。',
       caption: '対流は「液体や気体が動くか」で見分ける。BとDがこれに当たる。',
     },
@@ -2297,7 +2297,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     lossTitle: '水が温まる仕組みを伝導と対流で取り違える',
     style: 'short',
     visualImage: {
-      src: '/explanations/heat-transfer-types.webp',
+      src: '/explanations/PHYS-017-003.webp',
       alt: '伝導・対流・放射の見分け方。鍋の水が循環して温まる対流を示す図。',
       caption: '水が全体に温まるのは、表面から伝導するからではなく、水が循環する対流による。',
     },
@@ -3623,7 +3623,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     shortExplanation:
       '混合危険は、混ぜた瞬間だけではない。2種類以上の物質を混合し、点火源・衝撃・摩擦・加熱などの刺激を加えることで発火・爆発する場合も含む。',
     visualImage: {
-      src: '/explanations/mixed-danger-stimulus-ignition.webp',
+      src: '/explanations/PHYS-025-001.webp',
       alt: '2種類以上の物質を混合し、刺激を加えることで発火爆発しても混合危険に該当することを示す図',
       aspectRatio: '4:5',
       caption: '',
@@ -3664,7 +3664,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     ],
 
     visualImage: {
-      src: '/explanations/mixed-danger-oxidizer-combustible.webp',
+      src: '/explanations/PHYS-025-001-V01.webp',
       alt: '酸化性物質と可燃性・還元性物質を混ぜると混合危険になることを示した図',
       aspectRatio: '4:5',
       caption: '酸化性と燃える側を近づけない。',
@@ -3697,7 +3697,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       { cells: ['性質を確認せず同じ棚にまとめる', '混触のおそれがあり不適切'] },
     ],
     visualImage: {
-      src: '/explanations/mixed-danger-oxidizer-combustible.webp',
+      src: '/explanations/PHYS-025-001-V02.webp',
       alt: '酸化性物質と可燃性・還元性物質を混ぜると混合危険になることを示した図',
       aspectRatio: '4:5',
       caption: '酸化性と燃える側を近づけない。',
@@ -4150,7 +4150,7 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
     lossCategory: 'property_confusion',
     style: 'short',
     visualImage: {
-      src: '/explanations/co2-properties.webp',
+      src: '/explanations/PHYS-031-002.webp',
       alt: '二酸化炭素の3つの性質（完全燃焼で生成・空気より重い・弱酸性）と、もう燃えない性質を整理した図',
       aspectRatio: '4:5',
       caption: '',

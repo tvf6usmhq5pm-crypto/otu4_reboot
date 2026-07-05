@@ -14248,12 +14248,12 @@
     "variantType": "comparison"
   },
   {
-    "id": "PHYS-012-001",
+    "id": "PROP-014-001",
     "category": "物理・化学",
     "subject": "phys",
     "sectionKey": "phys-012",
     "item_id": 12,
-    "item_name": "沸点上昇",
+    "item_name": "動植物油類の性状",
     "star": 3,
     "difficulty": 2,
     "previousDifficulty": 3,
@@ -14285,7 +14285,7 @@
     "card_id": "CARD-PHYS-012"
   },
   {
-    "id": "PHYS-012-002",
+    "id": "PROP-014-002",
     "category": "物理・化学",
     "subject": "phys",
     "sectionKey": "phys-012",

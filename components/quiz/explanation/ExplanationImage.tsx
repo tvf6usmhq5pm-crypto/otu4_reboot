@@ -21,7 +21,7 @@ export function ExplanationImage({ image }: ExplanationImageProps) {
 
   return (
     <figure style={figureStyle}>
-      {image.caption ? <figcaption style={captionStyle}>{image.caption}</figcaption> : null}
+      
 
       <div style={frameStyle}>
         <img

@@ -1,33 +1,26 @@
 import type { ExplanationMetaMap } from './explanation_meta_types';
 
 export const explanationMetaPilotPropV1: ExplanationMetaMap = {
-  'PROP-003-001': {
+      'PROP-003-001': {
     questionId: 'PROP-003-001',
     schemaVersion: 1,
-    misconceptionId: 'prop.extinguish.type4_water_jet',
-    lossCategory: 'procedure_confusion',
-    lossTitle: '第4類火災に棒状放射を使ってしまう',
-    style: 'comparison_table',
-    shortExplanation:
-      '非水溶性の第4類危険物火災では、油面を強く叩く棒状放射は火災を広げるおそれがあります。泡は油面を覆う窒息作用、粉末は抑制作用、二酸化炭素は窒息作用で有効です。',
-    tableHeader: ['強化液の放射方法', '油面への影響', '判断'],
-    rows: [
-      {
-        cells: ['棒状放射', '油面を直接叩き、飛散・拡大のおそれ', '不適切'],
-        variant: 'danger',
-        isKey: true,
-      },
-      {
-        cells: ['霧状放射', '油面を叩きにくい', '棒状放射とは区別する'],
-        variant: 'correct',
-      },
-    ],
+    misconceptionId: 'rod-shaped-reinforced-liquid-fire-spread',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    style: 'short',
+    shortExplanation: "この問題は「強化液がダメ」ではなく、「棒状放射で燃えている液体を飛散させるのがダメ」と見る問題です。粉末・二酸化炭素・泡は液面を飛び散らせにくい消火方法で、強化液も霧状なら使えます。棒状強化液は、液面に強く当たり、ベンゼン・トルエンを飛散させるおそれがあるため不適切です。",
+    visualImage: {
+      src: '/explanations/PROP-003-001.webp',
+      alt: 'ベンゼンやトルエンの火災で棒状の強化液は液体を飛散させるため不適切で、粉末・二酸化炭素・霧状強化液・泡は使えることを示す教育図',
+      aspectRatio: '4:5',
+      caption: '',
+    },
     optionMemos: {
-      0: '泡消火剤は窒息作用で有効です。適切な方法なので、本問の正解（不適切なもの）ではありません。',
-      1: '粉末消火剤は抑制作用で有効です。適切な方法なので、本問の正解ではありません。',
-      2: '二酸化炭素消火剤は窒息作用で有効です。適切な方法なので、本問の正解ではありません。',
-      3: '棒状放射は油面を叩いて飛散させるおそれがあるため不適切です。これが本問の正解です。',
-      4: '霧状放射は油面を叩きにくいため、棒状放射とは区別します。本問の正解ではありません。',
+      0: '消火粉末は、燃焼の連鎖反応を抑えて火を消します。液面に強い放射を当てる方法ではないため、ベンゼンやトルエン火災で使えます。',
+      1: '棒状の強化液を放射すると、燃えているベンゼンやトルエンを飛散させ、火災を広げるおそれがあります。これが不適切な消火器です。',
+      2: '二酸化炭素は、燃えている場所の酸素を少なくして火を消します。液体を飛散させずに消火できるため、ベンゼンやトルエン火災で使えます。',
+      3: '強化液でも、霧状に放射すれば液面に強く当たりにくく、飛散を抑えられます。棒状ではなく霧状にすることがポイントです。',
+      4: '泡は液面を覆って空気を遮り、可燃性蒸気が出るのを抑えます。ベンゼンやトルエンのような液体火災に有効です。',
     },
   },
 

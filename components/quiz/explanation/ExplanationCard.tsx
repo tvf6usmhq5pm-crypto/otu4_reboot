@@ -89,7 +89,7 @@ export function ExplanationCard({ meta, onNext }: ExplanationCardProps) {
       </div>
 
 
-      {!meta.visualImage?.src && <p style={shortExplanationStyle}>{renderInlineStrongText(meta.shortExplanation)}</p>}
+      {meta.shortExplanation.trim() ? <p style={shortExplanationStyle}>{renderInlineStrongText(meta.shortExplanation)}</p> : null}
 
       {!meta.visualImage?.src && visualBlock ? (
         <div style={visualWrapStyle}>
@@ -103,7 +103,7 @@ export function ExplanationCard({ meta, onNext }: ExplanationCardProps) {
         </div>
       ) : null}
 
-      {!meta.visualImage?.src && <OptionMemoList optionMemos={meta.optionMemos} />}
+      <OptionMemoList optionMemos={meta.optionMemos} />
 
       <div style={ctaRowStyle}>
         <button type="button" style={nextButtonStyle} onClick={onNext}>

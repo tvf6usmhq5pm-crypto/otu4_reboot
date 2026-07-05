@@ -1760,22 +1760,30 @@ export const explanationMetaPilotPhysV1: ExplanationMetaMap = {
       4: '陽極と陰極の両方で銀が析出するわけではない。銀板陽極では銀が溶け出す。',
     },
   },
-  'PHYS-012-001': {
+      'PHYS-012-001': {
     questionId: 'PHYS-012-001',
     schemaVersion: 1,
-    misconceptionId: 'boiling-point-elevation-colligative-property',
+    misconceptionId: 'animal-vegetable-oils-flash-point-250',
     lossCategory: 'property_confusion',
-    lossTitle: '沸点上昇を溶質の種類や蒸気圧上昇で説明してしまう',
+    lossTitle: '',
+    correctAnswerLine: '正解：⑤ 動植物油類は、引火点が300℃程度のものをいう。',
     style: 'short',
-    shortExplanation: '不揮発性の物質を溶媒に溶かすと、溶液の蒸気圧は純粋な溶媒より低くなります。そのため沸騰するにはより高い温度が必要になり、沸点が上がります。希薄溶液では、沸点上昇度は溶質の種類ではなく、質量モル濃度にほぼ比例します。',
+    shortExplanation: "動植物油類は、1気圧において引火点が250℃未満のものです。300℃程度は高すぎます。",
+    visualImage: {
+      src: '/explanations/PHYS-012-001.webp',
+      alt: '動植物油類は引火点250℃未満であり、300℃程度は高すぎることを示す答えカード画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
     optionMemos: {
-      0: '沸点上昇では、溶液の沸点は純粋な溶媒より高くなる。',
-      1: '希薄溶液では、沸点上昇度は溶質の種類より粒子数、つまり質量モル濃度に依存する。',
-      2: '沸点上昇度は質量モル濃度にほぼ比例する。これが正解。',
-      3: '濃度が高くなるほど、一般に沸点上昇は大きくなる。',
-      4: '沸点上昇は、溶液の蒸気圧が純溶媒より低くなるために起こる。',
+      0: "引火点以上に熱すると、可燃性蒸気が出て火花で引火する危険があります。",
+      1: "乾性油がしみ込んだぼろ布は、酸化熱がたまると自然発火することがあります。",
+      2: "動植物油類は水に溶けにくい油類です。",
+      3: "燃えている油に注水すると、油が飛び散って火災が広がることがあります。",
+      4: "動植物油類は引火点250℃未満です。300℃程度は高すぎます。",
     },
   },
+
 
 
   'PHYS-012-002': {

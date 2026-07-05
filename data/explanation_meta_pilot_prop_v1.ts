@@ -278,4 +278,27 @@ export const explanationMetaPilotPropV1: ExplanationMetaMap = {
       4: "動植物油類は、乾性油・半乾性油・不乾性油のように乾きやすさでも区別されます。",
     },
   },
+    'PROP-001-005': {
+    questionId: 'PROP-001-005',
+    schemaVersion: 1,
+    misconceptionId: 'hazardous-materials-solid-liquid-not-gas',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    correctAnswerLine: "正解：⑤ 危険物は、1気圧において、20℃で液体または固体である。",
+    style: 'short',
+    shortExplanation: "消防法上の危険物は、1気圧・20℃で液体または固体のものです。気体は該当しません。第1類や第6類のように不燃性の危険物もあり、すべてに引火点があるわけでもありません。",
+    visualImage: {
+      src: '/explanations/PROP-001-005.webp',
+      alt: '消防法上の危険物は20℃・1気圧で固体または液体であり気体は該当しないことを示す答えカード画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    optionMemos: {
+      0: "消防法上の危険物は、20℃・1気圧で固体または液体に限られます。気体はこの定義から外れます。",
+      1: "引火点で整理する中心は第4類の引火性液体です。酸化性固体や酸化性液体は、引火点ではなく酸化力で整理します。",
+      2: "第1類と第6類は酸化性の危険物で、自分が燃えるより他の可燃物の燃焼を助ける性質で出ます。",
+      3: "硫黄や金属粉は第2類の代表例で、C・O・Hを含む有機物とは限りません。",
+      4: "消防法上の危険物は、20℃・1気圧で固体または液体のものです。気体は含まれません。",
+    },
+  },
 };

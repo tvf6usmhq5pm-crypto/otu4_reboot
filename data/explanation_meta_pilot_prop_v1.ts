@@ -347,4 +347,27 @@ export const explanationMetaPilotPropV1: ExplanationMetaMap = {
       4: "燃焼範囲の幅が同じなら、下限界が小さい方が低濃度で引火しやすくなります。",
     },
   },
+    'PROP-004-006': {
+    questionId: 'PROP-004-006',
+    schemaVersion: 1,
+    misconceptionId: 'injection-speed-combustion-range-confusion',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    correctAnswerLine: "正解：② 反応させる物質の注入速度を調整する。── 燃焼範囲",
+    style: 'short',
+    shortExplanation: "燃焼範囲は、可燃性蒸気と空気の濃度範囲の話です。見るのは蒸気濃度で、反応物質を入れる速さではありません。注入速度は、反応速度や発熱管理の論点として整理します。",
+    visualImage: {
+      src: '/explanations/PROP-004-006.webp',
+      alt: '注入速度と燃焼範囲の違いを示す教育画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    optionMemos: {
+      0: "不活性ガスで置換すると酸素濃度を下げ、燃焼できる混合気を作りにくくします。",
+      1: "注入速度は反応速度や発熱管理の論点であり、可燃性蒸気の燃焼範囲とは別です。",
+      2: "防爆構造は、電気設備が点火源になることを防ぐための対策です。",
+      3: "散水や加湿は、乾燥による静電気の発生・蓄積を抑える対策です。",
+      4: "流速を小さくすると、流動や摩擦による静電気の発生を抑えやすくなります。",
+    },
+  },
 };

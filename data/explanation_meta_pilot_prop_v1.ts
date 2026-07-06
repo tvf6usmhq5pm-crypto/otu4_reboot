@@ -324,4 +324,27 @@ export const explanationMetaPilotPropV1: ExplanationMetaMap = {
       4: "第4類は水より軽いものが多く、水に浮いて広がるものが多いです。",
     },
   },
+  'PROP-002-005': {
+    questionId: 'PROP-002-005',
+    schemaVersion: 1,
+    misconceptionId: 'fire-risk-not-judged-by-liquid-specific-gravity',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    correctAnswerLine: "正解：③ 液体の比重が大きい物質ほど、蒸気比重や燃焼範囲も必ず大きくなるため、火災危険性は液体の比重だけで判断できる。",
+    style: 'short',
+    shortExplanation: "火災危険性は、液体の比重だけでは判断できません。第4類では、沸点が低く可燃性蒸気を出しやすいこと、燃焼範囲の下限界が小さいこと、燃焼範囲が広いことが危険性の判断材料になります。したがって、液体の比重だけで火災危険性を決める説明は誤りです。",
+    visualImage: {
+      src: '/explanations/PROP-002-005.webp',
+      alt: '第4類危険物の火災危険性は液体の比重だけでなく可燃性蒸気や燃焼範囲で判断することを示す答えカード画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    optionMemos: {
+      0: "燃焼範囲の下限界が小さいほど、少ない蒸気量で燃焼範囲に入りやすくなります。",
+      1: "沸点が低い物質は蒸発しやすく、可燃性蒸気を発生しやすいため危険性が大きくなります。",
+      2: "液体の比重と蒸気比重・燃焼範囲は別の性質であり、火災危険性は液体の比重だけでは判断できません。",
+      3: "下限界が同じなら、上限界が大きいほど燃焼できる濃度幅が広くなります。",
+      4: "燃焼範囲の幅が同じなら、下限界が小さい方が低濃度で引火しやすくなります。",
+    },
+  },
 };

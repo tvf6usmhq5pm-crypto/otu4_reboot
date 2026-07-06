@@ -301,4 +301,27 @@ export const explanationMetaPilotPropV1: ExplanationMetaMap = {
       4: "消防法上の危険物は、20℃・1気圧で固体または液体のものです。気体は含まれません。",
     },
   },
+  'PROP-002-003': {
+    questionId: 'PROP-002-003',
+    schemaVersion: 1,
+    misconceptionId: 'water-soluble-liquid-dilution-flash-point-up',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    correctAnswerLine: "正解：④ 水溶性のものは、水で薄めると引火点が低くなる。",
+    style: 'short',
+    shortExplanation: "水溶性の第4類危険物は、水で薄めると濃度が下がり、引火点は高くなる傾向があります。したがって、「水で薄めると引火点が低くなる」は逆です。第4類は、可燃性蒸気・静電気・低所滞留も合わせて整理します。",
+    visualImage: {
+      src: '/explanations/PROP-002-003.webp',
+      alt: '水溶性の第4類危険物を水で薄めると濃度が下がり引火点が高くなることを示す答えカード画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    optionMemos: {
+      0: "第4類の蒸気は空気より重いものが多く、床面やくぼ地など低い場所に滞留しやすいです。",
+      1: "非水溶性の第4類は電気を通しにくく、流動やかくはんで静電気が蓄積しやすいです。",
+      2: "第4類は引火性液体で、液面から出た可燃性蒸気が空気と混合して燃焼します。",
+      3: "水溶性のものは水で薄めると濃度が下がり、引火点は高くなります。",
+      4: "第4類は水より軽いものが多く、水に浮いて広がるものが多いです。",
+    },
+  },
 };

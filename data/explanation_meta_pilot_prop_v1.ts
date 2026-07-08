@@ -370,4 +370,27 @@ export const explanationMetaPilotPropV1: ExplanationMetaMap = {
       4: "流速を小さくすると、流動や摩擦による静電気の発生を抑えやすくなります。",
     },
   },
+  'PROP-005-008': {
+    questionId: 'PROP-005-008',
+    schemaVersion: 1,
+    misconceptionId: 'gasoline-static-injection-unsafe-factors',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：④ A、C、D',
+    style: 'short',
+    shortExplanation: 'ガソリン注入時は、静電気の発生と放電火花を防ぐことが重要です。見るのは、作業者の帯電、注入管の位置、注入速度です。導電性の小さい服・靴、底部から離した注入管、高速注入は事故要因になります。',
+    visualImage: {
+      src: '/explanations/PROP-005-008.webp',
+      alt: 'ガソリン注入時の静電気事故防止',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    optionMemos: {
+      0: '接地・ボンディングは静電気を逃がす対策であり、事故要因ではありません。',
+      1: '導電性の小さい服や靴と高速注入は危険要因ですが、注入管の位置も確認します。',
+      2: '接地は安全対策で、速度だけを危険要因として見る組合せでは不十分です。',
+      3: '服装・注入管の位置・注入速度はいずれも静電気事故に関係します。',
+      4: '接地を事故要因に含めると、安全対策と危険操作を取り違えます。',
+    },
+  },
 };

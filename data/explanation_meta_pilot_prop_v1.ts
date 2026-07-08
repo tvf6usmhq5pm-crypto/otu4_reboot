@@ -416,4 +416,27 @@ export const explanationMetaPilotPropV1: ExplanationMetaMap = {
       4: '湿度を上げることではなく、液面を水で覆うことが貯蔵上の要点です。',
     },
   },
+  'PROP-006-012': {
+    questionId: 'PROP-006-012',
+    schemaVersion: 1,
+    misconceptionId: 'carbon-disulfide-basic-properties',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：① 発火点が低く、水より重く、有毒な可燃性蒸気を発生する。',
+    style: 'short',
+    shortExplanation: '二硫化炭素は発火点が約90℃と低く、水より重く、水に溶けにくい液体です。見るのは、低い発火点と、可燃性で有毒な蒸気を出す危険性です。',
+    visualImage: {
+      src: '/explanations/PROP-006-012.webp',
+      alt: '二硫化炭素の水張り貯蔵と可燃性蒸気の抑制',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    optionMemos: {
+      0: '二硫化炭素は発火点が約90℃と低く、水より重く、有毒な可燃性蒸気を発生します。',
+      1: '二硫化炭素は水より重く、水に溶けにくい液体です。',
+      2: '発火点が低いため、火気や高温体に近づけない管理が必要です。',
+      3: '二硫化炭素は第4類の特殊引火物で、不燃性液体ではありません。',
+      4: '二硫化炭素の蒸気は空気より重く、低所に滞留しやすい性質があります。',
+    },
+  },
 };

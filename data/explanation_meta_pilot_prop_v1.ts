@@ -462,4 +462,27 @@ export const explanationMetaPilotPropV1: ExplanationMetaMap = {
       4: 'アセトアルデヒドは第4類の特殊引火物で、火気を避けて貯蔵します。',
     },
   },
+  'PROP-006-002': {
+    questionId: 'PROP-006-002',
+    schemaVersion: 1,
+    misconceptionId: 'carbon-disulfide-autoignition-temperature',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：② 発火点は約90℃である。',
+    style: 'short',
+    shortExplanation: '発火点は、外部の火源がなくても自ら燃え始める温度です。二硫化炭素はその温度が約90℃と低く、第4類の中でも特に着火しやすい危険物として整理します。',
+    visualImage: {
+      src: '/explanations/PROP-006-002.webp',
+      alt: '二硫化炭素の発火点は約90℃で低い',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    optionMemos: {
+      0: '二硫化炭素は水より重く、水に溶けにくい液体です。',
+      1: '二硫化炭素の発火点は約90℃で、第4類の中でも低い部類です。',
+      2: '二硫化炭素の引火点は約-30℃で、常温でも危険な蒸気を発生します。',
+      3: '二硫化炭素は可燃性蒸気を発生しやすく、蒸気には毒性もあります。',
+      4: '二硫化炭素は液面に水を張る、水没させるなどして可燃性蒸気の発生を抑えます。',
+    },
+  },
 };

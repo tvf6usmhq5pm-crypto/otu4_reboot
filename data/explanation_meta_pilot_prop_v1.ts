@@ -393,4 +393,27 @@ export const explanationMetaPilotPropV1: ExplanationMetaMap = {
       4: '接地を事故要因に含めると、安全対策と危険操作を取り違えます。',
     },
   },
+  'PROP-006-003': {
+    questionId: 'PROP-006-003',
+    schemaVersion: 1,
+    misconceptionId: 'carbon-disulfide-water-cover-vapor-suppression',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：③ 水で覆うことで、可燃性で有毒な蒸気が空気と混ざるのを防ぐため。',
+    style: 'short',
+    shortExplanation: '二硫化炭素は水より重く、水に溶けにくい液体です。見るのは、水で覆うことで可燃性で有毒な蒸気を空気に出しにくくする点です。水張りや水没は、無害化や消火ではなく、蒸気の発生・混合を抑えるためです。',
+    visualImage: {
+      src: '/explanations/PROP-006-003.webp',
+      alt: '二硫化炭素を水で覆って可燃性蒸気を抑える',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    optionMemos: {
+      0: '二硫化炭素は水で安定な不燃物に変化するわけではありません。',
+      1: '過酸化物の生成が問題になる代表例は、ジエチルエーテルの長期保存です。',
+      2: '水で液面やタンクを覆うと、可燃性で有毒な蒸気が空気と混ざりにくくなります。',
+      3: '二硫化炭素は水に溶けにくく、水に溶かして安全化する物質ではありません。',
+      4: '湿度を上げることではなく、液面を水で覆うことが貯蔵上の要点です。',
+    },
+  },
 };

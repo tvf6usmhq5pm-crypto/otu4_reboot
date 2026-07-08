@@ -439,4 +439,27 @@ export const explanationMetaPilotPropV1: ExplanationMetaMap = {
       4: '二硫化炭素の蒸気は空気より重く、低所に滞留しやすい性質があります。',
     },
   },
+  'PROP-006-008': {
+    questionId: 'PROP-006-008',
+    schemaVersion: 1,
+    misconceptionId: 'acetaldehyde-water-soluble-inert-gas-storage',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：② 水に溶けるため水張りは適さず、窒素などの不活性ガスを封入して貯蔵する。',
+    style: 'short',
+    shortExplanation: '水に溶けるかどうかで、蒸気を抑える方法が分かれます。水に溶けにくい二硫化炭素は水張り、アセトアルデヒドと酸化プロピレンは窒素などの不活性ガス封入で貯蔵します。',
+    visualImage: {
+      src: '/explanations/PROP-006-008.webp',
+      alt: 'アセトアルデヒドは水張りではなく窒素などの不活性ガスを封入して貯蔵する',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    optionMemos: {
+      0: '水を張って蒸気を抑えるのは、水に溶けにくい二硫化炭素の貯蔵法です。',
+      1: 'アセトアルデヒドは水に溶けるため、窒素などの不活性ガスを封入して貯蔵します。',
+      2: 'アセトアルデヒドの引火点は約-39℃で、常温でも危険な蒸気を発生します。',
+      3: 'アセトアルデヒドは酸化されると酢酸になります。',
+      4: 'アセトアルデヒドは第4類の特殊引火物で、火気を避けて貯蔵します。',
+    },
+  },
 };

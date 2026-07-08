@@ -485,4 +485,27 @@ export const explanationMetaPilotPropV1: ExplanationMetaMap = {
       4: '二硫化炭素は液面に水を張る、水没させるなどして可燃性蒸気の発生を抑えます。',
     },
   },
+  'PROP-007-008': {
+    questionId: 'PROP-007-008',
+    schemaVersion: 1,
+    misconceptionId: 'toluene-flash-point-room-temperature-risk',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：② 引火点は常温20℃より高く、常温では引火しにくい。',
+    style: 'short',
+    shortExplanation: '引火点は、可燃性蒸気に火気があれば引火できる目安の温度です。トルエンは約4℃なので、常温20℃では引火危険域に入ります。',
+    visualImage: {
+      src: '/explanations/PROP-007-008.webp',
+      alt: 'トルエンの引火点は約4℃で常温20℃では引火危険域に入る',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    optionMemos: {
+      0: 'トルエンは芳香族炭化水素で、特有のにおいをもつ無色透明の液体です。',
+      1: 'トルエンの引火点は約4℃で、常温20℃より低い温度です。',
+      2: 'トルエンは水に溶けにくく、アルコールなどの有機溶剤に溶けます。',
+      3: 'トルエンの蒸気は空気より重く、低所に滞留しやすい性質があります。',
+      4: 'トルエンはニトロ化により、トリニトロトルエンの原料になります。',
+    },
+  },
 };

@@ -508,4 +508,27 @@ export const explanationMetaPilotPropV1: ExplanationMetaMap = {
       4: 'トルエンはニトロ化により、トリニトロトルエンの原料になります。',
     },
   },
+  'PROP-013-001': {
+    questionId: 'PROP-013-001',
+    schemaVersion: 1,
+    misconceptionId: 'creosote-oil-solubility-confusion',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：③ アルコールなどの有機溶剤にも水にもよく溶ける。',
+    style: 'short',
+    shortExplanation: 'クレオソート油は有機溶剤には溶けますが、水には溶けません。水に溶けるかどうかで整理すると混同を防ぎやすいです。引火点は約75℃で、第3石油類に分類されます。',
+    visualImage: {
+      src: '/explanations/PROP-013-001.webp',
+      alt: 'クレオソート油は有機溶剤に溶けるが水には溶けない',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    optionMemos: {
+      0: 'クレオソート油は20℃で黒色または濃黄褐色の粘性のある油状液体です。',
+      1: 'クレオソート油はナフタレンやアントラセンなどを含む混合物です。',
+      2: 'クレオソート油は有機溶剤には溶けますが、水には溶けません。',
+      3: 'クレオソート油は木材防腐に用いられる防腐剤です。',
+      4: 'クレオソート油は有毒で、取扱いには注意が必要です。',
+    },
+  },
 };

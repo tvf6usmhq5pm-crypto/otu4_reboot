@@ -215,6 +215,29 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
     },
     reviewCtaLabel: '類別をもう1問',
   },
+  'LAW-015-005': {
+    questionId: 'LAW-015-005',
+    schemaVersion: 1,
+    misconceptionId: 'law.prevention-regulation.supervisor-author-confusion',
+    lossCategory: 'scope_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：③ 予防規程は、当該製造所等の危険物保安監督者が作成し、認可を受けなければならない。',
+    style: 'short',
+    shortExplanation: '予防規程を作成するのは、危険物保安監督者ではなく所有者等です。見るのは「だれが作るか」で、認可を受ける相手は市町村長等です。保安監督者は現場の監督役であり、予防規程の作成者ではありません。',
+    visualImage: {
+      src: '/explanations/LAW-015-005.webp',
+      alt: '予防規程は所有者等が作成し市町村長等が認可することを示す法令カード画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    optionMemos: {
+      0: '地震発生時の施設・設備の点検や応急措置は、予防規程に定める事項に含まれます。',
+      1: '予防規程を定める場合や変更する場合は、市町村長等の認可を受けなければなりません。',
+      2: '予防規程の作成者は所有者等であり、危険物保安監督者ではありません。',
+      3: '災害その他の非常時に取るべき措置も、予防規程に定める事項です。',
+      4: '火災予防上必要があるときは、市町村長等から予防規程の変更を命ぜられることがあります。',
+    },
+  },
 };
 
 

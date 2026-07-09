@@ -57,22 +57,28 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
     reviewCtaLabel: '手続き区分をもう1問',
   },
 
-  'LAW-011-001': {
+    'LAW-011-001': {
     questionId: 'LAW-011-001',
     schemaVersion: 1,
     misconceptionId: 'law.safety_course.interval_5y',
     lossCategory: 'number_confusion',
-    lossTitle: '保安講習の期間を5年と混同',
-    style: 'number_card',
-    shortExplanation: '危険物の取扱作業に従事する危険物取扱者の保安講習は、5年に1回ではありません。継続して従事する場合は、免状交付日または前回講習日以後の最初の4月1日から3年以内ごとに受講します。',
-    highlightTerms: ['3年以内', '5年'],
-    numberHighlight: {
-      value: '3',
-      unit: '年以内',
-      label: '保安講習の基本周期',
-      danger: '5年ではない',
+    lossTitle: '',
+    correctAnswerLine: '正解：③ 危険物の取扱作業に従事する危険物取扱者は、5年に1回、保安講習を受けなければならない。',
+    style: 'short',
+    shortExplanation: '保安講習は、5年に1回ではありません。見るのは受講の周期で、危険物取扱作業に従事する危険物取扱者は3年以内に1回受講します。基準は免状交付日または前回講習受講日以後の最初の4月1日です。',
+    visualImage: {
+      src: '/explanations/LAW-011-001.webp',
+      alt: '保安講習は5年ではなく3年以内に1回であることを示す法令カード画像',
+      aspectRatio: '4:5',
+      caption: '',
     },
-    reviewCtaLabel: '保安講習をもう1問',
+    optionMemos: {
+      0: '保安講習は都道府県をまたいで受講でき、免状の交付都道府県に限定されません。',
+      1: '免状を持たない所有者は危険物取扱者ではないため、保安講習の受講義務者には含まれません。',
+      2: '受講周期は5年ではなく、免状交付日または前回講習受講日後の最初の4月1日から3年以内です。',
+      3: '丙種でも、製造所等で危険物の取扱作業に従事していれば保安講習の対象です。',
+      4: '受講義務がある危険物取扱者が正当な理由なく受講しないと、免状返納命令の対象になることがあります。',
+    },
   },
 
   'LAW-004-008': {

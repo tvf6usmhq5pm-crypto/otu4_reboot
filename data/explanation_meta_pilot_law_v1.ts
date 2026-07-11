@@ -138,7 +138,7 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
       aspectRatio: '4:5',
       caption: '',
     },
-    supplementalImageLabel: '保安距離表を見る',
+    supplementalImageLabel: '保安距離画像を見る',
     shortExplanation:
       '保安距離は、名称の似た施設ではなく、法令が指定する対象範囲で切り分けます。架空か埋設か、敷地外か同一敷地内か、学校の範囲はどこまでかを条件まで確認します。',
     facilityItems: [

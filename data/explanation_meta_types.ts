@@ -94,6 +94,8 @@ export type ExplanationMeta = {
   shortExplanation: string;
   visualKey?: string;
   visualImage?: ExplanationVisualImage;
+  supplementalImage?: ExplanationVisualImage;
+  supplementalImageLabel?: string;
   highlightTerms?: string[];
 
   visualBlockTitle?: string;

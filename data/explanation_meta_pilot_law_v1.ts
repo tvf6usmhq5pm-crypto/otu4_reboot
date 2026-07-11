@@ -124,9 +124,23 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
     misconceptionId: 'law.safety_distance.target_scope',
     lossCategory: 'scope_confusion',
     lossTitle: '保安距離の対象施設の混同',
+    correctAnswerLine: '正解：③ 病院',
     style: 'facility_map',
+    visualImage: {
+      src: '/explanations/LAW-020-002-trap.webp',
+      alt: '保安距離の対象施設と、対象外になりやすい選択肢を示す解説画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    supplementalImage: {
+      src: '/explanations/LAW-020-002.webp',
+      alt: '保安距離の対象施設と必要距離を3mから50mまで整理した一覧表',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    supplementalImageLabel: '保安距離表を見る',
     shortExplanation:
-      '保安距離は、対象施設と必要距離をセットで覚える問題です。特に、架空電線、敷地外の住居、学校・病院、重要文化財の距離を整理します。',
+      '保安距離は、名称の似た施設ではなく、法令が指定する対象範囲で切り分けます。架空か埋設か、敷地外か同一敷地内か、学校の範囲はどこまでかを条件まで確認します。',
     facilityItems: [
       {
         label: '病院・幼稚園・保育園〜高校・劇場等',
@@ -173,10 +187,11 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
       },
     ],
     optionMemos: {
-      0: '重要文化財でひっかかりますが、対象は「重要文化財等の建造物」です。重要文化財を保管する倉庫というだけでは対象にしません。',
-      1: '対象は架空電線です。埋設電線は対象外で、さらに7,000Vちょうどは「7,000V超」にも当たりません。',
-      3: '住居は対象ですが、製造所等の敷地外にある住居です。同一敷地内の住居は対象外です。',
-      4: '大学・短期大学はこの保安距離の対象施設としてはひっかけです。幼稚園・保育園〜高校・病院・劇場等を30mで押さえます。',
+      0: '保安距離50m以上の対象は、重要文化財等そのものに当たる建造物です。',
+      1: '保安距離の対象となる電線は、7,000Vを超える特別高圧架空電線です。',
+      2: '病院は、多人数を収容する施設として30m以上の保安距離が必要です。',
+      3: '住居は、製造所等の敷地外にあるものが10m以上の保安距離の対象です。',
+      4: '学校の30m対象は幼稚園から高等学校までで、大学・短期大学は対象範囲の外です。',
     },
     reviewCtaLabel: '保安距離をもう1問',
   },

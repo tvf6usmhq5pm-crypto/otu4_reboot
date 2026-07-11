@@ -1,5 +1,6 @@
 ﻿'use client';
 
+import { useEffect, useState } from 'react';
 import type { CSSProperties } from 'react';
 import type { ExplanationMeta } from '../../../data/explanation_meta_types';
 import { CalculationStep } from './CalculationStep';
@@ -66,6 +67,13 @@ const renderInlineStrongText = (text: string) =>
   });
 
 export function ExplanationCard({ meta, selectedIndex, correctIndex, onNext }: ExplanationCardProps) {
+  const [isSupplementalImageOpen, setIsSupplementalImageOpen] = useState(false);
+
+  useEffect(() => {
+    setIsSupplementalImageOpen(false);
+  }, [meta.questionId]);
+
+  const supplementalImageId = `supplemental-image-${meta.questionId}`;
   const visualBlock = meta.visualImage?.replacesVisual ? null : renderVisualBlock(meta);
 
   return (
@@ -92,6 +100,27 @@ export function ExplanationCard({ meta, selectedIndex, correctIndex, onNext }: E
 
 
       {meta.shortExplanation.trim() ? <p style={shortExplanationStyle}>{renderInlineStrongText(meta.shortExplanation)}</p> : null}
+
+      {meta.supplementalImage ? (
+        <div style={supplementalImageSectionStyle}>
+          <button
+            type="button"
+            style={supplementalImageButtonStyle}
+            onClick={() => setIsSupplementalImageOpen((current) => !current)}
+            aria-expanded={isSupplementalImageOpen}
+            aria-controls={supplementalImageId}
+          >
+            <span>{meta.supplementalImageLabel ?? '補足資料を見る'}</span>
+            <span aria-hidden="true">{isSupplementalImageOpen ? '▲' : '▼'}</span>
+          </button>
+
+          {isSupplementalImageOpen ? (
+            <div id={supplementalImageId} style={supplementalImageContentStyle}>
+              <ExplanationImage image={meta.supplementalImage} />
+            </div>
+          ) : null}
+        </div>
+      ) : null}
 
       {!meta.visualImage?.src && visualBlock ? (
         <div style={visualWrapStyle}>
@@ -203,6 +232,32 @@ const shortExplanationStyle: CSSProperties = {
   lineHeight: 1.75,
 };
 
+const supplementalImageSectionStyle: CSSProperties = {
+  position: 'relative',
+  zIndex: 1,
+  margin: '2px 0 12px',
+};
+
+const supplementalImageButtonStyle: CSSProperties = {
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  gap: 8,
+  border: '1px solid #d9b36a',
+  borderRadius: 12,
+  padding: '10px 12px',
+  background: '#fff8e8',
+  color: '#8a5200',
+  fontSize: 13,
+  fontWeight: 800,
+  cursor: 'pointer',
+  textAlign: 'left',
+};
+
+const supplementalImageContentStyle: CSSProperties = {
+  marginTop: 4,
+};
 const visualBlockTitleStyle: CSSProperties = {
   position: 'relative',
   zIndex: 1,

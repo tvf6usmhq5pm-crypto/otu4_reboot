@@ -261,6 +261,29 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
       4: '許可権者は施設の種類や区域によって確認します。',
     },
   },
+  'LAW-006-005': {
+    questionId: 'LAW-006-005',
+    schemaVersion: 1,
+    misconceptionId: 'law.temporary_use_condition_confusion',
+    lossCategory: 'scope_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：④ 変更工事に係る部分以外の部分について市町村長等の承認を受け、完成検査前に使用すること。',
+    style: 'short',
+    shortExplanation: '仮使用は、変更工事に係る部分以外を市町村長等の承認を受けて完成検査前に使用する制度です。工事中の部分を使用する制度ではありません。工事していない部分を使う条件として整理します。',
+    visualImage: {
+      src: '/explanations/LAW-006-005.webp',
+      alt: '変更工事部分と仮使用できる部分を示す法令カード画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    optionMemos: {
+      0: '変更工事に係る部分以外は、承認を受けることで仮使用できます。',
+      1: '変更工事中の部分は、完成検査前に使用することはできません。',
+      2: '仮使用は完成検査前の一時的な使用を認める制度です。',
+      3: '仮使用は施設変更時の制度で、仮貯蔵や仮取扱いとは異なります。',
+      4: '市町村長等の承認を受けることが仮使用の条件です。',
+    },
+  },
 
 };
 

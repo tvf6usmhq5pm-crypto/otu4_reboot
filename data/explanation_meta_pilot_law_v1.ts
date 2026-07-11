@@ -284,6 +284,29 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
       4: '市町村長等の承認を受けることが仮使用の条件です。',
     },
   },
+  'LAW-006-002-V02': {
+    questionId: 'LAW-006-002-V02',
+    schemaVersion: 1,
+    misconceptionId: 'law.permission_authority_scope_case_confusion',
+    lossCategory: 'scope_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：② A:市町村長 B:都道府県知事 C:都道府県知事',
+    style: 'short',
+    shortExplanation: '消防本部及び消防署を置く市町村では市町村長、消防本部等を置かない区域や複数市町村にまたがる移送取扱所では都道府県知事が許可します。消防体制が地域対応か広域対応かで判断します。',
+    visualImage: {
+      src: '/explanations/LAW-006-002-V02.webp',
+      alt: '消防体制と設置許可権者の判断を示す法令カード画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    optionMemos: {
+      0: '消防本部及び消防署を置く市の区域では市町村長です。',
+      1: '消防本部及び消防署を置かない区域では都道府県知事です。',
+      2: '複数市町村にまたがる移送取扱所は都道府県知事です。',
+      3: '消防長や消防署長は設置許可権者ではありません。',
+      4: '総務大臣ではありません。',
+    },
+  },
 
 };
 

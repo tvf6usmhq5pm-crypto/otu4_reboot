@@ -238,6 +238,30 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
       4: '火災予防上必要があるときは、市町村長等から予防規程の変更を命ぜられることがあります。',
     },
   },
+  'LAW-006-002': {
+    questionId: 'LAW-006-002',
+    schemaVersion: 1,
+    misconceptionId: 'law.permission_authority_area_confusion',
+    lossCategory: 'scope_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：③ A:市町村長 ／ B:都道府県知事 ／ C:完成検査',
+    style: 'short',
+    shortExplanation: '設置許可を出す者は、消防体制が整った地域かどうかで変わります。消防本部及び消防署を置く市町村では市町村長、それ以外の区域では都道府県知事が許可します。工事完了後は完成検査を受けます。',
+    visualImage: {
+      src: '/explanations/LAW-006-002.webp',
+      alt: '消防本部の有無による許可権者と完成検査を示す法令カード画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    optionMemos: {
+      0: '消防本部及び消防署を置く市町村では、市町村長が設置許可を行います。',
+      1: '消防体制がないその他の区域では、都道府県知事が許可します。',
+      2: '工事完了後は、技術上の基準に適合しているか完成検査を受けます。',
+      3: '消防署長は設置許可を行う権者ではありません。',
+      4: '許可権者は施設の種類や区域によって確認します。',
+    },
+  },
+
 };
 
 

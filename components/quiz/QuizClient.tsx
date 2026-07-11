@@ -44,7 +44,7 @@ const CHOICE_FOCUS_CSS = `
 }
 
 .z4-choice-button:focus-visible {
-  outline: 2px solid rgba(14, 26, 43, 0.58);
+  outline: 2px solid #C9A55A;
   outline-offset: 2px;
 }
 `;

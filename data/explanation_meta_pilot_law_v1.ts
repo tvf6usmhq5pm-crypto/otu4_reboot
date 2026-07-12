@@ -246,6 +246,30 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
     },
     reviewCtaLabel: '移動タンク貯蔵所をもう1問',
   },
+  'LAW-036-010': {
+    questionId: 'LAW-036-010',
+    schemaVersion: 1,
+    misconceptionId: 'law.transport.mixed_loading_prohibition',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：④ 第1類危険物と第4類危険物',
+    style: 'short',
+    visualImage: {
+      src: '/explanations/LAW-036-010.webp',
+      alt: '第1類の酸化性固体と第4類の引火性液体を同じ車両に混載できないことを示す画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    shortExplanation:
+      '第1類は燃焼を助ける酸化性固体、第4類は蒸気が燃える引火性液体です。燃焼を助ける側と燃える側を同じ車両に積むと火災が拡大しやすいため、この組合せは混載禁止です。',
+    optionMemos: {
+      0: '第5類は自己反応性物質で、加熱や衝撃による反応に注意します。',
+      1: '第4類は引火性液体で、液体から発生する蒸気が燃えます。',
+      2: '第2類は可燃性固体で、火気による着火に注意する危険物です。',
+      3: '第1類は酸化性固体、第4類は引火性液体で、この組合せは混載禁止です。',
+      4: '第3類には、自然発火性物質や禁水性物質が含まれます。',
+    },
+  },
   'LAW-002-002': {
     questionId: 'LAW-002-002',
     schemaVersion: 1,

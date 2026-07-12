@@ -3116,6 +3116,43 @@
     "variantType": "reinforcement"
   },
   {
+    "id": "LAW-010-010",
+    "category": "法令",
+    "subject": "law",
+    "sectionKey": "law-010",
+    "item_id": 10,
+    "item_name": "免状の返納命令者",
+    "star": 2,
+    "difficulty": 2,
+    "previousDifficulty": 2,
+    "difficultySource": "manual",
+    "difficultyUpdatedAt": "2026-07-12",
+    "reviewFlag": false,
+    "reviewReason": "",
+    "auditPriority": "none",
+    "basicCandidate": false,
+    "auditNote": "公論★2。免状の交付主体と返納命令者の対応を問う主体型。",
+    "question": "法令上、免状の返納を命じることができるのは、次のうちどれか。",
+    "options": [
+      "消防長",
+      "都道府県知事",
+      "消防庁長官",
+      "消防署長",
+      "市町村長"
+    ],
+    "correct": 1,
+    "explanation": "免状に関する権限は、製造所等の許可に関する権限とは分けて考えます。危険物取扱者免状を交付する主体を確認すると、返納命令を行う主体も判断できます。",
+    "option_details": [
+      "消防長は、消防本部の事務を統括する職です。",
+      "都道府県知事は危険物取扱者免状を交付し、法令違反等がある場合には返納を命じることができます。",
+      "消防庁長官は、国の消防行政を所管する消防庁の長です。",
+      "消防署長は、消防署の事務を管理する職です。",
+      "市町村長等は、製造所等の設置・変更許可や使用停止命令など、施設に関する権限を担います。"
+    ],
+    "label": "免状返納命令：都道府県知事",
+    "card_id": "CARD-LAW-A02"
+  },
+  {
     "id": "LAW-011-001",
     "category": "法令",
     "subject": "law",

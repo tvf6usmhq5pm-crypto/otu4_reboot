@@ -1,4 +1,4 @@
-﻿import type { ExplanationMetaMap } from './explanation_meta_types';
+import type { ExplanationMetaMap } from './explanation_meta_types';
 
 /**
  * otu4 explanation meta pilot law v1
@@ -196,6 +196,31 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
     reviewCtaLabel: '保安距離をもう1問',
   },
 
+  'LAW-010-010': {
+    questionId: 'LAW-010-010',
+    schemaVersion: 1,
+    misconceptionId: 'law.license.return_order_authority',
+    lossCategory: 'procedure_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：② 都道府県知事',
+    visualImage: {
+      src: '/explanations/LAW-010-010.webp',
+      alt: '免状返納命令は都道府県知事が行うことを示す法令カード画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    style: 'short',
+    shortExplanation:
+      '危険物取扱者免状の交付者は都道府県知事です。したがって、免状の返納命令も都道府県知事が行います。',
+    optionMemos: {
+      0: '消防長は、消防本部の事務を統括する職です。',
+      1: '都道府県知事は危険物取扱者免状を交付し、返納を命じることができます。',
+      2: '消防庁長官は、消防行政を所管する国の機関です。',
+      3: '消防署長は、免状返納命令を行う者ではありません。',
+      4: '市町村長等は、製造所等の施設に関する権限を担います。',
+    },
+    reviewCtaLabel: '免状手続きをもう1問',
+  },
   'LAW-002-002': {
     questionId: 'LAW-002-002',
     schemaVersion: 1,

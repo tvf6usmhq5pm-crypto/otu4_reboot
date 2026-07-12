@@ -379,6 +379,40 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
     reviewCtaLabel: '届出手続きをもう1問',
   },
 
+
+  'LAW-004-007': {
+    questionId: 'LAW-004-007',
+    schemaVersion: 1,
+    misconceptionId: 'law.designated_quantity.place_judgement',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：② 各場所ごとに倍数を判定し、いずれの場所も指定数量未満のため、規制は市町村条例による。',
+    style: 'short',
+    visualImage: {
+      src: '/explanations/LAW-004-007.webp',
+      alt: '危険物は同じ事業所でも場所ごとに指定数量を判定することを示す解説画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    supplementalImage: {
+      src: '/explanations/shitei-suryo.webp',
+      alt: '第4類危険物の指定数量を区分ごとに確認できる参照カード',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    supplementalImageLabel: '指定数量まとめ画像を見る',
+    shortExplanation:
+      '指定数量の判定は、同じ事業所でも危険物を置いている場所ごとに確認します。場所ごとの数量が指定数量未満なら、消防法ではなく市町村条例による規制になります。',
+    optionMemos: {
+      0: '指定数量の倍数は場所ごとに判定するため、別々の場所の数量を単純合算しません。',
+      1: '同一事業所でも場所ごとに判定し、各場所が指定数量未満なら市町村条例による規制になります。',
+      2: '危険物の数量は、すべての場合で事業所全体を単純合算するわけではありません。',
+      3: '指定数量未満でも、市町村条例による規制が行われる場合があります。',
+      4: '指定数量未満の基準は、消防法令だけでなく市町村条例にも関係します。',
+    },
+    reviewCtaLabel: '指定数量をもう1問',
+  },
+
   'LAW-002-002': {
     questionId: 'LAW-002-002',
     schemaVersion: 1,

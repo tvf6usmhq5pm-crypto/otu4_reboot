@@ -270,6 +270,33 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
       4: '第3類には、自然発火性物質や禁水性物質が含まれます。',
     },
   },
+
+  'LAW-037-006': {
+    questionId: 'LAW-037-006',
+    schemaVersion: 1,
+    misconceptionId: 'law.extinguisher.class4.water',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：⑤ 第4類、第5類、第6類の危険物 ── 水消火器（棒状）',
+    style: 'short',
+    visualImage: {
+      src: '/explanations/LAW-037-006.webp',
+      alt: '第4類危険物火災に棒状の水を使用すると危険であることを示す画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    shortExplanation:
+      '第4類危険物の多くは水より軽く、水をかけると燃えている液体が広がる危険があります。そのため棒状の水は適応しません。',
+    optionMemos: {
+      0: '強化液消火器（霧状）は第4類、第5類、第6類の火災に適応します。',
+      1: '二酸化炭素消火器は第4類危険物の火災に適応します。',
+      2: '泡消火器は第4類、第5類、第6類の火災に適応します。',
+      3: '粉末消火器（炭酸水素塩類等）は第4類危険物の火災に適応します。',
+      4: '棒状の水は第4類危険物の火災には使用しません。',
+    },
+    reviewCtaLabel: '消火設備をもう1問',
+  },
+
   'LAW-002-002': {
     questionId: 'LAW-002-002',
     schemaVersion: 1,

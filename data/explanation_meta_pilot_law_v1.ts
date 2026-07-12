@@ -297,6 +297,34 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
     reviewCtaLabel: '消火設備をもう1問',
   },
 
+
+  'LAW-037-010': {
+    questionId: 'LAW-037-010',
+    schemaVersion: 1,
+    misconceptionId: 'law.extinguisher.required_unit',
+    lossCategory: 'classification_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：⑤ 危険物は、指定数量の100倍を1所要単位とする。',
+    highlightTerms: ['消火能力の量'],
+    style: 'short',
+    visualImage: {
+      src: '/explanations/LAW-037-010.webp',
+      alt: '危険物の指定数量10倍を1所要単位として必要な消火能力を考える画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    shortExplanation:
+      '所要単位とは、火災に備えて必要となる「消火能力の量」です。危険物の量が増えるほど必要な消火能力も増えるため、危険物は指定数量10倍を1所要単位として計算します。',
+    optionMemos: {
+      0: '耐火構造の製造所の建築物は、延べ面積100㎡を1所要単位として計算します。',
+      1: '耐火構造でない製造所の建築物は、延べ面積50㎡を1所要単位として計算します。',
+      2: '耐火構造の貯蔵所の建築物は、延べ面積150㎡を1所要単位として計算します。',
+      3: '耐火構造でない貯蔵所の建築物は、延べ面積75㎡を1所要単位として計算します。',
+      4: '危険物は指定数量10倍を1所要単位として計算します。',
+    },
+    reviewCtaLabel: '消火設備計算をもう1問',
+  },
+
   'LAW-002-002': {
     questionId: 'LAW-002-002',
     schemaVersion: 1,

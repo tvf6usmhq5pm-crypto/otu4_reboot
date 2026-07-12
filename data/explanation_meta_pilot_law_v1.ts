@@ -352,6 +352,33 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
     reviewCtaLabel: '定期点検をもう1問',
   },
 
+
+  'LAW-007-005': {
+    questionId: 'LAW-007-005',
+    schemaVersion: 1,
+    misconceptionId: 'law.notification.facility_staff',
+    lossCategory: 'procedure_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：③ 危険物施設保安員を定めたとき',
+    style: 'short',
+    visualImage: {
+      src: '/explanations/LAW-007-005.webp',
+      alt: '危険物施設保安員を定めたときは市町村長等への届出が不要であることを示す画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    shortExplanation:
+      '製造所等の手続きでは、届出が必要なものと不要なものがあります。危険物施設保安員は施設の保安を担当する役割ですが、定めたときの届出は不要です。',
+    optionMemos: {
+      0: '危険物保安監督者を定めたときは届出が必要です。',
+      1: '危険物保安統括管理者の解任は届出が必要です。',
+      2: '危険物施設保安員を定めたときは届出不要です。',
+      3: '製造所等の譲渡を受けたときは届出が必要です。',
+      4: '製造所等の用途を廃止したときは届出が必要です。',
+    },
+    reviewCtaLabel: '届出手続きをもう1問',
+  },
+
   'LAW-002-002': {
     questionId: 'LAW-002-002',
     schemaVersion: 1,

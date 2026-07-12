@@ -325,6 +325,33 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
     reviewCtaLabel: '消火設備計算をもう1問',
   },
 
+
+  'LAW-018-006': {
+    questionId: 'LAW-018-006',
+    schemaVersion: 1,
+    misconceptionId: 'law.periodic_inspection.record',
+    lossCategory: 'procedure_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：① 定期点検を行い、点検記録を作成して保存する。',
+    style: 'short',
+    visualImage: {
+      src: '/explanations/LAW-018-006.webp',
+      alt: '危険物施設の定期点検から記録作成と保存までの流れを示す画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    shortExplanation:
+      '製造所等を管理する責任がある「所有者等」が、安全な状態を維持するために定期点検を行います。点検後は「点検記録」を作成し、保存します。',
+    optionMemos: {
+      0: '所有者等は定期点検を行い、点検記録を作成して保存します。',
+      1: '定期点検を行う者は危険物取扱者だけに限定されません。',
+      2: '定期点検では施設の位置、構造及び設備が技術上の基準に適合しているか確認します。',
+      3: '定期点検の義務は施設の種類や条件によって異なります。',
+      4: '移動タンク貯蔵所も定期点検の対象です。',
+    },
+    reviewCtaLabel: '定期点検をもう1問',
+  },
+
   'LAW-002-002': {
     questionId: 'LAW-002-002',
     schemaVersion: 1,

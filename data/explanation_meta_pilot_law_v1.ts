@@ -221,6 +221,31 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
     },
     reviewCtaLabel: '免状手続きをもう1問',
   },
+  'LAW-028-005': {
+    questionId: 'LAW-028-005',
+    schemaVersion: 1,
+    misconceptionId: 'law.mobile_tank.ignition_point',
+    lossCategory: 'number_confusion',
+    lossTitle: '',
+    correctAnswerLine: '正解：③ 40℃未満',
+    style: 'short',
+    visualImage: {
+      src: '/explanations/LAW-028-005.webp',
+      alt: '引火点40℃未満の危険物を注入するとき原動機停止することを示す法令カード画像',
+      aspectRatio: '4:5',
+      caption: '',
+    },
+    shortExplanation:
+      '引火点が低い危険物ほど、蒸気に引火する危険があります。移動タンク貯蔵所から注入するときは、引火点40℃未満の危険物で原動機を停止します。',
+    optionMemos: {
+      0: '引火点30℃は40℃未満に含まれる温度です。',
+      1: '引火点35℃は40℃未満に含まれる温度です。',
+      2: '引火点40℃未満の危険物を注入するときは原動機を停止します。',
+      3: '引火点45℃は40℃未満の基準には該当しません。',
+      4: '引火点50℃は40℃未満の基準には該当しません。',
+    },
+    reviewCtaLabel: '移動タンク貯蔵所をもう1問',
+  },
   'LAW-002-002': {
     questionId: 'LAW-002-002',
     schemaVersion: 1,

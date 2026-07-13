@@ -115,8 +115,8 @@ function validateQuestions(rawQuestions: RawQuestion[]): ValidationResult {
     byDifficultySource: {},
   };
 
-  if (rawQuestions.length !== 700) {
-    errors.push(`Expected 700 questions, got ${rawQuestions.length}`);
+  if (rawQuestions.length !== 701) {
+    errors.push(`Expected 701 questions, got ${rawQuestions.length}`);
   }
 
   const ids = new Set<string>();
@@ -152,8 +152,8 @@ function validateQuestions(rawQuestions: RawQuestion[]): ValidationResult {
     }
   });
 
-  if (summary.bySubject.law !== 300) {
-    errors.push(`Expected law 300, got ${summary.bySubject.law}`);
+  if (summary.bySubject.law !== 301) {
+    errors.push(`Expected law 301, got ${summary.bySubject.law}`);
   }
 
   if (summary.bySubject.phys !== 200) {
@@ -164,9 +164,9 @@ function validateQuestions(rawQuestions: RawQuestion[]): ValidationResult {
     errors.push(`Expected prop 200, got ${summary.bySubject.prop}`);
   }
 
-  if (summary.byDifficultySource.manual !== 700) {
+  if (summary.byDifficultySource.manual !== 701) {
     errors.push(
-      `Expected difficultySource manual 700, got ${
+      `Expected difficultySource manual 701, got ${
         summary.byDifficultySource.manual ?? 0
       }`,
     );

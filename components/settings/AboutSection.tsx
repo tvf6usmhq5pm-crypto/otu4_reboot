@@ -3,7 +3,7 @@ import type { CSSProperties } from 'react';
 export default function AboutSection() {
   return (
     <div style={wrapStyle}>
-      <InfoRow label="問題データ" value="独自作問700問" />
+      <InfoRow label="問題データ" value="独自作問700問以上" />
       <InfoRow label="確認方針" value="全問手作業で確認" />
       <InfoRow label="バージョン" value="1.0.0" />
 

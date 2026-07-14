@@ -182,6 +182,7 @@ function buildSessionFromMode(mode: string | null, subject: string | null, id: s
       sessionType: 'daily-10',
       label: TEXT.smartLabel,
       count: 10,
+      preferImageQuestions: true,
       filters,
     });
   }
@@ -198,6 +199,7 @@ function buildSessionFromMode(mode: string | null, subject: string | null, id: s
     sessionType: 'daily-10',
     label: TEXT.daily10Label,
     count: 10,
+    preferImageQuestions: true,
     filters,
   });
 }
@@ -455,7 +457,7 @@ export default function QuizClient() {
 
     if (correct === true || correct === false) {
       recordQuestionAnswer(targetQuestionId, correct);
-    
+
       if (targetSession.sessionType === 'weak-points' && correct === true) {
         markWeaknessRecovered(targetQuestionId);
       }

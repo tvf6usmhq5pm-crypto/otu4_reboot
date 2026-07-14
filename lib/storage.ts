@@ -117,8 +117,37 @@ export function getSessionStorageKey(sessionType: SessionType): string {
   }
 }
 
+function isDevelopmentSession(
+  session: LastSession | undefined,
+): boolean {
+  return Boolean(
+    session?.label.startsWith('DEV:'),
+  );
+}
+
+function loadPersistedSession(
+  storageKey: string,
+): LastSession | undefined {
+  const session = readJson<LastSession>(
+    storageKey,
+  );
+
+  if (isDevelopmentSession(session)) {
+    removeStorageValue(storageKey);
+    return undefined;
+  }
+
+  return session;
+}
 export function saveLastSession(session: LastSession): void {
-  writeJson(getSessionStorageKey(session.sessionType), session);
+  if (isDevelopmentSession(session)) {
+    return;
+  }
+
+  writeJson(
+    getSessionStorageKey(session.sessionType),
+    session,
+  );
 }
 
 export function loadLastSession(): LastSession | undefined;
@@ -127,13 +156,15 @@ export function loadLastSession(
   sessionType?: SessionType,
 ): LastSession | undefined {
   if (sessionType) {
-    return readJson<LastSession>(getSessionStorageKey(sessionType));
+    return loadPersistedSession(
+      getSessionStorageKey(sessionType),
+    );
   }
 
   return (
-    readJson<LastSession>(STORAGE_KEYS.SESSION_DAILY) ??
-    readJson<LastSession>(STORAGE_KEYS.SESSION_MOCK) ??
-    readJson<LastSession>(STORAGE_KEYS.SESSION_DRILL)
+    loadPersistedSession(STORAGE_KEYS.SESSION_DAILY) ??
+    loadPersistedSession(STORAGE_KEYS.SESSION_MOCK) ??
+    loadPersistedSession(STORAGE_KEYS.SESSION_DRILL)
   );
 }
 

@@ -1,3 +1,4 @@
+import { getExplanationMeta } from '../data/explanation_meta_index';
 import {
   STANDARD_MOCK,
   type LastSession,
@@ -23,6 +24,9 @@ export interface BuildSessionOptions {
   filters?: SessionFilters;
   questionIds?: string[];
   now?: string;
+
+  /** 今日の10問で画像対応問題をソフト優先する。 */
+  preferImageQuestions?: boolean;
 }
 
 /**
@@ -94,6 +98,81 @@ function pickRandomQuestions(pool: Question[], count: number): Question[] {
   return shuffle(pool).slice(0, Math.min(count, pool.length));
 }
 
+const DAILY_IMAGE_TARGET = 2;
+const DAILY_IMAGE_MAX = 3;
+
+function hasExplanationImage(question: Question): boolean {
+  return Boolean(getExplanationMeta(question.id)?.visualImage?.src);
+}
+
+/**
+ * 今日の10問用。
+ * 画像対応問題を2問確保し、通常の母集団に余裕がある場合は最大3問に抑える。
+ * 画像が不足する場合は通常問題で補完する。
+ */
+function pickImagePreferredQuestions(pool: Question[], count: number): Question[] {
+  if (pool.length === 0 || count <= 0) {
+    return [];
+  }
+
+  const limitedCount = Math.min(count, pool.length);
+  const imagePool = pool.filter(hasExplanationImage);
+  const nonImagePool = pool.filter((question) => !hasExplanationImage(question));
+
+  const preferredImageCount = Math.min(
+    DAILY_IMAGE_TARGET,
+    limitedCount,
+    imagePool.length,
+  );
+
+  const maximumImageCount = Math.min(
+    DAILY_IMAGE_MAX,
+    limitedCount,
+    imagePool.length,
+  );
+
+  const selectedImages = pickRandomQuestions(
+    imagePool,
+    preferredImageCount,
+  );
+
+  const selectedIds = new Set(
+    selectedImages.map((question) => question.id),
+  );
+
+  const guaranteedNonImageCount = Math.min(
+    Math.max(0, limitedCount - maximumImageCount),
+    nonImagePool.length,
+  );
+
+  const selectedNonImages = pickRandomQuestions(
+    nonImagePool,
+    guaranteedNonImageCount,
+  );
+
+  for (const question of selectedNonImages) {
+    selectedIds.add(question.id);
+  }
+
+  const remainingCount =
+    limitedCount - selectedIds.size;
+
+  const remainingPool = pool.filter(
+    (question) => !selectedIds.has(question.id),
+  );
+
+  const remaining = pickRandomQuestions(
+    remainingPool,
+    remainingCount,
+  );
+
+  return shuffle([
+    ...selectedImages,
+    ...selectedNonImages,
+    ...remaining,
+  ]);
+}
+
 /**
  * questionIds指定がある場合の問題取得。
  */
@@ -119,7 +198,9 @@ function buildPracticeQuizSet(options: BuildSessionOptions): QuizSet {
   }
 
   const pool = filterQuestions(options.filters ?? {});
-  const selected = pickRandomQuestions(pool, count);
+  const selected = options.preferImageQuestions
+    ? pickImagePreferredQuestions(pool, count)
+    : pickRandomQuestions(pool, count);
 
   return {
     sessionType: options.sessionType,

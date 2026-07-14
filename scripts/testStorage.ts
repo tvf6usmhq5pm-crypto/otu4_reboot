@@ -25,6 +25,7 @@ import {
   saveLastSession,
   saveResult,
   writeStorageValue,
+  getSessionStorageKey,
 } from '../lib/storage';
 
 type LocalStorageMock = {
@@ -321,10 +322,68 @@ function testBrokenJsonRecovery(): void {
   console.log('PASS broken JSON recovery');
 }
 
+function testDevelopmentSessionIsolation(): void {
+  resetStorage();
+
+  const normalSession = buildTestSession('daily-10');
+
+  saveLastSession(normalSession);
+
+  const developmentSession = {
+    ...normalSession,
+    label: 'DEV: PROP-014-001',
+    questionIds: normalSession.questionIds.slice(0, 1),
+  };
+
+  saveLastSession(developmentSession);
+
+  const normalAfterDevelopmentSave =
+    loadLastSession('daily-10');
+
+  assertEqual(
+    normalAfterDevelopmentSave?.label,
+    normalSession.label,
+    'development session must not overwrite daily session',
+  );
+
+  assertEqual(
+    normalAfterDevelopmentSave?.questionIds.length,
+    normalSession.questionIds.length,
+    'daily session question count must remain unchanged',
+  );
+
+  const dailyStorageKey =
+    getSessionStorageKey('daily-10');
+
+  writeStorageValue(
+    dailyStorageKey,
+    JSON.stringify(developmentSession),
+  );
+
+  const staleDevelopmentSession =
+    loadLastSession('daily-10');
+
+  assertEqual(
+    staleDevelopmentSession,
+    undefined,
+    'stale development session must not resume as daily-10',
+  );
+
+  assertEqual(
+    readStorageValue(dailyStorageKey),
+    undefined,
+    'stale development session must be removed from storage',
+  );
+
+  resetStorage();
+}
+
 function run(): void {
   console.log('Running storage tests...');
 
   testLastSessionStorage();
+  testDevelopmentSessionIsolation();
+  console.log('PASS development session isolation');
   testQuestionProgressStorage();
   testSavedQuestionStorage();
   testWeaknessStorage();

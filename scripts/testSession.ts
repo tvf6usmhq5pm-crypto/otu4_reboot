@@ -1,3 +1,4 @@
+import { getExplanationMeta } from '../data/explanation_meta_index';
 import {
   answerQuestion,
   buildLastSession,
@@ -109,6 +110,51 @@ function testDaily10(): void {
   assertValidOptionOrders(session);
 
   console.log('PASS daily-10 session generation');
+}
+
+function countImageQuestions(questionIds: string[]): number {
+  return questionIds.filter(
+    (questionId) => Boolean(getExplanationMeta(questionId)?.visualImage?.src),
+  ).length;
+}
+
+function testDaily10ImagePreference(): void {
+  const subjects = [undefined, 'law', 'phys', 'prop'] as const;
+
+  for (const subject of subjects) {
+    for (let attempt = 0; attempt < 30; attempt++) {
+      const session = buildLastSession({
+        sessionType: 'daily-10',
+        count: 10,
+        now: FIXED_NOW,
+        preferImageQuestions: true,
+        filters: subject ? { subject } : undefined,
+      });
+
+      const imageCount = countImageQuestions(session.questionIds);
+
+      assertEqual(
+        session.questionIds.length,
+        10,
+        `daily-10 ${subject ?? 'all'} should contain 10 questions`,
+      );
+
+      assertUnique(
+        session.questionIds,
+        `daily-10 ${subject ?? 'all'} should remain unique`,
+      );
+
+      assert(
+        imageCount >= 2,
+        `daily-10 ${subject ?? 'all'} should contain at least 2 image questions`,
+      );
+
+      assert(
+        imageCount <= 3,
+        `daily-10 ${subject ?? 'all'} should contain at most 3 image questions`,
+      );
+    }
+  }
 }
 
 function testMockExamShape(): LastSession {
@@ -244,6 +290,8 @@ function run(): void {
   console.log('Running session tests...');
 
   testDaily10();
+  testDaily10ImagePreference();
+  console.log('PASS daily-10 image soft priority');
   const mockSession = testMockExamShape();
   testOptionIndexConversion(mockSession);
   testSummariesWithAllCorrect(mockSession);

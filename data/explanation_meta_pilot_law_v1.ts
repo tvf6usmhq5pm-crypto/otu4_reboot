@@ -109,6 +109,13 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
         result: '5.5倍',
       },
     ],
+    supplementalImage: {
+      src: '/explanations/shitei-suryo.webp',
+      alt: '第4類危険物の区分、水溶性、指定数量、代表例を整理した指定数量一覧表',
+      aspectRatio: '4:5',
+      caption: 'ベンゼンは第1石油類・非水溶性、アセトンは第1石油類・水溶性、灯油は第2石油類・非水溶性として指定数量を確認します。',
+    },
+    supplementalImageLabel: '指定数量表を見る',
     optionMemos: {
       0: 'ベンゼンを水溶性として扱うと、指定数量を誤ります。',
       1: '灯油の1.5倍を切り捨てると、合計がズレます。',

@@ -453,7 +453,8 @@ export default function QuizClient() {
   const isFirst = session.currentIndex === 0;
   const isExamMode = session.sessionType === 'mock-exam';
   const hasAnswered = session.answers[questionId] !== undefined;
-  const canProceed = true;
+  // 練習モードは戻れない一方通行なので、未回答のまま次へ進ませない。本番モードは未回答でも進める。
+  const canProceed = isExamMode || hasAnswered;
   const optionDetailMemos = currentQuestion.option_details.reduce<Record<number, string>>((acc, detail, index) => {
     acc[index] = detail;
     return acc;
@@ -785,11 +786,7 @@ export default function QuizClient() {
             type="button"
             onClick={handleNext}
             disabled={!canProceed}
-            style={{
-              ...primaryButtonStyle,
-              opacity: canProceed ? 1 : 0.48,
-              cursor: canProceed ? 'pointer' : 'not-allowed',
-            }}
+            style={canProceed ? primaryButtonStyle : disabledPrimaryButtonStyle}
           >
             {isLast ? (isExamMode ? TEXT.submit : TEXT.result) : TEXT.next}
           </button>
@@ -1409,9 +1406,19 @@ const primaryButtonStyle: CSSProperties = {
   fontSize: 14,
   fontWeight: 800,
   whiteSpace: 'nowrap',
+  cursor: 'pointer',
   boxShadow: '0 8px 16px rgba(169, 121, 50, 0.26)',
   fontFamily:
     '"Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif',
+};
+
+const disabledPrimaryButtonStyle: CSSProperties = {
+  ...primaryButtonStyle,
+  border: '1px solid #D8D2C6',
+  background: '#E7E2D9',
+  color: '#A39B8E',
+  boxShadow: 'none',
+  cursor: 'not-allowed',
 };
 
 const secondaryFooterButtonStyle: CSSProperties = {

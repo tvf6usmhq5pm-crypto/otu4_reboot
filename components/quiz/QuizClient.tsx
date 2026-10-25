@@ -453,8 +453,7 @@ export default function QuizClient() {
   const isFirst = session.currentIndex === 0;
   const isExamMode = session.sessionType === 'mock-exam';
   const hasAnswered = session.answers[questionId] !== undefined;
-  // 練習モードは戻れない一方通行なので、未回答のまま次へ進ませない。本番モードは未回答でも進める。
-  const canProceed = isExamMode || hasAnswered;
+  const canProceed = true;
   const optionDetailMemos = currentQuestion.option_details.reduce<Record<number, string>>((acc, detail, index) => {
     acc[index] = detail;
     return acc;
@@ -755,38 +754,37 @@ export default function QuizClient() {
       )}
 
       <footer style={footerStyle}>
-        {/* 前の問題・問題一覧は本番モード専用。練習モードは「次へ」だけの一方通行。 */}
-        <div style={isExamMode ? footerInnerStyle : practiceFooterInnerStyle}>
-          {isExamMode && (
-            <button
-              type="button"
-              onClick={handlePrevious}
-              disabled={isFirst}
-              style={{
-                ...secondaryFooterButtonStyle,
-                opacity: isFirst ? 0.45 : 1,
-                cursor: isFirst ? 'not-allowed' : 'pointer',
-              }}
-            >
-              {TEXT.previous}
-            </button>
-          )}
+        <div style={footerInnerStyle}>
+          <button
+            type="button"
+            onClick={handlePrevious}
+            disabled={isFirst}
+            style={{
+              ...secondaryFooterButtonStyle,
+              opacity: isFirst ? 0.45 : 1,
+              cursor: isFirst ? 'not-allowed' : 'pointer',
+            }}
+          >
+            {TEXT.previous}
+          </button>
 
-          {isExamMode && (
-            <button
-              type="button"
-              onClick={() => setShowQuestionList(true)}
-              style={questionListButtonStyle}
-            >
-              {TEXT.questionList}
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={() => setShowQuestionList(true)}
+            style={questionListButtonStyle}
+          >
+            {TEXT.questionList}
+          </button>
 
           <button
             type="button"
             onClick={handleNext}
             disabled={!canProceed}
-            style={canProceed ? primaryButtonStyle : disabledPrimaryButtonStyle}
+            style={{
+              ...primaryButtonStyle,
+              opacity: canProceed ? 1 : 0.48,
+              cursor: canProceed ? 'pointer' : 'not-allowed',
+            }}
           >
             {isLast ? (isExamMode ? TEXT.submit : TEXT.result) : TEXT.next}
           </button>
@@ -1373,11 +1371,6 @@ const footerInnerStyle: CSSProperties = {
   gap: 8,
 };
 
-const practiceFooterInnerStyle: CSSProperties = {
-  ...footerInnerStyle,
-  gridTemplateColumns: '1fr',
-};
-
 const questionListButtonStyle: CSSProperties = {
   width: '100%',
   minHeight: 46,
@@ -1410,15 +1403,6 @@ const primaryButtonStyle: CSSProperties = {
   boxShadow: '0 8px 16px rgba(169, 121, 50, 0.26)',
   fontFamily:
     '"Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif',
-};
-
-const disabledPrimaryButtonStyle: CSSProperties = {
-  ...primaryButtonStyle,
-  border: '1px solid #D8D2C6',
-  background: '#E7E2D9',
-  color: '#A39B8E',
-  boxShadow: 'none',
-  cursor: 'not-allowed',
 };
 
 const secondaryFooterButtonStyle: CSSProperties = {

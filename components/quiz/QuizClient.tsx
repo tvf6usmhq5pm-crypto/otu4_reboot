@@ -16,7 +16,10 @@ import {
   summarizeSessionBySubject,
 } from '../../lib/session';
 
+import { getQuestionById } from '../../lib/questions';
+
 import {
+  isDevelopmentSession,
   markWeaknessRecovered,
 
   recordQuestionAnswer,
@@ -127,8 +130,21 @@ function isSubjectParam(value: string | null): value is 'law' | 'phys' | 'prop' 
   return value === 'law' || value === 'phys' || value === 'prop';
 }
 
+/**
+ * dev-question は開発環境かつ実在する問題IDのときだけ有効。
+ * 本番や不正なIDでは通常の今日の10問にフォールバックする。
+ */
+function isDevQuestionEnabled(mode: string | null, id: string | null): id is string {
+  return (
+    process.env.NODE_ENV === 'development' &&
+    mode === 'dev-question' &&
+    id !== null &&
+    getQuestionById(id) !== undefined
+  );
+}
+
 function buildSessionFromMode(mode: string | null, subject: string | null, id: string | null): LastSession {
-  if (mode === 'dev-question' && id) {
+  if (isDevQuestionEnabled(mode, id)) {
     return buildLastSession({
       sessionType: 'daily-10',
       label: `DEV: ${id}`,
@@ -210,7 +226,7 @@ function sessionMatchesMode(
   subject: string | null,
   id: string | null,
 ): boolean {
-  if (mode === 'dev-question') {
+  if (isDevQuestionEnabled(mode, id)) {
     return (
       session.sessionType === 'daily-10' &&
       session.questionIds.length === 1 &&
@@ -499,6 +515,12 @@ export default function QuizClient() {
     }
 
     if (isLast) {
+      // 開発用セッションの解答は、学習履歴・弱点・結果に一切記録しない。
+      if (isDevelopmentSession(session)) {
+        router.push('/');
+        return;
+      }
+
       const finalResult = createResult(session);
 
       session.questionIds.forEach((id) => {

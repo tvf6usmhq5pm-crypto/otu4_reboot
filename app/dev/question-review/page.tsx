@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation';
+
 import QuestionReviewClient, {
   type ReviewQuestion,
 } from '../../../components/dev/QuestionReviewClient';
@@ -8,6 +10,10 @@ import {
 import { getAllQuestions } from '../../../lib/questions';
 
 export default function QuestionReviewPage() {
+  if (process.env.NODE_ENV !== 'development') {
+    notFound();
+  }
+
   const questions: ReviewQuestion[] =
     getAllQuestions().map(
       (question) => {

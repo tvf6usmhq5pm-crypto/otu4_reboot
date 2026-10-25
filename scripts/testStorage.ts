@@ -26,6 +26,7 @@ import {
   saveResult,
   writeStorageValue,
   getSessionStorageKey,
+  isDevelopmentSession,
 } from '../lib/storage';
 
 type LocalStorageMock = {
@@ -334,6 +335,18 @@ function testDevelopmentSessionIsolation(): void {
     label: 'DEV: PROP-014-001',
     questionIds: normalSession.questionIds.slice(0, 1),
   };
+
+  assertEqual(
+    isDevelopmentSession(developmentSession),
+    true,
+    'DEV-labelled session must be detected as development session',
+  );
+
+  assertEqual(
+    isDevelopmentSession(normalSession),
+    false,
+    'normal session must not be detected as development session',
+  );
 
   saveLastSession(developmentSession);
 

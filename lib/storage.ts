@@ -117,7 +117,7 @@ export function getSessionStorageKey(sessionType: SessionType): string {
   }
 }
 
-function isDevelopmentSession(
+export function isDevelopmentSession(
   session: LastSession | undefined,
 ): boolean {
   return Boolean(

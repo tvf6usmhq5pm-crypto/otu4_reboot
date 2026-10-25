@@ -120,8 +120,6 @@ const TEXT = {
   next: '\u6b21\u306e\u554f\u984c >',
   questionList: '≡ 問題一覧',
   previous: '< \u524d\u306e\u554f\u984c',
-  answerFirst: '\u9078\u629e\u80a2\u3092\u9078\u3093\u3067\u304f\u3060\u3055\u3044',
-  examAnswered: '\u56de\u7b54\u6e08\u307f\u3067\u3059\u3002\u6b21\u3078\u9032\u3081\u307e\u3059',
   premium: 'Premium Learning',
   z4: 'Z4',
 } as const;
@@ -756,27 +754,32 @@ export default function QuizClient() {
       )}
 
       <footer style={footerStyle}>
-        <div style={footerInnerStyle}>
-          <button
-            type="button"
-            onClick={handlePrevious}
-            disabled={isFirst}
-            style={{
-              ...secondaryFooterButtonStyle,
-              opacity: isFirst ? 0.45 : 1,
-              cursor: isFirst ? 'not-allowed' : 'pointer',
-            }}
-          >
-            {TEXT.previous}
-          </button>
+        {/* 前の問題・問題一覧は本番モード専用。練習モードは「次へ」だけの一方通行。 */}
+        <div style={isExamMode ? footerInnerStyle : practiceFooterInnerStyle}>
+          {isExamMode && (
+            <button
+              type="button"
+              onClick={handlePrevious}
+              disabled={isFirst}
+              style={{
+                ...secondaryFooterButtonStyle,
+                opacity: isFirst ? 0.45 : 1,
+                cursor: isFirst ? 'not-allowed' : 'pointer',
+              }}
+            >
+              {TEXT.previous}
+            </button>
+          )}
 
-          <button
-            type="button"
-            onClick={() => setShowQuestionList(true)}
-            style={questionListButtonStyle}
-          >
-            {TEXT.questionList}
-          </button>
+          {isExamMode && (
+            <button
+              type="button"
+              onClick={() => setShowQuestionList(true)}
+              style={questionListButtonStyle}
+            >
+              {TEXT.questionList}
+            </button>
+          )}
 
           <button
             type="button"
@@ -1371,6 +1374,11 @@ const footerInnerStyle: CSSProperties = {
   gridTemplateColumns: '1fr 1fr 1fr',
   alignItems: 'center',
   gap: 8,
+};
+
+const practiceFooterInnerStyle: CSSProperties = {
+  ...footerInnerStyle,
+  gridTemplateColumns: '1fr',
 };
 
 const questionListButtonStyle: CSSProperties = {

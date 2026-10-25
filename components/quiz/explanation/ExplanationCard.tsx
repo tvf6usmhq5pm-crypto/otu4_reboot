@@ -18,7 +18,6 @@ type ExplanationCardProps = {
   meta: ExplanationMeta;
   selectedIndex?: number;
   correctIndex?: number;
-  onNext?: () => void;
 };
 
 function renderVisualBlock(meta: ExplanationMeta) {
@@ -66,7 +65,7 @@ const renderInlineStrongText = (text: string) =>
     return <span key={index}>{part}</span>;
   });
 
-export function ExplanationCard({ meta, selectedIndex, correctIndex, onNext }: ExplanationCardProps) {
+export function ExplanationCard({ meta, selectedIndex, correctIndex }: ExplanationCardProps) {
   const [isSupplementalImageOpen, setIsSupplementalImageOpen] = useState(false);
 
   useEffect(() => {
@@ -135,18 +134,6 @@ export function ExplanationCard({ meta, selectedIndex, correctIndex, onNext }: E
       ) : null}
 
       <OptionMemoList optionMemos={meta.optionMemos} selectedIndex={selectedIndex} correctIndex={correctIndex} />
-
-      <div style={ctaRowStyle}>
-        <button type="button" style={nextButtonStyle} onClick={onNext}>
-          次の問題へ
-        </button>
-
-        {meta.reviewCtaLabel ? (
-          <button type="button" style={reviewButtonStyle}>
-            {meta.reviewCtaLabel}
-          </button>
-        ) : null}
-      </div>
     </section>
   );
 }
@@ -273,37 +260,6 @@ const visualWrapStyle: CSSProperties = {
   marginBottom: 10,
 };
 
-const ctaRowStyle: CSSProperties = {
-  position: 'relative',
-  zIndex: 1,
-  display: 'flex',
-  gap: 8,
-  marginTop: 12,
-};
-
-const nextButtonStyle: CSSProperties = {
-  flex: '1 1 auto',
-  border: '1px solid #d11616',
-  borderRadius: 12,
-  padding: '10px 12px',
-  background: '#d11616',
-  color: '#fff',
-  fontSize: 13,
-  fontWeight: 800,
-  cursor: 'pointer',
-};
-
-const reviewButtonStyle: CSSProperties = {
-  flex: '1 1 auto',
-  border: '1px solid #d9b36a',
-  borderRadius: 12,
-  padding: '10px 12px',
-  background: '#fff8e8',
-  color: '#8a5200',
-  fontSize: 13,
-  fontWeight: 800,
-  cursor: 'pointer',
-};
 
 
 

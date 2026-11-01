@@ -90,32 +90,38 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
     style: 'calculation_step',
     shortExplanation:
       '指定数量の倍数は、貯蔵量を指定数量で割って、それぞれの倍数を合計します。水溶性と非水溶性で指定数量が変わる点に注意します。',
-    tableHeader: ['危険物', '指定数量', '計算', '倍数'],
+    tableHeader: ['区分', '指定数量'],
     rows: [
-      {
-        cells: ['ベンゼン\n第1石油類・非水溶性', '200L', '400÷200', '2'],
-      },
-      {
-        cells: ['アセトン\n第1石油類・水溶性', '400L', '800÷400', '2'],
-      },
-      {
-        cells: ['灯油\n第2石油類・非水溶性', '1,000L', '1,500÷1,000', '1.5'],
-      },
+      { cells: ['特殊引火物', '50L'] },
+      { cells: ['第1石油類', '非水溶性 200L・水溶性 400L'] },
+      { cells: ['アルコール類', '400L'] },
+      { cells: ['第2石油類', '非水溶性 1,000L・水溶性 2,000L'] },
+      { cells: ['第3石油類', '非水溶性 2,000L・水溶性 4,000L'] },
+      { cells: ['第4石油類', '6,000L'] },
+      { cells: ['動植物油類', '10,000L'] },
     ],
     calcLines: [
       {
+        step: 'ベンゼン（第1石油類・非水溶性）',
+        formula: '400÷200',
+        result: '2倍',
+      },
+      {
+        step: 'アセトン（第1石油類・水溶性）',
+        formula: '800÷400',
+        result: '2倍',
+      },
+      {
+        step: '灯油（第2石油類・非水溶性）',
+        formula: '1,500÷1,000',
+        result: '1.5倍',
+      },
+      {
         step: '合計',
-        formula: '2 + 2 + 1.5',
+        formula: '2＋2＋1.5',
         result: '5.5倍',
       },
     ],
-    supplementalImage: {
-      src: '/explanations/shitei-suryo.webp',
-      alt: '第4類危険物の区分、水溶性、指定数量、代表例を整理した指定数量一覧表',
-      aspectRatio: '4:5',
-      caption: 'ベンゼンは第1石油類・非水溶性、アセトンは第1石油類・水溶性、灯油は第2石油類・非水溶性として指定数量を確認します。',
-    },
-    supplementalImageLabel: '指定数量表を見る',
     optionMemos: {
       0: 'ベンゼンを水溶性として扱うと、指定数量を誤ります。',
       1: '灯油の1.5倍を切り捨てると、合計がズレます。',
@@ -401,13 +407,6 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
       aspectRatio: '4:5',
       caption: '',
     },
-    supplementalImage: {
-      src: '/explanations/shitei-suryo.webp',
-      alt: '第4類危険物の指定数量を区分ごとに確認できる参照カード',
-      aspectRatio: '4:5',
-      caption: '',
-    },
-    supplementalImageLabel: '指定数量まとめ画像を見る',
     shortExplanation:
       '指定数量の判定は、同じ事業所でも危険物を置いている場所ごとに確認します。場所ごとの数量が指定数量未満なら、消防法ではなく市町村条例による規制になります。',
     optionMemos: {

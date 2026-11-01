@@ -79,16 +79,7 @@ export function ExplanationCard({ meta, selectedIndex, correctIndex }: Explanati
     <section style={cardStyle} aria-label="解説">
       <div style={watermarkStyle}>Z4</div>
 
-      {meta.lossTitle?.trim() ? (
-        <div style={lossHeaderStyle}>
-          <div style={redBarStyle} />
-          <div>
-            <div style={lossCaptionStyle}>この問題の急所</div>
-            <div style={lossTitleStyle}>{meta.lossTitle}</div>
-          </div>
-        </div>
-      ) : null}
-
+      {/* lossTitle（この問題の急所）は表示しない。間違えた理由は選んだ選択肢の解説で伝える。 */}
       {/* pilot段階では highlightTerms は赤表示しない。必要問題だけ後で限定導入する。 */}
       {meta.visualImage ? <ExplanationImage image={meta.visualImage} /> : null}
 
@@ -157,37 +148,6 @@ const watermarkStyle: CSSProperties = {
   fontSize: 42,
   fontWeight: 800,
   pointerEvents: 'none',
-};
-
-const lossHeaderStyle: CSSProperties = {
-  position: 'relative',
-  zIndex: 1,
-  display: 'grid',
-  gridTemplateColumns: '4px 1fr',
-  gap: 9,
-  alignItems: 'center',
-  marginBottom: 10,
-};
-
-const redBarStyle: CSSProperties = {
-  width: 4,
-  height: 32,
-  borderRadius: 999,
-  background: '#d11616',
-};
-
-const lossCaptionStyle: CSSProperties = {
-  color: '#7a6658',
-  fontSize: 11,
-  fontWeight: 800,
-};
-
-const lossTitleStyle: CSSProperties = {
-  marginTop: 2,
-  color: '#31271f',
-  fontSize: 14,
-  fontWeight: 800,
-  fontFamily: '"Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif',
 };
 
 const explanationHeaderStyle: CSSProperties = {

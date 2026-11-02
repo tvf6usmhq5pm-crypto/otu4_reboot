@@ -49,6 +49,7 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
       },
     ],
     optionMemos: {
+      0: '製造所等の設置・変更は、市町村長等の許可を受ける。',
       1: '仮貯蔵・仮取扱いは、市町村長等の許可ではなく、消防長又は消防署長の承認。',
       2: '完成検査は、所轄消防長又は消防署長ではなく、市町村長等が行う。',
       3: '仮使用は、所轄消防長又は消防署長ではなく、市町村長等の承認。',
@@ -125,6 +126,7 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
     optionMemos: {
       0: 'ベンゼンを水溶性として扱うと、指定数量を誤ります。',
       1: '灯油の1.5倍を切り捨てると、合計がズレます。',
+      2: 'ベンゼン(2)＋アセトン(2)＋灯油(1.5)＝5.5が正しい値で、小数の倍数をそのまま加算する。',
       3: '灯油の1.5倍を切り上げると、合計がズレます。',
       4: 'アセトンを非水溶性として扱うと、指定数量を誤ります。',
     },
@@ -240,7 +242,7 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
     misconceptionId: 'law.mobile_tank.ignition_point',
     lossCategory: 'number_confusion',
     lossTitle: '',
-    correctAnswerLine: '正解：③ 40℃未満',
+    correctAnswerLine: '正解：② 40℃未満',
     style: 'short',
     visualImage: {
       src: '/explanations/LAW-028-005.webp',
@@ -249,13 +251,13 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
       caption: '',
     },
     shortExplanation:
-      '引火点が低い危険物ほど、蒸気に引火する危険があります。移動タンク貯蔵所から注入するときは、引火点40℃未満の危険物で原動機を停止します。',
+      '引火点が40℃未満の危険物を他のタンクに注入するときは、移動タンク貯蔵所の原動機を止める。引火点が低いほど蒸気に引火しやすいからである。',
     optionMemos: {
-      0: '引火点30℃は40℃未満に含まれる温度です。',
-      1: '引火点35℃は40℃未満に含まれる温度です。',
-      2: '引火点40℃未満の危険物を注入するときは原動機を停止します。',
-      3: '引火点45℃は40℃未満の基準には該当しません。',
-      4: '引火点50℃は40℃未満の基準には該当しません。',
+      0: '基準は20℃未満ではなく、40℃未満である。',
+      1: '引火点40℃未満の危険物の注入時に、原動機を止める。',
+      2: '基準は55℃未満ではなく、40℃未満である。',
+      3: '基準は60℃未満ではなく、40℃未満である。',
+      4: '基準は70℃未満ではなく、40℃未満である。',
     },
     reviewCtaLabel: '移動タンク貯蔵所をもう1問',
   },

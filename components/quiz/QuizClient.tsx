@@ -32,7 +32,7 @@ import {
   type StoredSessionResult,
 } from '../../lib/storage';
 
-import type { LastSession, OptionIndex } from '../../lib/types';
+import type { LastSession, Nuclide, OptionIndex } from '../../lib/types';
 import { InlineMarkdownText } from './explanation/MarkdownText';
 import { getExplanationMeta } from '../../data/explanation_meta_index';
 import { ExplanationCard } from './explanation/ExplanationCard';
@@ -631,7 +631,7 @@ export default function QuizClient() {
             {currentQuestion.question}
           </h1>
         </div>
-        <QuestionAssistBlock questionId={questionId} />
+        <QuestionAssistBlock nuclide={currentQuestion.nuclide} />
       </section>
 
       <section style={choicesStyle} aria-label="choices">
@@ -953,8 +953,8 @@ const topTextSizeOptionActiveStyle: CSSProperties = {
   color: '#8B6226',
 };
 
-function QuestionAssistBlock({ questionId }: { questionId: string }) {
-  if (questionId !== 'PHYS-021-001') {
+function QuestionAssistBlock({ nuclide }: { nuclide?: Nuclide }) {
+  if (!nuclide) {
     return null;
   }
 
@@ -965,13 +965,13 @@ function QuestionAssistBlock({ questionId }: { questionId: string }) {
       <div style={questionAssistBodyStyle}>
         <div
           style={nuclideSymbolStyle}
-          aria-label="アルミニウム、上の数字27、下の数字13"
+          aria-label={`${nuclide.name}、上の数字${nuclide.massNumber}、下の数字${nuclide.atomicNumber}`}
         >
           <span style={nuclideNumbersStyle}>
-            <span style={nuclideNumberStyle}>27</span>
-            <span style={nuclideNumberStyle}>13</span>
+            <span style={nuclideNumberStyle}>{nuclide.massNumber}</span>
+            <span style={nuclideNumberStyle}>{nuclide.atomicNumber}</span>
           </span>
-          <span style={nuclideElementStyle}>Al</span>
+          <span style={nuclideElementStyle}>{nuclide.symbol}</span>
         </div>
       </div>
     </aside>

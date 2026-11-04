@@ -38,6 +38,14 @@ export type VariantType =
 /** audit 優先度。 */
 export type AuditPriority = 'high' | 'medium' | 'none';
 
+/** 問題文の下に出す原子記号。 */
+export interface Nuclide {
+  name: string;
+  symbol: string;
+  massNumber: number;
+  atomicNumber: number;
+}
+
 /** アプリ内で使う正規化済み問題型。 */
 export interface Question {
   id: string;
@@ -54,6 +62,7 @@ export interface Question {
   difficultySource: DifficultySource;
 
   question: string;
+  nuclide?: Nuclide;
   options: FiveChoices;
   correct: OptionIndex;
 
@@ -93,6 +102,7 @@ export interface RawQuestion {
   difficultySource: DifficultySource;
 
   question: string;
+  nuclide?: Nuclide;
   options: string[];
   correct: number;
 

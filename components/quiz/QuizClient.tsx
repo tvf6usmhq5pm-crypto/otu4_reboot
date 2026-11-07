@@ -760,6 +760,7 @@ export default function QuizClient() {
       </section>
 
       {!isExamMode && revealed && (
+        <div style={revealedAreaStyle}>
         <section
           ref={verdictRef}
           style={{
@@ -778,10 +779,8 @@ export default function QuizClient() {
             </span>
           )}
         </section>
-      )}
 
-      {!isExamMode && revealed && (
-        explanationMeta ? (
+        {explanationMeta ? (
           <ExplanationCard
             meta={explanationMeta}
             selectedIndex={selectedIndex}
@@ -811,7 +810,8 @@ export default function QuizClient() {
               bodyFontSize={TEXT_SIZE_PROFILES[textSizeMode].explanationFontSize}
             />
           </section>
-        )
+        )}
+        </div>
       )}
 
       <footer style={footerStyle}>
@@ -1349,6 +1349,11 @@ const choiceTextStyle: CSSProperties = {
   lineHeight: 1.65,
 };
 
+
+// 解説が短い問題でも、判定の行を上部の帯のすぐ下まで動かせる長さを確保する。
+const revealedAreaStyle: CSSProperties = {
+  minHeight: 'calc(100dvh - 200px)',
+};
 
 const verdictStyle: CSSProperties = {
   marginTop: 20,

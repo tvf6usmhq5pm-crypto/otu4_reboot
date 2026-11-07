@@ -1458,14 +1458,14 @@ const primaryButtonStyle: CSSProperties = {
   minHeight: 46,
   padding: '8px 10px',
   borderRadius: 10,
-  border: '1px solid #B89143',
-  background: 'linear-gradient(180deg, #D9C06F 0%, #C9A55A 52%, #A97932 100%)',
+  border: '1px solid #0E2745',
+  background: '#0E2745',
   color: '#ffffff',
   fontSize: 14,
   fontWeight: 800,
   whiteSpace: 'nowrap',
   cursor: 'pointer',
-  boxShadow: '0 8px 16px rgba(169, 121, 50, 0.26)',
+  boxShadow: '0 8px 16px rgba(14, 39, 69, 0.22)',
   fontFamily:
     '"Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif',
 };

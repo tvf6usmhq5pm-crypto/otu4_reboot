@@ -130,8 +130,8 @@ export function ExplanationImage({ image }: ExplanationImageProps) {
             decoding="async"
             style={imageStyle}
           />
-          <span aria-hidden="true" style={zoomBadgeStyle}>
-            拡大
+          <span aria-hidden="true" style={zoomHintStyle}>
+            押すと拡大
           </span>
         </button>
       </div>
@@ -161,7 +161,6 @@ const baseImageStyle: CSSProperties = {
 };
 
 const imageButtonStyle: CSSProperties = {
-  position: 'relative',
   display: 'block',
   width: '100%',
   padding: 0,
@@ -170,17 +169,15 @@ const imageButtonStyle: CSSProperties = {
   cursor: 'zoom-in',
 };
 
-const zoomBadgeStyle: CSSProperties = {
-  position: 'absolute',
-  right: 6,
-  bottom: 6,
-  padding: '3px 8px',
-  borderRadius: 999,
-  background: 'rgba(14, 26, 43, 0.78)',
-  color: '#FFFFFF',
-  fontSize: 11,
-  fontWeight: 800,
+// 画像の下端に結論の文字がある画像が多いので、画像には重ねない。
+const zoomHintStyle: CSSProperties = {
+  display: 'block',
+  padding: '3px 10px 4px',
+  color: '#6B5B43',
+  fontSize: 12,
+  fontWeight: 700,
   lineHeight: 1.3,
+  textAlign: 'right',
 };
 
 const dialogStyle: CSSProperties = {

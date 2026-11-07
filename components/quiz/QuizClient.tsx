@@ -632,6 +632,16 @@ export default function QuizClient() {
             >
               {'\u7d42\u4e86'}
             </button>
+
+            <button
+              type="button"
+              onClick={() => router.push('/')}
+              style={topCloseButtonStyle}
+              aria-label="Home"
+              title="Home"
+            >
+              {'\u00d7'}
+            </button>
           </div>
         </div>
       </header>
@@ -902,12 +912,12 @@ const topActionGroupStyle: CSSProperties = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
-  gap: 6,
+  gap: 4,
 };
 
 const topTextSizeButtonStyle: CSSProperties = {
-  width: 34,
-  height: 34,
+  width: 44,
+  height: 44,
   borderRadius: 10,
   border: '1px solid #D8D2C6',
   background: 'rgba(255, 252, 248, 0.96)',
@@ -925,9 +935,9 @@ const topTextSizeButtonStyle: CSSProperties = {
 };
 
 const topExitButtonStyle: CSSProperties = {
-  minWidth: 44,
-  height: 34,
-  padding: '0 10px',
+  width: 44,
+  height: 44,
+  padding: 0,
   borderRadius: 10,
   border: '1px solid #D8D2C6',
   background: 'rgba(255, 252, 248, 0.98)',
@@ -943,9 +953,26 @@ const topExitButtonStyle: CSSProperties = {
     '"Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif',
 };
 
+const topCloseButtonStyle: CSSProperties = {
+  width: 44,
+  height: 44,
+  borderRadius: '50%',
+  border: '1px solid #D8D2C6',
+  background: '#FFFFFF',
+  color: '#1A2A4F',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: 0,
+  fontSize: 26,
+  fontWeight: 900,
+  lineHeight: 1,
+  cursor: 'pointer',
+};
+
 const topTextSizeMenuStyle: CSSProperties = {
   position: 'absolute',
-  top: 40,
+  top: 48,
   right: 0,
   zIndex: 45,
   width: 158,

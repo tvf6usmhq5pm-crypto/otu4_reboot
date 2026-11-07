@@ -7,7 +7,8 @@ export default function HomeCloseButton() {
   const pathname = usePathname();
   const router = useRouter();
 
-  if (!pathname || pathname === '/') {
+  // 解答画面は上部の帯の中に同じ✕を置くので、ここでは出さない。
+  if (!pathname || pathname === '/' || pathname === '/quiz') {
     return null;
   }
 
@@ -33,8 +34,8 @@ const buttonStyle: CSSProperties = {
   top: 12,
   right: 12,
   zIndex: 1000,
-  width: 42,
-  height: 42,
+  width: 44,
+  height: 44,
   borderRadius: '50%',
   border: '1px solid #e7e4de',
   background: '#ffffff',

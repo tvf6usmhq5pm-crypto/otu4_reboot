@@ -760,6 +760,7 @@ export default function QuizClient() {
           ref={verdictRef}
           style={{
             ...verdictStyle,
+            color: result ? '#315E3D' : '#9F1F27',
             borderColor: result ? '#2D765A' : '#B72A32',
             background: result ? '#F2FAF5' : '#FFF4F3',
           }}

@@ -53,7 +53,7 @@ function renderVisualBlock(meta: ExplanationMeta) {
 }
 
 const renderInlineStrongText = (text: string) =>
-  text.split(/(\\*\\*[^*]+\\*\\*)/g).map((part, index) => {
+  text.split(/(\*\*[^*]+\*\*)/g).map((part, index) => {
     if (part.startsWith('**') && part.endsWith('**')) {
       return (
         <strong key={index} style={{ fontWeight: 800 }}>

@@ -479,7 +479,7 @@ export default function QuizClient() {
   }
 
   function handleAnswer(displayedIndex: OptionIndex) {
-    if (!session) {
+    if (!session || hasAnswered) {
       return;
     }
 
@@ -691,6 +691,7 @@ export default function QuizClient() {
               type="button"
               className="z4-choice-button"
               onClick={() => handleAnswer(displayedIndex as OptionIndex)}
+              disabled={hasAnswered}
               style={buttonStyle}
             >
               <span style={numberStyle}>{displayedIndex + 1}</span>

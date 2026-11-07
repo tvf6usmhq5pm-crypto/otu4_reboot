@@ -2,6 +2,8 @@ import { getExplanationMeta } from '../data/explanation_meta_index';
 import {
   answerQuestion,
   buildLastSession,
+  isQuestionCorrect,
+  revealQuestion,
   summarizeMockPass,
   summarizeSession,
   summarizeSessionBySubject,
@@ -9,7 +11,7 @@ import {
   toOriginalOptionIndex,
 } from '../lib/session';
 import { requireQuestionById } from '../lib/questions';
-import type { LastSession, OptionIndex, Subject } from '../lib/types';
+import type { LastSession, OptionIndex, SessionType, Subject } from '../lib/types';
 
 const OPTION_INDICES: OptionIndex[] = [0, 1, 2, 3, 4];
 const FIXED_NOW = '2026-06-09T00:00:00.000Z';
@@ -286,6 +288,40 @@ function testMockPassFailure(baseSession: LastSession): void {
   console.log('PASS summarizeMockPass failure case');
 }
 
+function testFirstAnswerIsFixed(baseSession: LastSession): void {
+  const sessionTypes: SessionType[] = [
+    'daily-10',
+    'weak-points',
+    'saved-questions',
+    'mock-exam',
+    'mock-practice',
+    'card-study',
+  ];
+  const questionId = baseSession.questionIds[0];
+  const { correct } = requireQuestionById(questionId);
+  const wrong = getWrongOptionIndex(correct);
+
+  sessionTypes.forEach((sessionType) => {
+    const start: LastSession = {
+      ...baseSession,
+      sessionType,
+      answers: {},
+      revealed: {},
+      optionOrders: buildIdentityOrders(baseSession.questionIds),
+    };
+
+    const first = answerWithOriginalIndex(start, questionId, wrong);
+    const revealed = revealQuestion(first, questionId);
+    const second = answerWithOriginalIndex(revealed, questionId, correct);
+
+    assertEqual(second.answers[questionId], wrong, `${sessionType}: first answer should stay`);
+    assertEqual(isQuestionCorrect(second, questionId), false, `${sessionType}: result should stay wrong`);
+    assertEqual(summarizeSession(second).correct, 0, `${sessionType}: score should not change`);
+  });
+
+  console.log('PASS first answer is fixed in all session types');
+}
+
 function run(): void {
   console.log('Running session tests...');
 
@@ -296,6 +332,7 @@ function run(): void {
   testOptionIndexConversion(mockSession);
   testSummariesWithAllCorrect(mockSession);
   testMockPassFailure(mockSession);
+  testFirstAnswerIsFixed(mockSession);
 
   console.log('All session tests passed.');
 }

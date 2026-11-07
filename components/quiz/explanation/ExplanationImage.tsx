@@ -16,6 +16,8 @@ export function ExplanationImage({ image }: ExplanationImageProps) {
 
   const imageStyle: CSSProperties = {
     ...baseImageStyle,
+    // 読み込み前から高さを確保し、読み込み後に下の内容が動かないようにする。
+    aspectRatio: image.aspectRatio === '1:1' ? '1 / 1' : '4 / 5',
     maxHeight: isTall ? 560 : 430,
   };
 

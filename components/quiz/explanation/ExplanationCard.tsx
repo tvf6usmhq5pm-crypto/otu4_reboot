@@ -18,6 +18,7 @@ type ExplanationCardProps = {
   meta: ExplanationMeta;
   selectedIndex?: number;
   correctIndex?: number;
+  bodyFontSize?: number;
 };
 
 function renderVisualBlock(meta: ExplanationMeta) {
@@ -65,7 +66,7 @@ const renderInlineStrongText = (text: string) =>
     return <span key={index}>{part}</span>;
   });
 
-export function ExplanationCard({ meta, selectedIndex, correctIndex }: ExplanationCardProps) {
+export function ExplanationCard({ meta, selectedIndex, correctIndex, bodyFontSize = 15 }: ExplanationCardProps) {
   const [isSupplementalImageOpen, setIsSupplementalImageOpen] = useState(false);
 
   useEffect(() => {
@@ -87,7 +88,9 @@ export function ExplanationCard({ meta, selectedIndex, correctIndex }: Explanati
       </div>
 
 
-      {meta.shortExplanation.trim() ? <p style={shortExplanationStyle}>{renderInlineStrongText(meta.shortExplanation)}</p> : null}
+      {meta.shortExplanation.trim() ? (
+        <p style={{ ...shortExplanationStyle, fontSize: bodyFontSize }}>{renderInlineStrongText(meta.shortExplanation)}</p>
+      ) : null}
 
       {meta.supplementalImage ? (
         <div style={supplementalImageSectionStyle}>
@@ -122,7 +125,12 @@ export function ExplanationCard({ meta, selectedIndex, correctIndex }: Explanati
         </div>
       ) : null}
 
-      <OptionMemoList optionMemos={meta.optionMemos} selectedIndex={selectedIndex} correctIndex={correctIndex} />
+      <OptionMemoList
+        optionMemos={meta.optionMemos}
+        selectedIndex={selectedIndex}
+        correctIndex={correctIndex}
+        bodyFontSize={bodyFontSize}
+      />
     </section>
   );
 }
@@ -162,7 +170,6 @@ const shortExplanationStyle: CSSProperties = {
   zIndex: 1,
   margin: '0 0 10px',
   color: '#31271f',
-  fontSize: 13,
   lineHeight: 1.75,
 };
 

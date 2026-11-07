@@ -7,6 +7,7 @@ type OptionMemoListProps = {
   selectedIndex?: number;
   correctIndex?: number;
   title?: string;
+  bodyFontSize?: number;
 };
 
 type EntryKind = 'correctSelected' | 'correct' | 'selectedWrong' | 'neutral';
@@ -119,6 +120,7 @@ export function OptionMemoList({
   selectedIndex,
   correctIndex,
   title = '選択肢ごとの解説',
+  bodyFontSize = 15,
 }: OptionMemoListProps) {
   const entries = Object.entries(optionMemos ?? {})
     .map(([key, value]) => ({
@@ -149,7 +151,7 @@ export function OptionMemoList({
                 {markerLabel ? <div style={getMarkerStyle(kind)}>{markerLabel}</div> : null}
               </div>
 
-              <div style={textStyle}>
+              <div style={{ ...textStyle, fontSize: bodyFontSize }}>
                 <InlineMarkdownText text={entry.text} />
               </div>
             </div>
@@ -236,7 +238,6 @@ const markerStyle: CSSProperties = {
 
 const textStyle: CSSProperties = {
   color: '#1A2238',
-  fontSize: 13,
   lineHeight: 1.6,
 };
 

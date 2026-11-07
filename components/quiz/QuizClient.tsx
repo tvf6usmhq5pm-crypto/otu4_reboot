@@ -66,6 +66,7 @@ const TEXT_SIZE_PROFILES: Record<
     questionLineHeight: number;
     choiceFontSize: number;
     choiceLineHeight: number;
+    explanationFontSize: number;
   }
 > = {
   small: {
@@ -74,6 +75,7 @@ const TEXT_SIZE_PROFILES: Record<
     questionLineHeight: 1.55,
     choiceFontSize: 14.5,
     choiceLineHeight: 1.58,
+    explanationFontSize: 14,
   },
   standard: {
     label: '\u6a19\u6e96',
@@ -81,6 +83,7 @@ const TEXT_SIZE_PROFILES: Record<
     questionLineHeight: 1.6,
     choiceFontSize: 15,
     choiceLineHeight: 1.65,
+    explanationFontSize: 15,
   },
   large: {
     label: '\u5927',
@@ -88,6 +91,7 @@ const TEXT_SIZE_PROFILES: Record<
     questionLineHeight: 1.68,
     choiceFontSize: 16,
     choiceLineHeight: 1.72,
+    explanationFontSize: 17,
   },
 };
 
@@ -782,6 +786,7 @@ export default function QuizClient() {
             meta={explanationMeta}
             selectedIndex={selectedIndex}
             correctIndex={currentQuestion.correct}
+            bodyFontSize={TEXT_SIZE_PROFILES[textSizeMode].explanationFontSize}
           />
         ) : (
           <section style={explanationStyle}>
@@ -790,12 +795,20 @@ export default function QuizClient() {
               {TEXT.explanation}
             </h2>
 
-            <p style={explanationTextStyle}><InlineMarkdownText text={currentQuestion.explanation} /></p>
+            <p
+              style={{
+                ...explanationTextStyle,
+                fontSize: TEXT_SIZE_PROFILES[textSizeMode].explanationFontSize,
+              }}
+            >
+              <InlineMarkdownText text={currentQuestion.explanation} />
+            </p>
 
             <OptionMemoList
               optionMemos={optionDetailMemos}
               selectedIndex={selectedIndex}
               correctIndex={currentQuestion.correct}
+              bodyFontSize={TEXT_SIZE_PROFILES[textSizeMode].explanationFontSize}
             />
           </section>
         )

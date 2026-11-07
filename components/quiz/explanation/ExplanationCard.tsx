@@ -185,6 +185,7 @@ const supplementalImageButtonStyle: CSSProperties = {
   alignItems: 'center',
   justifyContent: 'space-between',
   gap: 8,
+  minHeight: 44,
   border: '1px solid #d9b36a',
   borderRadius: 12,
   padding: '10px 12px',

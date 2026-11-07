@@ -91,7 +91,7 @@ export function ExplanationCard({
 
       <div style={explanationHeaderStyle}>
         <span style={iconStyle}>💡</span>
-        <span style={explanationTitleStyle}>解説</span>
+        <span style={{ ...explanationTitleStyle, fontSize: bodyFontSize + 1 }}>解説</span>
       </div>
 
 
@@ -167,7 +167,6 @@ const iconStyle: CSSProperties = {
 
 const explanationTitleStyle: CSSProperties = {
   color: '#31271f',
-  fontSize: 15,
   fontWeight: 800,
   fontFamily: '"Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif',
 };

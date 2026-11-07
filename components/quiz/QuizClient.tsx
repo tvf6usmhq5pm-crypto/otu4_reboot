@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState, type CSSProperties } from 'react';
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import {
@@ -90,6 +90,12 @@ const TEXT_SIZE_PROFILES: Record<
     choiceLineHeight: 1.72,
   },
 };
+
+const VERDICT_SCROLL_GAP = 8;
+
+function getScrollBehavior(): ScrollBehavior {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth';
+}
 
 function readInitialTextSizeMode(): TextSizeMode {
   if (typeof window === 'undefined') {
@@ -407,6 +413,34 @@ export default function QuizClient() {
   const [showQuestionList, setShowQuestionList] = useState(false);
   const [textSizeMode, setTextSizeMode] = useState<TextSizeMode>(() => readInitialTextSizeMode());
   const [showTextSizeMenu, setShowTextSizeMenu] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const verdictRef = useRef<HTMLElement>(null);
+  const shouldScrollToVerdictRef = useRef(false);
+
+  // 答えた直後だけ動かす。答え済みの問題へ戻ったときは動かさない。
+  useEffect(() => {
+    if (!shouldScrollToVerdictRef.current) {
+      return;
+    }
+
+    shouldScrollToVerdictRef.current = false;
+
+    const verdict = verdictRef.current;
+    const header = headerRef.current;
+
+    if (!verdict || !header) {
+      return;
+    }
+
+    window.scrollTo({
+      top:
+        window.scrollY +
+        verdict.getBoundingClientRect().top -
+        header.getBoundingClientRect().bottom -
+        VERDICT_SCROLL_GAP,
+      behavior: getScrollBehavior(),
+    });
+  }, [session]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -491,6 +525,7 @@ export default function QuizClient() {
     }
 
     const revealedSession = revealQuestion(answered, questionId);
+    shouldScrollToVerdictRef.current = true;
     updateSession(revealedSession);
   }
 
@@ -501,7 +536,7 @@ export default function QuizClient() {
 
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: getScrollBehavior(),
     });
 
     updateSession(moveToPreviousQuestion(session));
@@ -534,7 +569,7 @@ export default function QuizClient() {
 
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: getScrollBehavior(),
     });
 
     updateSession(moveToNextQuestion(session));
@@ -544,7 +579,7 @@ export default function QuizClient() {
     <main style={pageStyle}>
       <style>{CHOICE_FOCUS_CSS}</style>
 
-      <header style={headerStyle}>
+      <header ref={headerRef} style={headerStyle}>
         <div style={headerInnerStyle}>
           <div style={topMetaGroupStyle}>
             <span style={topSubjectPillStyle}>{subjectLabel(currentQuestion.subject)}</span>
@@ -712,6 +747,7 @@ export default function QuizClient() {
 
       {!isExamMode && revealed && (
         <section
+          ref={verdictRef}
           style={{
             ...verdictStyle,
             borderColor: result ? '#2D765A' : '#B72A32',
@@ -805,7 +841,7 @@ export default function QuizClient() {
             return c === true ? 'correct' : c === false ? 'wrong' : 'untouched';
           }}
           onJump={(i) => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: getScrollBehavior() });
             updateSession({ ...session, currentIndex: i });
             setShowQuestionList(false);
           }}

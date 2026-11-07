@@ -293,7 +293,6 @@ function testFirstAnswerIsFixed(baseSession: LastSession): void {
     'daily-10',
     'weak-points',
     'saved-questions',
-    'mock-exam',
     'mock-practice',
     'card-study',
   ];
@@ -319,7 +318,30 @@ function testFirstAnswerIsFixed(baseSession: LastSession): void {
     assertEqual(summarizeSession(second).correct, 0, `${sessionType}: score should not change`);
   });
 
-  console.log('PASS first answer is fixed in all session types');
+  console.log('PASS first answer is fixed outside mock exams');
+}
+
+function testMockExamAnswerCanChange(baseSession: LastSession): void {
+  const questionId = baseSession.questionIds[0];
+  const { correct } = requireQuestionById(questionId);
+  const wrong = getWrongOptionIndex(correct);
+  const start: LastSession = {
+    ...baseSession,
+    sessionType: 'mock-exam',
+    answers: {},
+    optionOrders: buildIdentityOrders(baseSession.questionIds),
+  };
+
+  const first = answerWithOriginalIndex(start, questionId, wrong);
+  assertEqual(isQuestionCorrect(first, questionId), false, 'first mock answer should be wrong');
+
+  const changed = answerWithOriginalIndex(first, questionId, correct);
+  assertEqual(changed.answers[questionId], correct, 'mock answer should change before submit');
+  assertEqual(isQuestionCorrect(changed, questionId), true, 'mock score should use the latest answer');
+  assertEqual(summarizeSession(changed).correct, 1, 'mock summary should use the latest answer');
+  assertEqual(summarizeSession(changed).answered, 1, 'changing an answer should not add an answer');
+
+  console.log('PASS mock exam answer can change until submit');
 }
 
 function run(): void {
@@ -333,6 +355,7 @@ function run(): void {
   testSummariesWithAllCorrect(mockSession);
   testMockPassFailure(mockSession);
   testFirstAnswerIsFixed(mockSession);
+  testMockExamAnswerCanChange(mockSession);
 
   console.log('All session tests passed.');
 }

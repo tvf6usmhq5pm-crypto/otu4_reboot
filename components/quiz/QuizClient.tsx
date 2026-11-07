@@ -420,6 +420,7 @@ export default function QuizClient() {
   const headerRef = useRef<HTMLElement>(null);
   const verdictRef = useRef<HTMLElement>(null);
   const shouldScrollToVerdictRef = useRef(false);
+  const hasSubmittedRef = useRef(false);
 
   // 答えた直後だけ動かす。答え済みの問題へ戻ったときは動かさない。
   useEffect(() => {
@@ -491,6 +492,7 @@ export default function QuizClient() {
   const isFirst = session.currentIndex === 0;
   const isExamMode = session.sessionType === 'mock-exam';
   const hasAnswered = session.answers[questionId] !== undefined;
+  const isAnswerLocked = hasAnswered && !isExamMode;
   const canProceed = true;
   const optionDetailMemos = currentQuestion.option_details.reduce<Record<number, string>>((acc, detail, index) => {
     acc[index] = detail;
@@ -517,7 +519,7 @@ export default function QuizClient() {
   }
 
   function handleAnswer(displayedIndex: OptionIndex) {
-    if (!session || hasAnswered) {
+    if (!session || isAnswerLocked || hasSubmittedRef.current) {
       return;
     }
 
@@ -557,6 +559,13 @@ export default function QuizClient() {
         router.push('/');
         return;
       }
+
+      // 提出は1回だけ。結果画面へ移るまでの間の操作で、答えや記録を変えない。
+      if (hasSubmittedRef.current) {
+        return;
+      }
+
+      hasSubmittedRef.current = true;
 
       const finalResult = createResult(session);
 
@@ -740,7 +749,7 @@ export default function QuizClient() {
               type="button"
               className="z4-choice-button"
               onClick={() => handleAnswer(displayedIndex as OptionIndex)}
-              disabled={hasAnswered}
+              disabled={isAnswerLocked}
               style={buttonStyle}
             >
               <span style={numberStyle}>{displayedIndex + 1}</span>

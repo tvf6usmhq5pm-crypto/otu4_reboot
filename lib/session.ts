@@ -357,8 +357,8 @@ export function answerQuestion(
   questionId: string,
   displayedIndex: OptionIndex,
 ): LastSession {
-  // 答えは最初に選んだものだけを残す。全モードの保存と採点がこの answers を使う。
-  if (session.answers[questionId] !== undefined) {
+  // 模試は提出まで変えられる。ほかのモードは最初に選んだ答えだけを残す。
+  if (session.sessionType !== 'mock-exam' && session.answers[questionId] !== undefined) {
     return session;
   }
 

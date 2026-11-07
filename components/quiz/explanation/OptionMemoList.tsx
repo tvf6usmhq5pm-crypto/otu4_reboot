@@ -136,7 +136,7 @@ export function OptionMemoList({
 
   return (
     <section aria-label={title} style={sectionStyle}>
-      <div style={titleStyle}>{title}</div>
+      <div style={{ ...titleStyle, fontSize: bodyFontSize + 1 }}>{title}</div>
 
       <div style={listStyle}>
         {entries.map((entry) => {
@@ -173,7 +173,6 @@ const sectionStyle: CSSProperties = {
 const titleStyle: CSSProperties = {
   marginBottom: 7,
   color: '#1A2238',
-  fontSize: 14,
   fontWeight: 900,
   lineHeight: 1.35,
 };

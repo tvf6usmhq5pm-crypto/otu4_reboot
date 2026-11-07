@@ -67,6 +67,7 @@ const TEXT_SIZE_PROFILES: Record<
     choiceFontSize: number;
     choiceLineHeight: number;
     explanationFontSize: number;
+    tableFontSize: number;
   }
 > = {
   small: {
@@ -76,6 +77,7 @@ const TEXT_SIZE_PROFILES: Record<
     choiceFontSize: 14.5,
     choiceLineHeight: 1.58,
     explanationFontSize: 14,
+    tableFontSize: 13,
   },
   standard: {
     label: '\u6a19\u6e96',
@@ -84,6 +86,7 @@ const TEXT_SIZE_PROFILES: Record<
     choiceFontSize: 15,
     choiceLineHeight: 1.65,
     explanationFontSize: 15,
+    tableFontSize: 14,
   },
   large: {
     label: '\u5927',
@@ -92,6 +95,7 @@ const TEXT_SIZE_PROFILES: Record<
     choiceFontSize: 16,
     choiceLineHeight: 1.72,
     explanationFontSize: 17,
+    tableFontSize: 16,
   },
 };
 
@@ -795,6 +799,7 @@ export default function QuizClient() {
             selectedIndex={selectedIndex}
             correctIndex={currentQuestion.correct}
             bodyFontSize={TEXT_SIZE_PROFILES[textSizeMode].explanationFontSize}
+            tableFontSize={TEXT_SIZE_PROFILES[textSizeMode].tableFontSize}
           />
         ) : (
           <section style={explanationStyle}>

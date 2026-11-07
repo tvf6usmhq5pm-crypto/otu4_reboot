@@ -5,11 +5,12 @@ type ProcedureTableProps = {
   ariaLabel?: string;
   tableHeader?: string[];
   rows?: ExplanationRow[];
+  fontSize?: number;
 };
 
 export function ProcedureTable({
   ariaLabel = '手順表',
-  tableHeader, rows
+  tableHeader, rows, fontSize = 14
 }: ProcedureTableProps) {
   const headers = tableHeader && tableHeader.length > 0 ? tableHeader : ['区分', '相手', '手続き'];
 
@@ -28,7 +29,7 @@ export function ProcedureTable({
         <thead>
           <tr>
             {headers.map((header) => (
-              <th key={header} style={thStyle}>
+              <th key={header} style={{ ...thStyle, fontSize }}>
                 {header}
               </th>
             ))}
@@ -39,7 +40,7 @@ export function ProcedureTable({
           {rows.map((row, rowIndex) => (
             <tr key={`${row.cells.join('-')}-${rowIndex}`}>
               {headers.map((_, cellIndex) => (
-                <td key={`${rowIndex}-${cellIndex}`} style={tdStyle}>
+                <td key={`${rowIndex}-${cellIndex}`} style={{ ...tdStyle, fontSize }}>
                   {row.cells[cellIndex] ?? '-'}
                 </td>
               ))}
@@ -76,7 +77,6 @@ const thStyle: CSSProperties = {
   padding: '7px 6px',
   background: '#f1e7d8',
   color: '#49392d',
-  fontSize: 11,
   fontWeight: 900,
   textAlign: 'center',
   lineHeight: 1.35,
@@ -86,7 +86,6 @@ const tdStyle: CSSProperties = {
   border: '1px solid #b9aa98',
   padding: '8px 6px',
   color: '#31271f',
-  fontSize: 11,
   fontWeight: 700,
   lineHeight: 1.45,
   textAlign: 'center',

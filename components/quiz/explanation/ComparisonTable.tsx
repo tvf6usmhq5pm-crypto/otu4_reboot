@@ -4,6 +4,7 @@ type ComparisonTableProps = {
   ariaLabel?: string;
   tableHeader?: string[];
   rows?: ExplanationRow[];
+  fontSize?: number;
 };
 
 type BadgeKind = 'ok' | 'danger' | 'warning';
@@ -82,7 +83,7 @@ function getRowStyle(row: ExplanationRow) {
   };
 }
 
-function renderBadge(value: string) {
+function renderBadge(value: string, fontSize: number) {
   const badgeKind = getBadgeKind(value);
 
   if (!badgeKind) {
@@ -103,7 +104,7 @@ function renderBadge(value: string) {
         border: `1px solid ${badgeStyle.borderColor}`,
         background: badgeStyle.backgroundColor,
         color: badgeStyle.color,
-        fontSize: 12,
+        fontSize,
         fontWeight: 900,
         lineHeight: 1,
         whiteSpace: 'nowrap',
@@ -133,6 +134,7 @@ export function ComparisonTable({
   ariaLabel = '比較表',
   tableHeader = [],
   rows = [],
+  fontSize = 14,
 }: ComparisonTableProps) {
   if (rows.length === 0) {
     return null;
@@ -155,7 +157,7 @@ export function ComparisonTable({
         {rows.map((row, rowIndex) => {
           const rowStyle = getRowStyle(row);
           const { title, badge, detailCells } = getCardParts(row);
-          const badgeNode = badge ? renderBadge(badge) : null;
+          const badgeNode = badge ? renderBadge(badge, fontSize) : null;
 
           return (
             <article
@@ -188,7 +190,7 @@ export function ComparisonTable({
 
                   <div
                     style={{
-                      fontSize: 14,
+                      fontSize,
                       fontWeight: 900,
                       lineHeight: 1.45,
                       overflowWrap: 'anywhere',
@@ -224,7 +226,7 @@ export function ComparisonTable({
                           <div
                             style={{
                               color: '#7C6B5A',
-                              fontSize: 11,
+                              fontSize,
                               fontWeight: 900,
                               lineHeight: 1.35,
                             }}
@@ -236,7 +238,7 @@ export function ComparisonTable({
                         <div
                           style={{
                             color: '#2E2A24',
-                            fontSize: 13,
+                            fontSize,
                             fontWeight: 600,
                             lineHeight: 1.6,
                             overflowWrap: 'anywhere',
@@ -257,7 +259,7 @@ export function ComparisonTable({
                     borderTop: '1px dashed rgba(124, 107, 90, 0.25)',
                     paddingTop: 8,
                     color: '#5E5144',
-                    fontSize: 12,
+                    fontSize,
                     fontWeight: 600,
                     lineHeight: 1.55,
                   }}

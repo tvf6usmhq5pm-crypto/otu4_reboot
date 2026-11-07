@@ -19,11 +19,12 @@ type ExplanationCardProps = {
   selectedIndex?: number;
   correctIndex?: number;
   bodyFontSize?: number;
+  tableFontSize?: number;
 };
 
-function renderVisualBlock(meta: ExplanationMeta) {
+function renderVisualBlock(meta: ExplanationMeta, tableFontSize: number) {
   if (meta.style === 'procedure_table') {
-    return <ProcedureTable ariaLabel={meta.visualBlockTitle ?? '手順表'} tableHeader={meta.tableHeader} rows={meta.rows} />;
+    return <ProcedureTable ariaLabel={meta.visualBlockTitle ?? '手順表'} tableHeader={meta.tableHeader} rows={meta.rows} fontSize={tableFontSize} />;
   }
 
   if (meta.style === 'comparison_table') {
@@ -31,7 +32,7 @@ function renderVisualBlock(meta: ExplanationMeta) {
       return <Type4FireSprayDiagram />;
     }
 
-    return <ComparisonTable ariaLabel={meta.visualBlockTitle ?? '比較表'} tableHeader={meta.tableHeader} rows={meta.rows} />;
+    return <ComparisonTable ariaLabel={meta.visualBlockTitle ?? '比較表'} tableHeader={meta.tableHeader} rows={meta.rows} fontSize={tableFontSize} />;
   }
 
   if (meta.style === 'number_card') {
@@ -39,7 +40,7 @@ function renderVisualBlock(meta: ExplanationMeta) {
   }
 
   if (meta.style === 'calculation_step') {
-    return <CalculationStep tableHeader={meta.tableHeader} rows={meta.rows} calcLines={meta.calcLines} />;
+    return <CalculationStep tableHeader={meta.tableHeader} rows={meta.rows} calcLines={meta.calcLines} fontSize={tableFontSize} />;
   }
 
   if (meta.style === 'process_diagram') {
@@ -66,7 +67,13 @@ const renderInlineStrongText = (text: string) =>
     return <span key={index}>{part}</span>;
   });
 
-export function ExplanationCard({ meta, selectedIndex, correctIndex, bodyFontSize = 15 }: ExplanationCardProps) {
+export function ExplanationCard({
+  meta,
+  selectedIndex,
+  correctIndex,
+  bodyFontSize = 15,
+  tableFontSize = 14,
+}: ExplanationCardProps) {
   const [isSupplementalImageOpen, setIsSupplementalImageOpen] = useState(false);
 
   useEffect(() => {
@@ -74,7 +81,7 @@ export function ExplanationCard({ meta, selectedIndex, correctIndex, bodyFontSiz
   }, [meta.questionId]);
 
   const supplementalImageId = `supplemental-image-${meta.questionId}`;
-  const visualBlock = meta.visualImage?.replacesVisual ? null : renderVisualBlock(meta);
+  const visualBlock = meta.visualImage?.replacesVisual ? null : renderVisualBlock(meta, tableFontSize);
 
   return (
     <section style={cardStyle} aria-label="解説">

@@ -1,11 +1,104 @@
-import type { CSSProperties } from 'react';
+'use client';
+
+import { useCallback, useEffect, useRef, useState } from 'react';
+import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent, MouseEvent } from 'react';
+import { createPortal } from 'react-dom';
 import type { ExplanationVisualImage } from '../../../data/explanation_meta_types';
 
 type ExplanationImageProps = {
   image: ExplanationVisualImage;
 };
 
+type ImageZoomDialogProps = {
+  image: ExplanationVisualImage;
+  onClose: () => void;
+};
+
+// 画面に全体が収まる幅。4:5 の画像でも高さがはみ出さない。
+const FIT_WIDTH = 'min(100vw, 80dvh)';
+
+function ImageZoomDialog({ image, onClose }: ImageZoomDialogProps) {
+  const [isZoomed, setIsZoomed] = useState(false);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const imageButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const previousOverflow = document.body.style.overflow;
+
+    document.body.style.overflow = 'hidden';
+    closeButtonRef.current?.focus();
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      previousFocus?.focus({ preventScroll: true });
+    };
+  }, []);
+
+  function handleKeyDown(event: ReactKeyboardEvent<HTMLDivElement>) {
+    if (event.key === 'Escape') {
+      onClose();
+      return;
+    }
+
+    // 押せるものは2つだけなので、Tab はその間で行き来させる。
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      const next =
+        document.activeElement === closeButtonRef.current
+          ? imageButtonRef.current
+          : closeButtonRef.current;
+      next?.focus();
+    }
+  }
+
+  function handleBackdropClick(event: MouseEvent<HTMLDivElement>) {
+    if (event.target === event.currentTarget) {
+      onClose();
+    }
+  }
+
+  return createPortal(
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="拡大画像"
+      style={dialogStyle}
+      onKeyDown={handleKeyDown}
+    >
+      <div style={dialogScrollStyle} onClick={handleBackdropClick}>
+        <button
+          ref={imageButtonRef}
+          type="button"
+          aria-label={isZoomed ? '画像を縮小する' : '画像をさらに拡大する'}
+          onClick={() => setIsZoomed((current) => !current)}
+          style={{
+            ...dialogImageButtonStyle,
+            width: isZoomed ? `calc(${FIT_WIDTH} * 2)` : FIT_WIDTH,
+            cursor: isZoomed ? 'zoom-out' : 'zoom-in',
+          }}
+        >
+          <img src={image.src} alt={image.alt} style={dialogImageStyle} />
+        </button>
+      </div>
+
+      <button
+        ref={closeButtonRef}
+        type="button"
+        aria-label="拡大画像を閉じる"
+        onClick={onClose}
+        style={dialogCloseButtonStyle}
+      >
+        {'×'}
+      </button>
+    </div>,
+    document.body,
+  );
+}
+
 export function ExplanationImage({ image }: ExplanationImageProps) {
+  const [isZoomOpen, setIsZoomOpen] = useState(false);
+  const closeZoom = useCallback(() => setIsZoomOpen(false), []);
   const isTall = image.aspectRatio === '4:5';
 
   const figureStyle: CSSProperties = {
@@ -23,17 +116,27 @@ export function ExplanationImage({ image }: ExplanationImageProps) {
 
   return (
     <figure style={figureStyle}>
-      
-
       <div style={frameStyle}>
-        <img
-          src={image.src}
-          alt={image.alt}
-          loading="lazy"
-          decoding="async"
-          style={imageStyle}
-        />
+        <button
+          type="button"
+          aria-label={`画像を拡大する: ${image.alt}`}
+          onClick={() => setIsZoomOpen(true)}
+          style={imageButtonStyle}
+        >
+          <img
+            src={image.src}
+            alt={image.alt}
+            loading="lazy"
+            decoding="async"
+            style={imageStyle}
+          />
+          <span aria-hidden="true" style={zoomBadgeStyle}>
+            拡大
+          </span>
+        </button>
       </div>
+
+      {isZoomOpen ? <ImageZoomDialog image={image} onClose={closeZoom} /> : null}
     </figure>
   );
 }
@@ -55,6 +158,74 @@ const baseImageStyle: CSSProperties = {
   width: '100%',
   height: 'auto',
   objectFit: 'contain',
+};
+
+const imageButtonStyle: CSSProperties = {
+  position: 'relative',
+  display: 'block',
+  width: '100%',
+  padding: 0,
+  border: 0,
+  background: 'transparent',
+  cursor: 'zoom-in',
+};
+
+const zoomBadgeStyle: CSSProperties = {
+  position: 'absolute',
+  right: 6,
+  bottom: 6,
+  padding: '3px 8px',
+  borderRadius: 999,
+  background: 'rgba(14, 26, 43, 0.78)',
+  color: '#FFFFFF',
+  fontSize: 11,
+  fontWeight: 800,
+  lineHeight: 1.3,
+};
+
+const dialogStyle: CSSProperties = {
+  position: 'fixed',
+  inset: 0,
+  zIndex: 1100,
+  background: 'rgba(14, 26, 43, 0.94)',
+};
+
+const dialogScrollStyle: CSSProperties = {
+  position: 'absolute',
+  inset: 0,
+  display: 'flex',
+  overflow: 'auto',
+};
+
+const dialogImageButtonStyle: CSSProperties = {
+  flexShrink: 0,
+  margin: 'auto',
+  padding: 0,
+  border: 0,
+  background: 'transparent',
+};
+
+const dialogImageStyle: CSSProperties = {
+  display: 'block',
+  width: '100%',
+  height: 'auto',
+};
+
+const dialogCloseButtonStyle: CSSProperties = {
+  position: 'absolute',
+  top: 8,
+  right: 8,
+  width: 44,
+  height: 44,
+  borderRadius: '50%',
+  border: '1px solid #D8D2C6',
+  background: '#FFFFFF',
+  color: '#1A2A4F',
+  padding: 0,
+  fontSize: 26,
+  fontWeight: 900,
+  lineHeight: 1,
+  cursor: 'pointer',
 };
 
 const captionStyle: CSSProperties = {

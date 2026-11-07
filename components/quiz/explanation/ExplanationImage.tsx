@@ -17,6 +17,14 @@ type ImageZoomDialogProps = {
 // 画面に全体が収まる幅。4:5 の画像でも高さがはみ出さない。
 const FIT_WIDTH = 'min(100vw, 80dvh)';
 
+function getFrameAspectRatio(image: ExplanationVisualImage): string {
+  if (image.width && image.height) {
+    return `${image.width} / ${image.height}`;
+  }
+
+  return image.aspectRatio === '1:1' ? '1 / 1' : '4 / 5';
+}
+
 function ImageZoomDialog({ image, onClose }: ImageZoomDialogProps) {
   const [isZoomed, setIsZoomed] = useState(false);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -110,7 +118,7 @@ export function ExplanationImage({ image }: ExplanationImageProps) {
   const imageStyle: CSSProperties = {
     ...baseImageStyle,
     // 読み込み前から高さを確保し、読み込み後に下の内容が動かないようにする。
-    aspectRatio: image.aspectRatio === '1:1' ? '1 / 1' : '4 / 5',
+    aspectRatio: getFrameAspectRatio(image),
     maxHeight: isTall ? 560 : 430,
   };
 

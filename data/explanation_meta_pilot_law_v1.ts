@@ -272,7 +272,8 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
     visualImage: {
       src: '/explanations/LAW-036-010.webp',
       alt: '第1類の酸化性固体と第4類の引火性液体を同じ車両に混載できないことを示す画像',
-      aspectRatio: '4:5',
+      width: 1199,
+      height: 1312,
       caption: '',
     },
     shortExplanation:
@@ -484,7 +485,8 @@ export const explanationMetaPilotLawV1: ExplanationMetaMap = {
     visualImage: {
       src: '/explanations/LAW-006-002.webp',
       alt: '消防本部の有無による許可権者と完成検査を示す法令カード画像',
-      aspectRatio: '4:5',
+      width: 1181,
+      height: 1331,
       caption: '',
     },
     optionMemos: {

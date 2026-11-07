@@ -79,6 +79,9 @@ export type ExplanationVisualImage = {
   src: string;
   alt: string;
   aspectRatio?: '1:1' | '4:5';
+  /** 4:5 でも 1:1 でもない画像だけ、実際の幅と高さを書く。枠はこの比率で作る。 */
+  width?: number;
+  height?: number;
   caption?: string;
   replacesVisual?: boolean;
 };

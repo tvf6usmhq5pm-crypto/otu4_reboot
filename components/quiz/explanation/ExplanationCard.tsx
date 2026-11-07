@@ -77,8 +77,6 @@ export function ExplanationCard({ meta, selectedIndex, correctIndex }: Explanati
 
   return (
     <section style={cardStyle} aria-label="解説">
-      <div style={watermarkStyle}>Z4</div>
-
       {/* lossTitle（この問題の急所）は表示しない。間違えた理由は選んだ選択肢の解説で伝える。 */}
       {/* pilot段階では highlightTerms は赤表示しない。必要問題だけ後で限定導入する。 */}
       {meta.visualImage ? <ExplanationImage image={meta.visualImage} /> : null}
@@ -137,17 +135,6 @@ const cardStyle: CSSProperties = {
   padding: 14,
   background: '#fffaf3',
   boxShadow: '0 8px 22px rgba(74, 52, 35, 0.08)',
-};
-
-const watermarkStyle: CSSProperties = {
-  position: 'absolute',
-  right: 18,
-  top: 18,
-  color: 'rgba(150, 110, 70, 0.08)',
-  fontFamily: 'Georgia, "Times New Roman", serif',
-  fontSize: 42,
-  fontWeight: 800,
-  pointerEvents: 'none',
 };
 
 const explanationHeaderStyle: CSSProperties = {

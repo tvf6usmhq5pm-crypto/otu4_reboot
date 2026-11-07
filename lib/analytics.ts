@@ -48,7 +48,7 @@ export type HomeDashboardSummary = {
   examDays: number | null;
   statuses: HomeSubjectStatus[];
   focusSubject: Subject | null;
-  remainingQuestions: number;
+  remainingQuestions: number | null;
   summaries: SubjectSummaryMap;
 };
 
@@ -159,14 +159,6 @@ export function calcExamDays(
   }
 
   return Math.max(0, Math.ceil((target.getTime() - now.getTime()) / 86400000));
-}
-
-export function calcExamDaysWithFallback(
-  examDate: string | null,
-  fallback = 67,
-  now = new Date(),
-): number {
-  return calcExamDays(examDate, now) ?? fallback;
 }
 
 export function normalizeSubjectSummaries(bySubject: unknown): SubjectSummaryMap {
@@ -363,7 +355,7 @@ export function buildHomeDashboardSummary(): HomeDashboardSummary {
     return {
       hasSession: Boolean(session && session.questionIds.length > 0),
       wrongCount: wrongIds.length,
-      examDays: calcExamDaysWithFallback(examDate),
+      examDays: calcExamDays(examDate),
       statuses: SUBJECT_KEYS.map((subject) => ({
         key: subject,
         label: subjectLabel(subject),
@@ -373,8 +365,8 @@ export function buildHomeDashboardSummary(): HomeDashboardSummary {
         total: 0,
         gapTo60: 0,
       })),
-      focusSubject: 'phys',
-      remainingQuestions: 18,
+      focusSubject: null,
+      remainingQuestions: null,
       summaries,
     };
   }
@@ -400,12 +392,15 @@ export function buildHomeDashboardSummary(): HomeDashboardSummary {
   });
 
   const focusSubject = getWeakestSubject(summaries);
-  const remainingQuestions = calcTotalGapTo60(summaries);
+  // 未測定の科目は不足数が出せないので、3科目そろったときだけ合計する。
+  const remainingQuestions = SUBJECT_KEYS.every((subject) => summaries[subject].total > 0)
+    ? calcTotalGapTo60(summaries)
+    : null;
 
   return {
     hasSession: Boolean(session && session.questionIds.length > 0),
     wrongCount: wrongIds.length,
-    examDays: calcExamDaysWithFallback(examDate),
+    examDays: calcExamDays(examDate),
     statuses,
     focusSubject,
     remainingQuestions,

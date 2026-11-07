@@ -1,7 +1,6 @@
 import {
   buildHomeDashboardSummary,
   calcExamDays,
-  calcExamDaysWithFallback,
   calcGapTo60,
   calcPassReadiness,
   calcPercent,
@@ -147,7 +146,6 @@ function testCoreMath(): void {
   );
 
   assertEqual(calcExamDays(null), null, 'missing exam date should be null');
-  assertEqual(calcExamDaysWithFallback(null, 67), 67, 'fallback exam days should be used');
 
   console.log('PASS analytics core math');
 }
@@ -231,9 +229,26 @@ function testHomeDashboardSummary(): void {
 
   const empty = buildHomeDashboardSummary();
 
-  assertEqual(empty.focusSubject, 'phys', 'empty home focus should default to phys');
-  assertEqual(empty.remainingQuestions, 18, 'empty home remaining should default to 18');
-  assertEqual(empty.examDays, 67, 'empty home exam days should fallback');
+  assertEqual(empty.focusSubject, null, 'empty home should have no focus subject');
+  assertEqual(empty.remainingQuestions, null, 'empty home should have no remaining count');
+  assertEqual(empty.examDays, null, 'empty home should have no exam days');
+
+  saveResult({
+    id: 'partial-result',
+    questionIds: [],
+    bySubject: {
+      law: { total: 10, answered: 10, correct: 7 },
+      phys: { total: 0, answered: 0, correct: 0 },
+      prop: { total: 0, answered: 0, correct: 0 },
+    },
+  });
+
+  const partial = buildHomeDashboardSummary();
+
+  assertEqual(partial.focusSubject, 'law', 'partial home focus should be a measured subject');
+  assertEqual(partial.remainingQuestions, null, 'partial home should have no remaining count');
+
+  clearResults();
 
   const result = buildStoredResult();
   saveResult(result);

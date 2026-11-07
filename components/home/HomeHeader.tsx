@@ -1,7 +1,9 @@
+import Link from 'next/link';
 import type { CSSProperties } from 'react';
 
 type HomeHeaderProps = {
   examDays: number | null;
+  isLoaded: boolean;
 };
 
 function ShieldIcon() {
@@ -26,7 +28,7 @@ function ShieldIcon() {
   );
 }
 
-export default function HomeHeader({ examDays }: HomeHeaderProps) {
+export default function HomeHeader({ examDays, isLoaded }: HomeHeaderProps) {
   return (
     <header style={headerStyle}>
       <div style={brandRowStyle}>
@@ -46,13 +48,21 @@ export default function HomeHeader({ examDays }: HomeHeaderProps) {
           <ShieldIcon />
         </div>
 
-        <div style={examCardStyle}>
-          <span style={examLabelStyle}>試験まで</span>
-          <strong style={examDaysStyle}>
-            {examDays === null ? '—' : examDays}
-            {examDays !== null && <span style={examDaysUnitStyle}>日</span>}
-          </strong>
-        </div>
+        {examDays !== null ? (
+          <div style={examCardStyle}>
+            <span style={examLabelStyle}>試験まで</span>
+            <strong style={examDaysStyle}>
+              {examDays}
+              <span style={examDaysUnitStyle}>日</span>
+            </strong>
+          </div>
+        ) : (
+          isLoaded && (
+            <Link href="/settings" style={examSetupLinkStyle}>
+              試験日を設定する
+            </Link>
+          )
+        )}
       </div>
     </header>
   );
@@ -129,6 +139,19 @@ const examCardStyle: CSSProperties = {
   border: '1px solid rgba(21, 26, 36, 0.08)',
   textAlign: 'center',
   boxShadow: 'var(--shadow-soft)',
+};
+
+const examSetupLinkStyle: CSSProperties = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  minHeight: 44,
+  color: '#6E665B',
+  fontSize: 11,
+  fontWeight: 500,
+  lineHeight: 1.2,
+  textDecoration: 'underline',
+  textUnderlineOffset: 3,
+  whiteSpace: 'nowrap',
 };
 
 const examLabelStyle: CSSProperties = {

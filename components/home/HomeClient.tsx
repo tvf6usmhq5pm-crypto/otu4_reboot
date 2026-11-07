@@ -29,7 +29,7 @@ type HomeState = {
   examDays: number | null;
   statuses: SubjectStatus[];
   focusSubject: SubjectKey | null;
-  remainingQuestions: number;
+  remainingQuestions: number | null;
   summaries: Record<SubjectKey, SubjectSummary>;
 };
 
@@ -67,22 +67,6 @@ function compactSubjectLabel(subject: SubjectKey): string {
   }
 
   return '\u6027\u8cea\u30fb\u6d88\u706b';
-}
-
-function calcExamDays(examDate: string | null): number | null {
-  if (!examDate) {
-    return 67;
-  }
-
-  const target = new Date(`${examDate}T00:00:00`);
-  const now = new Date();
-
-  if (Number.isNaN(target.getTime())) {
-    return 67;
-  }
-
-  const diffMs = target.getTime() - now.getTime();
-  return Math.max(0, Math.ceil(diffMs / 86400000));
 }
 
 function buildHomeState(): HomeState {
@@ -179,46 +163,55 @@ function buildHeroEmphasisText(
   return '確認';
 }
 function buildReasonItems(state: HomeState) {
-  const focus = state.focusSubject ? subjectLabel(state.focusSubject) : '3科目';
+  const focusStatus = state.statuses.find((item) => item.key === state.focusSubject);
+  const items = [];
 
-  return [
-    {
+  if (focusStatus && focusStatus.state !== 'unknown') {
+    items.push({
       icon: '⚗',
       text:
-        state.focusSubject && (state.statuses.find((item) => item.key === state.focusSubject)?.percent ?? 0) < 60
-          ? `${focus}が60%ライン未達です`
+        focusStatus.percent < 60
+          ? `${focusStatus.label}が60%ライン未達です`
           : '3科目をバランスよく維持します',
-    },
-    {
-      icon: '↺',
-      text:
-        state.wrongCount > 0
-          ? `未復習のミスが ${state.wrongCount} 問あります`
-          : '未復習のミスはありません',
-    },
-    {
+    });
+  }
+
+  items.push({
+    icon: '↺',
+    text:
+      state.wrongCount > 0
+        ? `未復習のミスが ${state.wrongCount} 問あります`
+        : '未復習のミスはありません',
+  });
+
+  if (state.remainingQuestions !== null) {
+    items.push({
       icon: '◎',
       text:
         state.remainingQuestions > 0
           ? `合格圏まで あと ${state.remainingQuestions} 問です`
           : '3科目とも合格ラインに到達しています',
-    },
-  ];
+    });
+  }
+
+  return items;
 }
 
 export default function HomeClient() {
   const [state, setState] = useState<HomeState>({
     hasSession: false,
     wrongCount: 0,
-    examDays: 67,
+    examDays: null,
     statuses: DEFAULT_STATUSES,
-    focusSubject: 'phys',
-    remainingQuestions: 18,
+    focusSubject: null,
+    remainingQuestions: null,
     summaries: DEFAULT_SUMMARIES,
   });
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     setState(buildHomeState());
+    setIsLoaded(true);
   }, []);
 
   const recommendation = useMemo(() => buildRecommendation(state), [state]);
@@ -237,14 +230,14 @@ export default function HomeClient() {
       return recommendation.count;
     }
 
-    return state.remainingQuestions > 0 ? state.remainingQuestions : recommendation.count;
+    return state.remainingQuestions ? state.remainingQuestions : recommendation.count;
   }, [recommendation, state.remainingQuestions]);
   const reasonItems = useMemo(() => buildReasonItems(state), [state]);
 
   return (
     <main style={pageStyle}>
       <div style={screenStyle}>
-        <HomeHeader examDays={state.examDays} />
+        <HomeHeader examDays={state.examDays} isLoaded={isLoaded} />
 
         <HomeHeroCard
           href={ctaHref}
